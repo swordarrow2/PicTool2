@@ -158,7 +158,7 @@ public class PixivDownloadMain extends Fragment {
 			  .setPositiveButton("现在重新下载", new DialogInterface.OnClickListener() {
 				  @Override
 				  public void onClick(DialogInterface p1, int p2) {
-					  MainActivity2.instence.showPixivDownloadFragment(true);
+					  MainActivity2.instence.showFragment(PixivDownloadMain.class);
 					  for (String url : failedURLs) {
 						  createDownloadTask(url);
 						  DataBaseHelper.deleteData(url);

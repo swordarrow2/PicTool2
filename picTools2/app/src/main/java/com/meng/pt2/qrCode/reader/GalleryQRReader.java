@@ -12,6 +12,7 @@ import android.widget.*;
 import com.google.zxing.*;
 import com.meng.pt2.*;
 import com.meng.pt2.tools.*;
+import com.meng.pt2.qrCode.creator.*;
 
 public class GalleryQRReader extends Fragment {
     private Button btnCreateAwesomeQR;
@@ -41,16 +42,16 @@ public class GalleryQRReader extends Fragment {
             stopService();
         }
         cbAutoRead.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferenceHelper.putBoolean("service", isChecked);
-                if (isChecked) {
-                    startService();
-                } else {
-                    stopService();
-                }
-            }
-        });
+				@Override
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					SharedPreferenceHelper.putBoolean("service", isChecked);
+					if (isChecked) {
+						startService();
+					} else {
+						stopService();
+					}
+				}
+			});
     }
 
     private OnClickListener click = new OnClickListener() {
@@ -61,8 +62,8 @@ public class GalleryQRReader extends Fragment {
                     MainActivity2.instence.selectImage(GalleryQRReader.this);
                     break;
                 case R.id.read_galleryButton_createAwesomeQR:
-                    MainActivity2.instence.showAwesomeFragment(true);
-                    MainActivity2.instence.awesomeCreatorFragment.setDataStr(tvResult.getText().toString());
+                    MainActivity2.instence.showFragment(AwesomeCreator.class);
+                    MainActivity2.instence.getFragment(AwesomeCreator.class).setDataStr(tvResult.getText().toString());
                     break;
             }
         }

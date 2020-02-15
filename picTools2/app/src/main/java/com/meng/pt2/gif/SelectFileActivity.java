@@ -55,7 +55,7 @@ public class SelectFileActivity extends AppCompatActivity {
                 } else if (isPicture(file)) {
                     GIFFrame gifFrame = new GIFFrame();
                     gifFrame.thumb = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(file.getAbsolutePath()), 48, 48);
-                    gifFrame.delay = MainActivity2.instence.gifCreatorFragment.mengEtFrameDelay.getInt();
+                    gifFrame.delay = MainActivity2.instence.getFragment(GIFCreator.class).mengEtFrameDelay.getInt();
                     gifFrame.filePath = file.getAbsolutePath();
                     selectedImages.add(gifFrame);
                     editFrameAdapter.notifyDataSetChanged();
@@ -72,7 +72,7 @@ public class SelectFileActivity extends AppCompatActivity {
                     if (isPicture(file)) {
                         GIFFrame gifFrame = new GIFFrame();
                         gifFrame.thumb = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(file.getAbsolutePath()), 48, 48);
-                        gifFrame.delay = MainActivity2.instence.gifCreatorFragment.mengEtFrameDelay.getInt();
+                        gifFrame.delay = MainActivity2.instence.getFragment(GIFCreator.class).mengEtFrameDelay.getInt();
                         gifFrame.filePath = file.getAbsolutePath();
                         selectedImages.add(gifFrame);
                     }
@@ -83,7 +83,7 @@ public class SelectFileActivity extends AppCompatActivity {
             }
         });
         curPathTextView = (TextView) findViewById(R.id.curPath);
-        selectedImages = MainActivity2.instence.gifCreatorFragment.selectedImages;
+        selectedImages = MainActivity2.instence.getFragment(GIFCreator.class).selectedImages;
         rootPath = Environment.getExternalStorageDirectory().toString();
         getFileDir(rootPath);
 

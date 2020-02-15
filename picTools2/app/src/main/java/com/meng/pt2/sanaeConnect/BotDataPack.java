@@ -1,4 +1,4 @@
-package com.meng.pt2.upgrade;
+package com.meng.pt2.sanaeConnect;
 
 import com.meng.pt2.tools.*;
 import java.io.*;
@@ -21,7 +21,10 @@ public class BotDataPack {
 	public static final byte typeBoolean=7;
 	public static final byte typeFile=8;
 
+	public static final int opTextNotify = 32;
+	
 	public static final int opGetApp = 53;
+	public static final int opCrashLog = 54;
 	
 	public static BotDataPack encode(int opCode) {
 		return new BotDataPack(opCode);

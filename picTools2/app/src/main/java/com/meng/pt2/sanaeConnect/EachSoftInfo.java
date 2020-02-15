@@ -1,4 +1,4 @@
-package com.meng.pt2.upgrade;
+package com.meng.pt2.sanaeConnect;
 
 import java.util.*;
 
@@ -14,7 +14,7 @@ public class EachSoftInfo {
 		for (SoftInfo si:infoList) {
 			sb.append(si.versionDescribe).append("\n");
 		}
-		sb.append("大小:").append(lastestSize / 1024f / 1024f).append("M");
+		sb.append(String.format("大小:%.2f",lastestSize / 1024f / 1024f)).append("M");
 		return sb.toString();
 	}
 }

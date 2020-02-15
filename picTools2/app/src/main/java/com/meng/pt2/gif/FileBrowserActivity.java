@@ -34,7 +34,7 @@ public class FileBrowserActivity extends Activity {
                 } else if (isPicture(file)) {
                     GIFFrame gifFrame = new GIFFrame();
                     gifFrame.thumb = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(file.getAbsolutePath()), 48, 48);
-                    gifFrame.delay = MainActivity2.instence.gifCreatorFragment.mengEtFrameDelay.getInt();
+                    gifFrame.delay = MainActivity2.instence.getFragment(GIFCreator.class).mengEtFrameDelay.getInt();
                     gifFrame.filePath = file.getAbsolutePath();
                     selectedImages.add(gifFrame);
                     LogTool.t(file.getName() + "已选择");
@@ -59,7 +59,7 @@ public class FileBrowserActivity extends Activity {
                     if (isPicture(file)) {
                         GIFFrame gifFrame = new GIFFrame();
                         gifFrame.thumb = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(file.getAbsolutePath()), 48, 48);
-                        gifFrame.delay = MainActivity2.instence.gifCreatorFragment.mengEtFrameDelay.getInt();
+                        gifFrame.delay = MainActivity2.instence.getFragment(GIFCreator.class).mengEtFrameDelay.getInt();
                         gifFrame.filePath = file.getAbsolutePath();
                         selectedImages.add(gifFrame);
                         LogTool.t("已选择本目录全部图片");
@@ -69,15 +69,13 @@ public class FileBrowserActivity extends Activity {
             }
         });
         curPathTextView = (TextView) findViewById(R.id.curPath);
-        selectedImages = MainActivity2.instence.gifCreatorFragment.selectedImages;
+        selectedImages = MainActivity2.instence.getFragment(GIFCreator.class).selectedImages;
         rootPath = Environment.getExternalStorageDirectory().toString();
         getFileDir(rootPath);
     }
 
     private boolean isPicture(File file) {
-        return file.getName().toLowerCase().endsWith(".jpg") ||
-                file.getName().toLowerCase().endsWith(".png") ||
-                file.getName().toLowerCase().endsWith(".bmp");
+        return file.getName().toLowerCase().endsWith(".jpg") || file.getName().toLowerCase().endsWith(".png") || file.getName().toLowerCase().endsWith(".bmp");
     }
 
     private void getFileDir(String filePath) {

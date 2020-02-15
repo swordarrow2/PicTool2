@@ -94,31 +94,31 @@ public class FloatingButton extends ImageButton {
     }
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
-        TypedArray attr = context.obtainStyledAttributes(attrs, R.styleable.FloatingActionButton, defStyleAttr, 0);
-        mColorNormal = attr.getColor(R.styleable.FloatingActionButton_fab_colorNormal, 0xFFDA4336);
-        mColorPressed = attr.getColor(R.styleable.FloatingActionButton_fab_colorPressed, 0xFFE75043);
-        mColorDisabled = attr.getColor(R.styleable.FloatingActionButton_fab_colorDisabled, 0xFFAAAAAA);
-        mColorRipple = attr.getColor(R.styleable.FloatingActionButton_fab_colorRipple, 0x99FFFFFF);
-        mShowShadow = attr.getBoolean(R.styleable.FloatingActionButton_fab_showShadow, true);
-        mShadowColor = attr.getColor(R.styleable.FloatingActionButton_fab_shadowColor, 0x66000000);
-        mShadowRadius = attr.getDimensionPixelSize(R.styleable.FloatingActionButton_fab_shadowRadius, mShadowRadius);
-        mShadowXOffset = attr.getDimensionPixelSize(R.styleable.FloatingActionButton_fab_shadowXOffset, mShadowXOffset);
-        mShadowYOffset = attr.getDimensionPixelSize(R.styleable.FloatingActionButton_fab_shadowYOffset, mShadowYOffset);
-        mFabSize = attr.getInt(R.styleable.FloatingActionButton_fab_size, SIZE_NORMAL);
-        mLabelText = attr.getString(R.styleable.FloatingActionButton_fab_label);
-        mShouldProgressIndeterminate = attr.getBoolean(R.styleable.FloatingActionButton_fab_progress_indeterminate, false);
-        mProgressColor = attr.getColor(R.styleable.FloatingActionButton_fab_progress_color, 0xFF009688);
-        mProgressBackgroundColor = attr.getColor(R.styleable.FloatingActionButton_fab_progress_backgroundColor, 0x4D000000);
-        mProgressMax = attr.getInt(R.styleable.FloatingActionButton_fab_progress_max, mProgressMax);
-        mShowProgressBackground = attr.getBoolean(R.styleable.FloatingActionButton_fab_progress_showBackground, true);
+        TypedArray attr = context.obtainStyledAttributes(attrs, R.styleable.FloatingButton, defStyleAttr, 0);
+        mColorNormal = attr.getColor(R.styleable.FloatingButton_fab_colorNormal, 0xFFDA4336);
+        mColorPressed = attr.getColor(R.styleable.FloatingButton_fab_colorPressed, 0xFFE75043);
+        mColorDisabled = attr.getColor(R.styleable.FloatingButton_fab_colorDisabled, 0xFFAAAAAA);
+        mColorRipple = attr.getColor(R.styleable.FloatingButton_fab_colorRipple, 0x99FFFFFF);
+        mShowShadow = attr.getBoolean(R.styleable.FloatingButton_fab_showShadow, true);
+        mShadowColor = attr.getColor(R.styleable.FloatingButton_fab_shadowColor, 0x66000000);
+        mShadowRadius = attr.getDimensionPixelSize(R.styleable.FloatingButton_fab_shadowRadius, mShadowRadius);
+        mShadowXOffset = attr.getDimensionPixelSize(R.styleable.FloatingButton_fab_shadowXOffset, mShadowXOffset);
+        mShadowYOffset = attr.getDimensionPixelSize(R.styleable.FloatingButton_fab_shadowYOffset, mShadowYOffset);
+        mFabSize = attr.getInt(R.styleable.FloatingButton_fab_size, SIZE_NORMAL);
+        mLabelText = attr.getString(R.styleable.FloatingButton_fab_label);
+        mShouldProgressIndeterminate = attr.getBoolean(R.styleable.FloatingButton_fab_progress_indeterminate, false);
+        mProgressColor = attr.getColor(R.styleable.FloatingButton_fab_progress_color, 0xFF009688);
+        mProgressBackgroundColor = attr.getColor(R.styleable.FloatingButton_fab_progress_backgroundColor, 0x4D000000);
+        mProgressMax = attr.getInt(R.styleable.FloatingButton_fab_progress_max, mProgressMax);
+        mShowProgressBackground = attr.getBoolean(R.styleable.FloatingButton_fab_progress_showBackground, true);
 
-        if (attr.hasValue(R.styleable.FloatingActionButton_fab_progress)) {
-            mProgress = attr.getInt(R.styleable.FloatingActionButton_fab_progress, 0);
+        if (attr.hasValue(R.styleable.FloatingButton_fab_progress)) {
+            mProgress = attr.getInt(R.styleable.FloatingButton_fab_progress, 0);
             mShouldSetProgress = true;
         }
 
-        if (attr.hasValue(R.styleable.FloatingActionButton_fab_elevationCompat)) {
-            float elevation = attr.getDimensionPixelOffset(R.styleable.FloatingActionButton_fab_elevationCompat, 0);
+        if (attr.hasValue(R.styleable.FloatingButton_fab_elevationCompat)) {
+            float elevation = attr.getDimensionPixelOffset(R.styleable.FloatingButton_fab_elevationCompat, 0);
             if (isInEditMode()) {
                 setElevation(elevation);
             } else {
@@ -144,12 +144,12 @@ public class FloatingButton extends ImageButton {
     }
 
     private void initShowAnimation(TypedArray attr) {
-        int resourceId = attr.getResourceId(R.styleable.FloatingActionButton_fab_showAnimation, R.anim.fab_scale_up);
+        int resourceId = attr.getResourceId(R.styleable.FloatingButton_fab_showAnimation, R.anim.fab_scale_up);
         mShowAnimation = AnimationUtils.loadAnimation(getContext(), resourceId);
     }
 
     private void initHideAnimation(TypedArray attr) {
-        int resourceId = attr.getResourceId(R.styleable.FloatingActionButton_fab_hideAnimation, R.anim.fab_scale_down);
+        int resourceId = attr.getResourceId(R.styleable.FloatingButton_fab_hideAnimation, R.anim.fab_scale_down);
         mHideAnimation = AnimationUtils.loadAnimation(getContext(), resourceId);
     }
 
@@ -801,9 +801,9 @@ public class FloatingButton extends ImageButton {
     }
 
     /**
-     * Sets the size of the <b>FloatingActionButton</b> and invalidates its layout.
+     * Sets the size of the <b>FloatingButton</b> and invalidates its layout.
      *
-     * @param size size of the <b>FloatingActionButton</b>. Accepted values: SIZE_NORMAL, SIZE_MINI.
+     * @param size size of the <b>FloatingButton</b>. Accepted values: SIZE_NORMAL, SIZE_MINI.
      */
     public void setButtonSize(int size) {
         if (size != SIZE_NORMAL && size != SIZE_MINI) {
@@ -892,7 +892,7 @@ public class FloatingButton extends ImageButton {
     }
 
     /**
-     * Sets the shadow radius of the <b>FloatingActionButton</b> and invalidates its layout.
+     * Sets the shadow radius of the <b>FloatingButton</b> and invalidates its layout.
      *
      * @param dimenResId the resource identifier of the dimension
      */
@@ -906,7 +906,7 @@ public class FloatingButton extends ImageButton {
     }
 
     /**
-     * Sets the shadow radius of the <b>FloatingActionButton</b> and invalidates its layout.
+     * Sets the shadow radius of the <b>FloatingButton</b> and invalidates its layout.
      * <p>
      * Must be specified in density-independent (dp) pixels, which are then converted into actual
      * pixels (px).
@@ -924,7 +924,7 @@ public class FloatingButton extends ImageButton {
     }
 
     /**
-     * Sets the shadow x offset of the <b>FloatingActionButton</b> and invalidates its layout.
+     * Sets the shadow x offset of the <b>FloatingButton</b> and invalidates its layout.
      *
      * @param dimenResId the resource identifier of the dimension
      */
@@ -938,7 +938,7 @@ public class FloatingButton extends ImageButton {
     }
 
     /**
-     * Sets the shadow x offset of the <b>FloatingActionButton</b> and invalidates its layout.
+     * Sets the shadow x offset of the <b>FloatingButton</b> and invalidates its layout.
      * <p>
      * Must be specified in density-independent (dp) pixels, which are then converted into actual
      * pixels (px).
@@ -956,7 +956,7 @@ public class FloatingButton extends ImageButton {
     }
 
     /**
-     * Sets the shadow y offset of the <b>FloatingActionButton</b> and invalidates its layout.
+     * Sets the shadow y offset of the <b>FloatingButton</b> and invalidates its layout.
      *
      * @param dimenResId the resource identifier of the dimension
      */
@@ -970,7 +970,7 @@ public class FloatingButton extends ImageButton {
     }
 
     /**
-     * Sets the shadow y offset of the <b>FloatingActionButton</b> and invalidates its layout.
+     * Sets the shadow y offset of the <b>FloatingButton</b> and invalidates its layout.
      * <p>
      * Must be specified in density-independent (dp) pixels, which are then converted into actual
      * pixels (px).
@@ -1007,16 +1007,16 @@ public class FloatingButton extends ImageButton {
     }
 
     /**
-     * Checks whether <b>FloatingActionButton</b> is hidden
+     * Checks whether <b>FloatingButton</b> is hidden
      *
-     * @return true if <b>FloatingActionButton</b> is hidden, false otherwise
+     * @return true if <b>FloatingButton</b> is hidden, false otherwise
      */
     public boolean isHidden() {
         return getVisibility() == INVISIBLE;
     }
 
     /**
-     * Makes the <b>FloatingActionButton</b> to appear and sets its visibility to {@link #VISIBLE}
+     * Makes the <b>FloatingButton</b> to appear and sets its visibility to {@link #VISIBLE}
      *
      * @param animate if true - plays "show animation"
      */
@@ -1030,7 +1030,7 @@ public class FloatingButton extends ImageButton {
     }
 
     /**
-     * Makes the <b>FloatingActionButton</b> to disappear and sets its visibility to {@link #INVISIBLE}
+     * Makes the <b>FloatingButton</b> to disappear and sets its visibility to {@link #INVISIBLE}
      *
      * @param animate if true - plays "hide animation"
      */

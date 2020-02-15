@@ -17,6 +17,7 @@ import java.io.*;
 import java.util.*;
 import java.util.concurrent.*;
 import org.jsoup.*;
+import com.meng.pt2.pixivPictureDownloader.*;
 
 public class SauceNaoMain extends Fragment {
     private FloatingButton mFabSelect;
@@ -81,8 +82,8 @@ public class SauceNaoMain extends Fragment {
                     public void onItemClick(final AdapterView<?> p1, View p2, final int p3, long p4) {
                         String url = (String) p1.getItemAtPosition(p3);
                         if (url.contains("illust_id")) {
-                            MainActivity2.instence.showPixivDownloadFragment(true);
-                            MainActivity2.instence.pixivDownloadMainFragment.editTextURL.setText(url);
+                            MainActivity2.instence.showFragment(PixivDownloadMain.class);
+                            MainActivity2.instence.getFragment(PixivDownloadMain.class).editTextURL.setText(url);
                         } else {
                             ClipboardManager clipboardManager = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
                             ClipData clipData = ClipData.newPlainText("text", url);

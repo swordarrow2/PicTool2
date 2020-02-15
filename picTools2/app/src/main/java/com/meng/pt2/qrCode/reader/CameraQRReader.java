@@ -26,6 +26,7 @@ import com.meng.pt2.tools.zxing.view.*;
 import java.util.*;
 
 import com.meng.pt2.R;
+import com.meng.pt2.qrCode.creator.*;
 
 public class CameraQRReader extends Fragment implements Callback {
 
@@ -168,8 +169,8 @@ public class CameraQRReader extends Fragment implements Callback {
 
 					  @Override
 					  public void onClick(DialogInterface p1, int p2) {
-						  MainActivity2.instence.showAwesomeFragment(true);
-						  MainActivity2.instence.awesomeCreatorFragment.setDataStr(resultString);
+						  MainActivity2.instence.showFragment(AwesomeCreator.class);
+						  MainActivity2.instence.getFragment(AwesomeCreator.class).setDataStr(resultString);
 						}
 					}).create();
                 mDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {

@@ -10,9 +10,31 @@ import java.io.*;
 import java.security.*;
 
 public class Tools {
-	
+
 	public static final String DEFAULT_ENCODING = "UTF-8";
 
+	public static class FileTool {
+		public static String readString(String fileName) {
+			return readString(new File(fileName));
+		}
+		public static String readString(File f) {
+			String s = "{}";
+			try {      
+				if (!f.exists()) {
+					f.createNewFile();
+				}
+				long filelength = f.length();
+				byte[] filecontent = new byte[(int) filelength];
+				FileInputStream in = new FileInputStream(f);
+				in.read(filecontent);
+				in.close();
+				s = new String(filecontent, DEFAULT_ENCODING);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return s;
+		}
+	}
 	public static class Base64 {
 		public static final byte[] encode(String str) {
 			try {

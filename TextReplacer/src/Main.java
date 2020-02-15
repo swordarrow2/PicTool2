@@ -13,7 +13,7 @@ public class Main {
 		}
 		for (File f:fs) {
 			String s=readString(f);
-			s=s.replace("picTools", "pt2");
+			s=s.replace("BaseFragment", "Fragment");
 			//System.out.println(s);
 			saveString(f,s);
 		}

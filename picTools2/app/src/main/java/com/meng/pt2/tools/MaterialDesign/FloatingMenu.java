@@ -112,48 +112,48 @@ public class FloatingMenu extends ViewGroup {
     }
 
     private void init(Context context, AttributeSet attrs) {
-        TypedArray attr = context.obtainStyledAttributes(attrs, R.styleable.FloatingActionMenu, 0, 0);
-        mButtonSpacing = attr.getDimensionPixelSize(R.styleable.FloatingActionMenu_menu_buttonSpacing, mButtonSpacing);
-        mLabelsMargin = attr.getDimensionPixelSize(R.styleable.FloatingActionMenu_menu_labels_margin, mLabelsMargin);
-        mLabelsPosition = attr.getInt(R.styleable.FloatingActionMenu_menu_labels_position, LABELS_POSITION_LEFT);
-        mLabelsShowAnimation = attr.getResourceId(R.styleable.FloatingActionMenu_menu_labels_showAnimation,
+        TypedArray attr = context.obtainStyledAttributes(attrs, R.styleable.FloatingMenu, 0, 0);
+        mButtonSpacing = attr.getDimensionPixelSize(R.styleable.FloatingMenu_menu_buttonSpacing, mButtonSpacing);
+        mLabelsMargin = attr.getDimensionPixelSize(R.styleable.FloatingMenu_menu_labels_margin, mLabelsMargin);
+        mLabelsPosition = attr.getInt(R.styleable.FloatingMenu_menu_labels_position, LABELS_POSITION_LEFT);
+        mLabelsShowAnimation = attr.getResourceId(R.styleable.FloatingMenu_menu_labels_showAnimation,
                 mLabelsPosition == LABELS_POSITION_LEFT ? R.anim.fab_slide_in_from_right : R.anim.fab_slide_in_from_left);
-        mLabelsHideAnimation = attr.getResourceId(R.styleable.FloatingActionMenu_menu_labels_hideAnimation,
+        mLabelsHideAnimation = attr.getResourceId(R.styleable.FloatingMenu_menu_labels_hideAnimation,
                 mLabelsPosition == LABELS_POSITION_LEFT ? R.anim.fab_slide_out_to_right : R.anim.fab_slide_out_to_left);
-        mLabelsPaddingTop = attr.getDimensionPixelSize(R.styleable.FloatingActionMenu_menu_labels_paddingTop, mLabelsPaddingTop);
-        mLabelsPaddingRight = attr.getDimensionPixelSize(R.styleable.FloatingActionMenu_menu_labels_paddingRight, mLabelsPaddingRight);
-        mLabelsPaddingBottom = attr.getDimensionPixelSize(R.styleable.FloatingActionMenu_menu_labels_paddingBottom, mLabelsPaddingBottom);
-        mLabelsPaddingLeft = attr.getDimensionPixelSize(R.styleable.FloatingActionMenu_menu_labels_paddingLeft, mLabelsPaddingLeft);
-        mLabelsTextColor = attr.getColorStateList(R.styleable.FloatingActionMenu_menu_labels_textColor);
+        mLabelsPaddingTop = attr.getDimensionPixelSize(R.styleable.FloatingMenu_menu_labels_paddingTop, mLabelsPaddingTop);
+        mLabelsPaddingRight = attr.getDimensionPixelSize(R.styleable.FloatingMenu_menu_labels_paddingRight, mLabelsPaddingRight);
+        mLabelsPaddingBottom = attr.getDimensionPixelSize(R.styleable.FloatingMenu_menu_labels_paddingBottom, mLabelsPaddingBottom);
+        mLabelsPaddingLeft = attr.getDimensionPixelSize(R.styleable.FloatingMenu_menu_labels_paddingLeft, mLabelsPaddingLeft);
+        mLabelsTextColor = attr.getColorStateList(R.styleable.FloatingMenu_menu_labels_textColor);
         // set default value if null same as for textview
         if (mLabelsTextColor == null) {
             mLabelsTextColor = ColorStateList.valueOf(Color.WHITE);
         }
-        mLabelsTextSize = attr.getDimension(R.styleable.FloatingActionMenu_menu_labels_textSize, getResources().getDimension(R.dimen.labels_text_size));
-        mLabelsCornerRadius = attr.getDimensionPixelSize(R.styleable.FloatingActionMenu_menu_labels_cornerRadius, mLabelsCornerRadius);
-        mLabelsShowShadow = attr.getBoolean(R.styleable.FloatingActionMenu_menu_labels_showShadow, true);
-        mLabelsColorNormal = attr.getColor(R.styleable.FloatingActionMenu_menu_labels_colorNormal, 0xFF333333);
-        mLabelsColorPressed = attr.getColor(R.styleable.FloatingActionMenu_menu_labels_colorPressed, 0xFF444444);
-        mLabelsColorRipple = attr.getColor(R.styleable.FloatingActionMenu_menu_labels_colorRipple, 0x66FFFFFF);
-        mMenuShowShadow = attr.getBoolean(R.styleable.FloatingActionMenu_menu_showShadow, true);
-        mMenuShadowColor = attr.getColor(R.styleable.FloatingActionMenu_menu_shadowColor, 0x66000000);
-        mMenuShadowRadius = attr.getDimension(R.styleable.FloatingActionMenu_menu_shadowRadius, mMenuShadowRadius);
-        mMenuShadowXOffset = attr.getDimension(R.styleable.FloatingActionMenu_menu_shadowXOffset, mMenuShadowXOffset);
-        mMenuShadowYOffset = attr.getDimension(R.styleable.FloatingActionMenu_menu_shadowYOffset, mMenuShadowYOffset);
-        mMenuColorNormal = attr.getColor(R.styleable.FloatingActionMenu_menu_colorNormal, 0xFFDA4336);
-        mMenuColorPressed = attr.getColor(R.styleable.FloatingActionMenu_menu_colorPressed, 0xFFE75043);
-        mMenuColorRipple = attr.getColor(R.styleable.FloatingActionMenu_menu_colorRipple, 0x99FFFFFF);
-        mAnimationDelayPerItem = attr.getInt(R.styleable.FloatingActionMenu_menu_animationDelayPerItem, 50);
-        mIcon = attr.getDrawable(R.styleable.FloatingActionMenu_menu_icon);
+        mLabelsTextSize = attr.getDimension(R.styleable.FloatingMenu_menu_labels_textSize, getResources().getDimension(R.dimen.labels_text_size));
+        mLabelsCornerRadius = attr.getDimensionPixelSize(R.styleable.FloatingMenu_menu_labels_cornerRadius, mLabelsCornerRadius);
+        mLabelsShowShadow = attr.getBoolean(R.styleable.FloatingMenu_menu_labels_showShadow, true);
+        mLabelsColorNormal = attr.getColor(R.styleable.FloatingMenu_menu_labels_colorNormal, 0xFF333333);
+        mLabelsColorPressed = attr.getColor(R.styleable.FloatingMenu_menu_labels_colorPressed, 0xFF444444);
+        mLabelsColorRipple = attr.getColor(R.styleable.FloatingMenu_menu_labels_colorRipple, 0x66FFFFFF);
+        mMenuShowShadow = attr.getBoolean(R.styleable.FloatingMenu_menu_showShadow, true);
+        mMenuShadowColor = attr.getColor(R.styleable.FloatingMenu_menu_shadowColor, 0x66000000);
+        mMenuShadowRadius = attr.getDimension(R.styleable.FloatingMenu_menu_shadowRadius, mMenuShadowRadius);
+        mMenuShadowXOffset = attr.getDimension(R.styleable.FloatingMenu_menu_shadowXOffset, mMenuShadowXOffset);
+        mMenuShadowYOffset = attr.getDimension(R.styleable.FloatingMenu_menu_shadowYOffset, mMenuShadowYOffset);
+        mMenuColorNormal = attr.getColor(R.styleable.FloatingMenu_menu_colorNormal, 0xFFDA4336);
+        mMenuColorPressed = attr.getColor(R.styleable.FloatingMenu_menu_colorPressed, 0xFFE75043);
+        mMenuColorRipple = attr.getColor(R.styleable.FloatingMenu_menu_colorRipple, 0x99FFFFFF);
+        mAnimationDelayPerItem = attr.getInt(R.styleable.FloatingMenu_menu_animationDelayPerItem, 50);
+        mIcon = attr.getDrawable(R.styleable.FloatingMenu_menu_icon);
         if (mIcon == null) {
             mIcon = getResources().getDrawable(R.drawable.fab_add);
         }
-        mLabelsSingleLine = attr.getBoolean(R.styleable.FloatingActionMenu_menu_labels_singleLine, false);
-        mLabelsEllipsize = attr.getInt(R.styleable.FloatingActionMenu_menu_labels_ellipsize, 0);
-        mLabelsMaxLines = attr.getInt(R.styleable.FloatingActionMenu_menu_labels_maxLines, -1);
-        mMenuFabSize = attr.getInt(R.styleable.FloatingActionMenu_menu_fab_size, FloatingButton.SIZE_NORMAL);
-        mLabelsStyle = attr.getResourceId(R.styleable.FloatingActionMenu_menu_labels_style, 0);
-        String customFont = attr.getString(R.styleable.FloatingActionMenu_menu_labels_customFont);
+        mLabelsSingleLine = attr.getBoolean(R.styleable.FloatingMenu_menu_labels_singleLine, false);
+        mLabelsEllipsize = attr.getInt(R.styleable.FloatingMenu_menu_labels_ellipsize, 0);
+        mLabelsMaxLines = attr.getInt(R.styleable.FloatingMenu_menu_labels_maxLines, -1);
+        mMenuFabSize = attr.getInt(R.styleable.FloatingMenu_menu_fab_size, FloatingButton.SIZE_NORMAL);
+        mLabelsStyle = attr.getResourceId(R.styleable.FloatingMenu_menu_labels_style, 0);
+        String customFont = attr.getString(R.styleable.FloatingMenu_menu_labels_customFont);
         try {
             if (!TextUtils.isEmpty(customFont)) {
                 mCustomTypefaceFromFont = Typeface.createFromAsset(getContext().getAssets(), customFont);
@@ -161,16 +161,16 @@ public class FloatingMenu extends ViewGroup {
         } catch (RuntimeException ex) {
             throw new IllegalArgumentException("Unable to load specified custom font: " + customFont, ex);
         }
-        mOpenDirection = attr.getInt(R.styleable.FloatingActionMenu_menu_openDirection, OPEN_UP);
-        mBackgroundColor = attr.getColor(R.styleable.FloatingActionMenu_menu_backgroundColor, Color.TRANSPARENT);
+        mOpenDirection = attr.getInt(R.styleable.FloatingMenu_menu_openDirection, OPEN_UP);
+        mBackgroundColor = attr.getColor(R.styleable.FloatingMenu_menu_backgroundColor, Color.TRANSPARENT);
 
-        if (attr.hasValue(R.styleable.FloatingActionMenu_menu_fab_label)) {
+        if (attr.hasValue(R.styleable.FloatingMenu_menu_fab_label)) {
             mUsingMenuLabel = true;
-            mMenuLabelText = attr.getString(R.styleable.FloatingActionMenu_menu_fab_label);
+            mMenuLabelText = attr.getString(R.styleable.FloatingMenu_menu_fab_label);
         }
 
-        if (attr.hasValue(R.styleable.FloatingActionMenu_menu_labels_padding)) {
-            int padding = attr.getDimensionPixelSize(R.styleable.FloatingActionMenu_menu_labels_padding, 0);
+        if (attr.hasValue(R.styleable.FloatingMenu_menu_labels_padding)) {
+            int padding = attr.getDimensionPixelSize(R.styleable.FloatingMenu_menu_labels_padding, 0);
             initPadding(padding);
         }
 
@@ -186,11 +186,11 @@ public class FloatingMenu extends ViewGroup {
     }
 
     private void initMenuButtonAnimations(TypedArray attr) {
-        int showResId = attr.getResourceId(R.styleable.FloatingActionMenu_menu_fab_show_animation, R.anim.fab_scale_up);
+        int showResId = attr.getResourceId(R.styleable.FloatingMenu_menu_fab_show_animation, R.anim.fab_scale_up);
         setMenuButtonShowAnimation(AnimationUtils.loadAnimation(getContext(), showResId));
         mImageToggleShowAnimation = AnimationUtils.loadAnimation(getContext(), showResId);
 
-        int hideResId = attr.getResourceId(R.styleable.FloatingActionMenu_menu_fab_hide_animation, R.anim.fab_scale_down);
+        int hideResId = attr.getResourceId(R.styleable.FloatingMenu_menu_fab_hide_animation, R.anim.fab_scale_down);
         setMenuButtonHideAnimation(AnimationUtils.loadAnimation(getContext(), hideResId));
         mImageToggleHideAnimation = AnimationUtils.loadAnimation(getContext(), hideResId);
     }
@@ -723,7 +723,7 @@ public class FloatingMenu extends ViewGroup {
     }
 
     /**
-     * Sets the {@link android.view.animation.Interpolator} for <b>FloatingActionButton's</b> icon animation.
+     * Sets the {@link android.view.animation.Interpolator} for <b>FloatingButton's</b> icon animation.
      *
      * @param interpolator the Interpolator to be used in animation
      */
@@ -806,7 +806,7 @@ public class FloatingMenu extends ViewGroup {
     }
 
     /**
-     * Makes the whole {@link #FloatingActionMenu} to appear and sets its visibility to {@link #VISIBLE}
+     * Makes the whole {@link #FloatingMenu} to appear and sets its visibility to {@link #VISIBLE}
      *
      * @param animate if true - plays "show animation"
      */
@@ -820,7 +820,7 @@ public class FloatingMenu extends ViewGroup {
     }
 
     /**
-     * Makes the {@link #FloatingActionMenu} to disappear and sets its visibility to {@link #INVISIBLE}
+     * Makes the {@link #FloatingMenu} to disappear and sets its visibility to {@link #INVISIBLE}
      *
      * @param animate if true - plays "hide animation"
      */
@@ -858,7 +858,7 @@ public class FloatingMenu extends ViewGroup {
     }
 
     /**
-     * Makes the {@link FloatingActionButton} to appear inside the {@link #FloatingActionMenu} and
+     * Makes the {@link FloatingButton} to appear inside the {@link #FloatingMenu} and
      * sets its visibility to {@link #VISIBLE}
      *
      * @param animate if true - plays "show animation"
@@ -870,7 +870,7 @@ public class FloatingMenu extends ViewGroup {
     }
 
     /**
-     * Makes the {@link FloatingActionButton} to disappear inside the {@link #FloatingActionMenu} and
+     * Makes the {@link FloatingButton} to disappear inside the {@link #FloatingMenu} and
      * sets its visibility to {@link #INVISIBLE}
      *
      * @param animate if true - plays "hide animation"

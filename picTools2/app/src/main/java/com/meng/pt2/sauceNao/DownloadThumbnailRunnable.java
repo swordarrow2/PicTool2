@@ -24,15 +24,15 @@ public class DownloadThumbnailRunnable implements Runnable {
             URL url = new URL(strUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setConnectTimeout(60000);
-            final Bitmap bmp= BitmapFactory.decodeStream( connection.getInputStream());
-            MainActivity2.instence.sauceNaoMain.hashMap.put(strUrl,bmp);
+            final Bitmap bmp= BitmapFactory.decodeStream(connection.getInputStream());
+            MainActivity2.instence.getFragment(SauceNaoMain.class).hashMap.put(strUrl, bmp);
             ((Activity)context).runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    imageView.setImageBitmap(bmp);
-                }
-            });
-        }catch (Exception e){
+					@Override
+					public void run() {
+						imageView.setImageBitmap(bmp);
+					}
+				});
+        } catch (Exception e) {
 
         }
     }

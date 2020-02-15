@@ -1,4 +1,4 @@
-package com.meng.pt2.upgrade;
+package com.meng.pt2.sanaeConnect;
 
 public class SoftInfo {
 	public String versionName;

@@ -40,7 +40,7 @@ public class MengProgressBar extends LinearLayout {
 				  fileAbsolutePath=FileHelper.getFileAbsPath(fileName+"."+expandName,FileType.pixivDynamic);
 			  }
         }
-        MainActivity2.instence.pixivDownloadMainFragment.threadPool.execute(new DownloadRunnable(this, picUrl, fileAbsolutePath, listView));
+        MainActivity2.instence.getFragment(PixivDownloadMain.class).threadPool.execute(new DownloadRunnable(this, picUrl, fileAbsolutePath, listView));
     }
 
     public void setProgress(int progress) {

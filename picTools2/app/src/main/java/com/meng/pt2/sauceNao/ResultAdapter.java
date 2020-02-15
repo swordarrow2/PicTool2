@@ -48,9 +48,9 @@ public class ResultAdapter extends BaseAdapter {
         holder.title.setText(result.mTitle);
         holder.similarity.setText(result.mSimilarity);
         holder.metadata.setText(result.mColumns.get(0));
-        Bitmap bitmap = MainActivity2.instence.sauceNaoMain.hashMap.get(result.mThumbnail);
+        Bitmap bitmap = MainActivity2.instence.getFragment(SauceNaoMain.class).hashMap.get(result.mThumbnail);
         if (bitmap == null) {
-            MainActivity2.instence.sauceNaoMain.threadPool.execute(new DownloadThumbnailRunnable(activity, holder.thumbnail, result.mThumbnail));
+            MainActivity2.instence.getFragment(SauceNaoMain.class).threadPool.execute(new DownloadThumbnailRunnable(activity, holder.thumbnail, result.mThumbnail));
         } else {
             holder.thumbnail.setImageBitmap(bitmap);
         }

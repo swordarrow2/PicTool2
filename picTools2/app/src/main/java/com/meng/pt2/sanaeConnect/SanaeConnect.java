@@ -1,4 +1,4 @@
-package com.meng.pt2.upgrade;
+package com.meng.pt2.sanaeConnect;
 import android.content.*;
 import android.content.pm.*;
 import android.os.*;
@@ -13,9 +13,9 @@ import java.util.*;
 import org.java_websocket.client.*;
 import org.java_websocket.handshake.*;
 
-public class UpgradeClient extends WebSocketClient {
+public class SanaeConnect extends WebSocketClient {
 
-	public UpgradeClient() throws Exception {
+	public SanaeConnect() throws Exception {
 		super(new URI("ws://123.207.65.93:9234"));
 	}
 
@@ -70,6 +70,8 @@ public class UpgradeClient extends WebSocketClient {
 			File f=new File(Environment.getExternalStorageDirectory() + "/download/" + MainActivity2.instence.getPackageName() + ".apk");
 			bdp.readFile(f);
 			LogTool.t("文件已保存至" + f.getAbsolutePath());
+		} else if (bdp.getOpCode() == BotDataPack.opTextNotify) {
+			LogTool.t(bdp.readString());
 		}
 		super.onMessage(bytes);
 	}
