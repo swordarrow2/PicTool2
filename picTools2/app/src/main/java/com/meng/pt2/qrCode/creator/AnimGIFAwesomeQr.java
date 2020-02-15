@@ -8,14 +8,9 @@ import android.os.*;
 import android.view.*;
 import android.view.View.*;
 import android.widget.*;
-
 import com.meng.pt2.*;
-import com.meng.pt2.libAndHelper.ContentHelper;
-import com.meng.pt2.libAndHelper.FileHelper;
-import com.meng.pt2.libAndHelper.FileType;
-import com.meng.pt2.libAndHelper.*;
-import com.meng.pt2.libAndHelper.mengViews.*;
-
+import com.meng.pt2.tools.*;
+import com.meng.pt2.tools.mengViews.*;
 import java.io.*;
 
 public class AnimGIFAwesomeQr extends Fragment {
@@ -65,8 +60,10 @@ public class AnimGIFAwesomeQr extends Fragment {
                     break;
                 case R.id.gif_arb_qr_checkbox_autocolor:
                     mColorBar.setVisibility(isChecked ? View.GONE : View.VISIBLE);
-                    if (!isChecked) LogTool.t("如果颜色搭配不合理,二维码将会难以识别");
-                    break;
+                    if (!isChecked) {
+						LogTool.t("如果颜色搭配不合理,二维码将会难以识别");
+					}
+					break;
             }
         }
     };
@@ -92,90 +89,90 @@ public class AnimGIFAwesomeQr extends Fragment {
     private void encodeGIF(final String oldGifPath) {
 
         new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    coding = true;
-                    AnimatedGifDecoder gifDecoder = new AnimatedGifDecoder();
-                    File gifFile = new File(oldGifPath);
-                    FileInputStream fis = new FileInputStream(gifFile);
-                    int statusCode = 0;
-                    statusCode = gifDecoder.read(fis, fis.available());
-                    if (statusCode != 0) {
-                        LogTool.e("read error " + oldGifPath);
-                        return;
-                    }
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    AnimatedGifEncoder localAnimatedGifEncoder = new AnimatedGifEncoder();
-                    localAnimatedGifEncoder.start(baos);//start
-                    localAnimatedGifEncoder.setRepeat(0);//设置生成gif的开始播放时间。0为立即开始播放
-                    for (int i = 0; i < gifDecoder.getFrameCount(); i++) {
-                        float pro = ((float) gifDecoder.getCurrentFrameIndex()) / gifDecoder.getFrameCount() * 100;
-                        setProgress((int) pro);
-                        gifDecoder.advance();
-                        localAnimatedGifEncoder.setDelay(gifDecoder.getNextDelay());
-                        localAnimatedGifEncoder.addFrame(encodeAwesome(gifDecoder.getNextFrame()));
-                    }
-                    localAnimatedGifEncoder.finish();
-                    String filePath = FileHelper.getFileAbsPath(FileType.awesomeQR);
-                    try {
-                        FileOutputStream fos = new FileOutputStream(filePath);
-                        baos.writeTo(fos);
-                        baos.flush();
-                        fos.flush();
-                        baos.close();
-                        fos.close();
-                    } catch (IOException e) {
-                        LogTool.e("gif异常" + e.toString());
-                    }
-                    getActivity().getApplicationContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(filePath))));
-                    LogTool.t("完成 : " + filePath);
-                } catch (Exception e) {
-                    LogTool.e(e);
-                }
-                coding = false;
-                System.gc();
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        btnSelectImage.setEnabled(true);
-                    }
-                });
-            }
-        }).start();
+				@Override
+				public void run() {
+					try {
+						coding = true;
+						AnimatedGifDecoder gifDecoder = new AnimatedGifDecoder();
+						File gifFile = new File(oldGifPath);
+						FileInputStream fis = new FileInputStream(gifFile);
+						int statusCode = 0;
+						statusCode = gifDecoder.read(fis, fis.available());
+						if (statusCode != 0) {
+							LogTool.e("read error " + oldGifPath);
+							return;
+						}
+						ByteArrayOutputStream baos = new ByteArrayOutputStream();
+						AnimatedGifEncoder localAnimatedGifEncoder = new AnimatedGifEncoder();
+						localAnimatedGifEncoder.start(baos);//start
+						localAnimatedGifEncoder.setRepeat(0);//设置生成gif的开始播放时间。0为立即开始播放
+						for (int i = 0; i < gifDecoder.getFrameCount(); i++) {
+							float pro = ((float) gifDecoder.getCurrentFrameIndex()) / gifDecoder.getFrameCount() * 100;
+							setProgress((int) pro);
+							gifDecoder.advance();
+							localAnimatedGifEncoder.setDelay(gifDecoder.getNextDelay());
+							localAnimatedGifEncoder.addFrame(encodeAwesome(gifDecoder.getNextFrame()));
+						}
+						localAnimatedGifEncoder.finish();
+						String filePath = FileHelper.getFileAbsPath(FileType.awesomeQR);
+						try {
+							FileOutputStream fos = new FileOutputStream(filePath);
+							baos.writeTo(fos);
+							baos.flush();
+							fos.flush();
+							baos.close();
+							fos.close();
+						} catch (IOException e) {
+							LogTool.e("gif异常" + e.toString());
+						}
+						getActivity().getApplicationContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(filePath))));
+						LogTool.t("完成 : " + filePath);
+					} catch (Exception e) {
+						LogTool.e(e);
+					}
+					coding = false;
+					System.gc();
+					getActivity().runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								btnSelectImage.setEnabled(true);
+							}
+						});
+				}
+			}).start();
     }
 
     private Bitmap encodeAwesome(Bitmap bg) {
         int size = bg.getWidth();
         return AwesomeQRCode.create(
-                mengEtTextToEncode.getString(),
-                cbAutoSize.isChecked() ? size : mengEtSize.getInt(),
-                (int) (size * 0.025f),
-                Float.parseFloat(mengEtDotScale.getString()),
-                mColorBar.getTrueColor(),
-                cbAutoColor.isChecked() ? Color.WHITE : mColorBar.getFalseColor(),
-                bg,
-                false,
-                cbAutoColor.isChecked(),
-                false,
-                128);
+			mengEtTextToEncode.getString(),
+			cbAutoSize.isChecked() ? size : mengEtSize.getInt(),
+			(int) (size * 0.025f),
+			Float.parseFloat(mengEtDotScale.getString()),
+			mColorBar.getTrueColor(),
+			cbAutoColor.isChecked() ? Color.WHITE : mColorBar.getFalseColor(),
+			bg,
+			false,
+			cbAutoColor.isChecked(),
+			false,
+			128);
     }
 
     private void setProgress(final int p) {
         getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (p == 100) {
-                    pbCodingProgress.setVisibility(View.GONE);
-                    LogTool.t("完成");
-                } else {
-                    pbCodingProgress.setProgress(p);
-                    if (pbCodingProgress.getVisibility() == View.GONE) {
-                        pbCodingProgress.setVisibility(View.VISIBLE);
-                    }
-                }
-            }
-        });
+				@Override
+				public void run() {
+					if (p == 100) {
+						pbCodingProgress.setVisibility(View.GONE);
+						LogTool.t("完成");
+					} else {
+						pbCodingProgress.setProgress(p);
+						if (pbCodingProgress.getVisibility() == View.GONE) {
+							pbCodingProgress.setVisibility(View.VISIBLE);
+						}
+					}
+				}
+			});
     }
 
     @Override
@@ -185,7 +182,7 @@ public class AnimGIFAwesomeQr extends Fragment {
                 if (coding) {
                     LogTool.t("正在执行操作");
                 } else {
-                    strSelectedGifPath = ContentHelper.absolutePathFromUri(getActivity().getApplicationContext(), data.getData());
+                    strSelectedGifPath = Tools.ContentHelper.absolutePathFromUri(getActivity().getApplicationContext(), data.getData());
                     tvImagePath.setText(strSelectedGifPath);
                 }
             } catch (Exception e) {

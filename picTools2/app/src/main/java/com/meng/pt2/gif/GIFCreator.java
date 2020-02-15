@@ -10,9 +10,9 @@ import android.widget.*;
 import android.widget.AdapterView.*;
 
 import com.meng.pt2.*;
-import com.meng.pt2.libAndHelper.*;
-import com.meng.pt2.libAndHelper.MaterialDesign.*;
-import com.meng.pt2.libAndHelper.mengViews.*;
+import com.meng.pt2.tools.*;
+import com.meng.pt2.tools.MaterialDesign.*;
+import com.meng.pt2.tools.mengViews.*;
 
 import java.io.*;
 import java.util.*;
@@ -24,8 +24,8 @@ public class GIFCreator extends Fragment {
     public MengEditText mengEtFrameDelay;
     public ArrayList<GIFFrame> selectedImages = new ArrayList<>();
     public EditFrameAdapter editFrameAdapter;
-    public FloatingActionButton fabAdd;
-    public FloatingActionButton fabEncode;
+    public FloatingButton fabAdd;
+    public FloatingButton fabEncode;
 
     private int mPreviousVisibleItem;
     private boolean encoding = false;
@@ -39,8 +39,8 @@ public class GIFCreator extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mengEtFrameDelay = (MengEditText) view.findViewById(R.id.gif_creator_delay);
-        fabAdd = (FloatingActionButton) view.findViewById(R.id.fab_add);
-        fabEncode = (FloatingActionButton) view.findViewById(R.id.fab_encode);
+        fabAdd = (FloatingButton) view.findViewById(R.id.fab_add);
+        fabEncode = (FloatingButton) view.findViewById(R.id.fab_encode);
         ListView listView = (ListView) view.findViewById(R.id.gif_creator_list);
         fabAdd.setOnClickListener(listenerBtnClick);
         fabEncode.setOnClickListener(listenerBtnClick);

@@ -1,8 +1,7 @@
 package com.meng.pt2.ocr;
 
-import java.util.ArrayList;
-
-import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.*;
+import java.util.*;
 
 public class OcrJavaBean {
 

@@ -1,35 +1,25 @@
 package com.meng.pt2.sauceNao;
 
 import android.app.*;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
+import android.content.*;
+import android.graphics.*;
+import android.net.*;
 import android.os.*;
 import android.support.annotation.*;
 import android.view.*;
 import android.view.animation.*;
 import android.widget.*;
-
-import com.meng.pt2.*;
-import com.meng.pt2.libAndHelper.ContentHelper;
-import com.meng.pt2.libAndHelper.SharedPreferenceHelper;
-import com.meng.pt2.libAndHelper.MaterialDesign.*;
-
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
-
-import java.io.FileInputStream;
-import java.util.HashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 import android.widget.AdapterView.*;
+import com.meng.pt2.*;
+import com.meng.pt2.tools.*;
+import com.meng.pt2.tools.MaterialDesign.*;
+import java.io.*;
+import java.util.*;
+import java.util.concurrent.*;
+import org.jsoup.*;
 
 public class SauceNaoMain extends Fragment {
-    private FloatingActionButton mFabSelect;
+    private FloatingButton mFabSelect;
     private ListView listView;
     public HashMap<String, Bitmap> hashMap = new HashMap<>();
     public ExecutorService threadPool;
@@ -47,7 +37,7 @@ public class SauceNaoMain extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mFabSelect = (FloatingActionButton) view.findViewById(R.id.fab_select);
+        mFabSelect = (FloatingButton) view.findViewById(R.id.fab_select);
         listView = (ListView) view.findViewById(R.id.list);
   //      spinner=(Spinner)view.findViewById(R.id.spinner_simple);
         threadPool = Executors.newFixedThreadPool(Integer.parseInt(SharedPreferenceHelper.getValue("threads", "3")));
@@ -141,7 +131,7 @@ public class SauceNaoMain extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data != null && resultCode == Activity.RESULT_OK) {
             //      if (requestCode == MainActivity2.instence.SELECT_FILE_REQUEST_CODE) {
-            //  String path = ContentHelper.absolutePathFromUri(getActivity().getApplicationContext(),
+            //  String path = Tools.ContentHelper.absolutePathFromUri(getActivity().getApplicationContext(),
             //        cropPhoto(data.getData());
             //	  } else
             if (requestCode == MainActivity2.instence.SELECT_FILE_REQUEST_CODE) {
@@ -154,7 +144,7 @@ public class SauceNaoMain extends Fragment {
 				 running = false;
 				 }
 				 */
-                uploadBmpAbsPath = ContentHelper.absolutePathFromUri(getActivity(), data.getData());//= Environment.getExternalStorageDirectory().getAbsolutePath() + "/Pictures/picTool/search_tmp.png";
+                uploadBmpAbsPath = Tools.ContentHelper.absolutePathFromUri(getActivity(), data.getData());//= Environment.getExternalStorageDirectory().getAbsolutePath() + "/Pictures/picTool/search_tmp.png";
 				/*	File f = new File(uploadBmpAbsPath);
 				 try {
 				 f.createNewFile();

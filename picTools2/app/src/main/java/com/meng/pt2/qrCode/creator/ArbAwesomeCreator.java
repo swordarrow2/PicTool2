@@ -2,30 +2,25 @@ package com.meng.pt2.qrCode.creator;
 
 
 import android.*;
-import android.app.Activity;
+import android.app.*;
 import android.content.*;
 import android.content.pm.*;
 import android.graphics.*;
 import android.net.*;
 import android.os.*;
 import android.support.v4.app.*;
+import android.support.v7.app.*;
 import android.util.*;
 import android.view.*;
 import android.widget.*;
-
 import com.meng.pt2.*;
-import com.meng.pt2.libAndHelper.ContentHelper;
-import com.meng.pt2.libAndHelper.FileHelper;
-import com.meng.pt2.libAndHelper.FileType;
-import com.meng.pt2.libAndHelper.QrUtils;
-import com.meng.pt2.libAndHelper.mengViews.*;
-
+import com.meng.pt2.tools.*;
+import com.meng.pt2.tools.mengViews.*;
 import java.io.*;
 import java.text.*;
 
 import android.app.Fragment;
 import android.support.v7.app.AlertDialog;
-
 import com.meng.pt2.R;
 
 public class ArbAwesomeCreator extends Fragment {
@@ -139,7 +134,7 @@ public class ArbAwesomeCreator extends Fragment {
         if (requestCode == MainActivity2.instence.SELECT_FILE_REQUEST_CODE && resultCode == Activity.RESULT_OK && data.getData() != null) {
             imgPathTextView.setVisibility(View.VISIBLE);
             Uri uri = data.getData();
-            selectedBmpPath = ContentHelper.absolutePathFromUri(getActivity().getApplicationContext(), uri);
+            selectedBmpPath = Tools.ContentHelper.absolutePathFromUri(getActivity().getApplicationContext(), uri);
             imgPathTextView.setText(MessageFormat.format("当前文件：{0}", selectedBmpPath));
             final Bitmap selectedBmp = BitmapFactory.decodeFile(selectedBmpPath);
             selectedBmpWidth = selectedBmp.getWidth();

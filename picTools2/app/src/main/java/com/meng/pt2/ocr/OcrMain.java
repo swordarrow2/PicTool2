@@ -7,15 +7,12 @@ import android.view.*;
 import android.view.animation.*;
 import android.widget.*;
 import android.widget.AdapterView.*;
-
 import com.google.gson.*;
 import com.meng.pt2.*;
-import com.meng.pt2.libAndHelper.ContentHelper;
-import com.meng.pt2.libAndHelper.MaterialDesign.*;
-
+import com.meng.pt2.tools.*;
+import com.meng.pt2.tools.MaterialDesign.*;
 import java.io.*;
 import java.util.*;
-
 import org.json.*;
 
 public class OcrMain extends Fragment {
@@ -24,7 +21,7 @@ public class OcrMain extends Fragment {
     public static final String SECRET_KEY = "nvwrgKP8h4FE3h9QSKzSjpkW8bu1wfGf";
     public static final String USER_ID = "2856986197"; // qq号
     public Youtu faceYoutu = new Youtu(APP_ID, SECRET_ID, SECRET_KEY, Youtu.API_YOUTU_END_POINT, USER_ID);
-    private FloatingActionButton mFabSelect;
+    private FloatingButton mFabSelect;
     private ListView listView;
     public boolean running = false;
     //   public Spinner spinner;
@@ -37,31 +34,31 @@ public class OcrMain extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mFabSelect = (FloatingActionButton) view.findViewById(R.id.fab_select);
+        mFabSelect = (FloatingButton) view.findViewById(R.id.fab_select);
         listView = (ListView) view.findViewById(R.id.list);
         mFabSelect.setOnClickListener(onClickListener);
         //     spinner=(Spinner)view.findViewById(R.id.spinner_simple);
         mFabSelect.hide(false);
 
         new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mFabSelect.show(true);
-                mFabSelect.setShowAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.show_from_bottom));
-                mFabSelect.setHideAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.hide_to_bottom));
-            }
-        }, 450);
+				@Override
+				public void run() {
+					mFabSelect.show(true);
+					mFabSelect.setShowAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.show_from_bottom));
+					mFabSelect.setHideAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.hide_to_bottom));
+				}
+			}, 450);
         listView.setOnItemClickListener(new OnItemClickListener() {
 
-            @Override
-            public void onItemClick(final AdapterView<?> p1, View p2, final int p3, long p4) {
-                String url = (String) p1.getItemAtPosition(p3);
-                ClipboardManager clipboardManager = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clipData = ClipData.newPlainText("text", url);
-                clipboardManager.setPrimaryClip(clipData);
-                LogTool.t("已复制到剪贴板");
-            }
-        });
+				@Override
+				public void onItemClick(final AdapterView<?> p1, View p2, final int p3, long p4) {
+					String url = (String) p1.getItemAtPosition(p3);
+					ClipboardManager clipboardManager = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+					ClipData clipData = ClipData.newPlainText("text", url);
+					clipboardManager.setPrimaryClip(clipData);
+					LogTool.t("已复制到剪贴板");
+				}
+			});
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -84,39 +81,39 @@ public class OcrMain extends Fragment {
         if (resultCode == Activity.RESULT_OK && data.getData() != null) {
             if (requestCode == MainActivity2.instence.SELECT_FILE_REQUEST_CODE) {
                 //    uploadBmpAbsPath = ContentHelper.absolutePathFromUri(getActivity(), data.getData());//= Environment.getExternalStorageDirectory().getAbsolutePath() + "/Pictures/picTool/search_tmp.png";
-                final String path = ContentHelper.absolutePathFromUri(getActivity(), data.getData());
+                final String path = Tools.ContentHelper.absolutePathFromUri(getActivity(), data.getData());
                 if (path == null) {
                     running = false;
                     LogTool.e("select pic error");
                     return;
                 }
                 new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        JSONObject response = null;
-                        File image = new File(path);
-                        try {
-                            response = faceYoutu.GeneralOcr(image.getPath());
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        OcrJavaBean ocrJavaBean = new Gson().fromJson(response.toString(), OcrJavaBean.class);
-                        ArrayList<OcrJavaBean.Items> items = ocrJavaBean.items;
-                        final ArrayList<String> strings = new ArrayList<>();
-                        for (OcrJavaBean.Items s : items) {
-                            strings.add(s.itemstring);
-                        }
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                listView.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, strings));
-                                mFabSelect.setImageResource(R.drawable.fab_add);
-                                mFabSelect.hideProgress();
-                                running = false;
-                            }
-                        });
-                    }
-                }).start();
+						@Override
+						public void run() {
+							JSONObject response = null;
+							File image = new File(path);
+							try {
+								response = faceYoutu.GeneralOcr(image.getPath());
+							} catch (Exception e) {
+								throw new RuntimeException(e.toString());
+							}
+							OcrJavaBean ocrJavaBean = new Gson().fromJson(response.toString(), OcrJavaBean.class);
+							ArrayList<OcrJavaBean.Items> items = ocrJavaBean.items;
+							final ArrayList<String> strings = new ArrayList<>();
+							for (OcrJavaBean.Items s : items) {
+								strings.add(s.itemstring);
+							}
+							getActivity().runOnUiThread(new Runnable() {
+									@Override
+									public void run() {
+										listView.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, strings));
+										mFabSelect.setImageResource(R.drawable.fab_add);
+										mFabSelect.hideProgress();
+										running = false;
+									}
+								});
+						}
+					}).start();
             }
         } else if (resultCode == Activity.RESULT_CANCELED) {
             mFabSelect.hideProgress();
@@ -129,3 +126,4 @@ public class OcrMain extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
     }
 }
+

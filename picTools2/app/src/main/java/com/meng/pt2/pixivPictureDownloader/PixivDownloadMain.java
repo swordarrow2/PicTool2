@@ -4,28 +4,22 @@ import android.app.*;
 import android.content.*;
 import android.graphics.*;
 import android.os.*;
+import android.support.v7.app.*;
 import android.view.*;
+import android.view.View.*;
 import android.widget.*;
 import android.widget.AdapterView.*;
-
 import com.google.gson.*;
 import com.google.gson.internal.*;
 import com.meng.pt2.*;
-import com.meng.pt2.libAndHelper.DataBaseHelper;
-import com.meng.pt2.libAndHelper.FileHelper;
-import com.meng.pt2.libAndHelper.FileType;
-import com.meng.pt2.libAndHelper.MaterialDesign.*;
-import com.meng.pt2.libAndHelper.SharedPreferenceHelper;
-import com.meng.pt2.libAndHelper.javaBean.*;
-import com.meng.pt2.libAndHelper.javaBean.allPics.*;
-import com.meng.pt2.libAndHelper.mengViews.*;
-
+import com.meng.pt2.tools.*;
+import com.meng.pt2.tools.MaterialDesign.*;
+import com.meng.pt2.tools.mengViews.*;
 import java.io.*;
 import java.net.*;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
-
 import org.jsoup.*;
 
 import android.support.v7.app.AlertDialog;
@@ -43,10 +37,10 @@ public class PixivDownloadMain extends Fragment {
     public ExecutorService threadPool;
     private ImageView imageView;
     private String token = "";
-    private FloatingActionMenu menuStar;
-    private FloatingActionButton fabStartDownload;
-    private FloatingActionButton fabAddMine;
-    private FloatingActionButton fabAddPixiv;
+    private FloatingMenu menuStar;
+    private FloatingButton fabStartDownload;
+    private FloatingButton fabAddMine;
+    private FloatingButton fabAddPixiv;
     private ArrayAdapter likeAdapter;
 
     public enum Type {
@@ -73,15 +67,15 @@ public class PixivDownloadMain extends Fragment {
         tabHost.addTab(tabHost.newTabSpec("two").setIndicator("已下载").setContent(R.id.pixiv_download_main_downloaded));
         tabHost.addTab(tabHost.newTabSpec("three").setIndicator("收藏").setContent(R.id.pixiv_download_main_like));
         gson = new Gson();
-        fabStartDownload = (FloatingActionButton) view.findViewById(R.id.fab_start_download);
-        fabAddMine = (FloatingActionButton) view.findViewById(R.id.fab_add_mine);
-        fabAddPixiv = (FloatingActionButton) view.findViewById(R.id.fab_add_pixiv);
+        fabStartDownload = (FloatingButton) view.findViewById(R.id.fab_start_download);
+        fabAddMine = (FloatingButton) view.findViewById(R.id.fab_add_mine);
+        fabAddPixiv = (FloatingButton) view.findViewById(R.id.fab_add_pixiv);
         imageView = (ImageView) view.findViewById(R.id.imageview);
         downloadedList = (ListView) view.findViewById(R.id.saved_files_list);
         likeList = (ListView) view.findViewById(R.id.like_files_list);
-        menuStar = (FloatingActionMenu) view.findViewById(R.id.menu_star);
+        menuStar = (FloatingMenu) view.findViewById(R.id.menu_star);
         editTextURL = (EditText) view.findViewById(R.id.pixiv_download_main_edittext_url);
-        fabStartDownload = (FloatingActionButton) view.findViewById(R.id.fab_start_download);
+        fabStartDownload = (FloatingButton) view.findViewById(R.id.fab_start_download);
         fabAddPixiv.setOnClickListener(onClickListener);
         fabAddMine.setOnClickListener(onClickListener);
         taskLinearLayout = (LinearLayout) view.findViewById(R.id.pixiv_download_main_downloadlist_task);

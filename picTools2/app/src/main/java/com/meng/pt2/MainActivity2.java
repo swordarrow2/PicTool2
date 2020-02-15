@@ -14,7 +14,7 @@ import android.view.*;
 import android.widget.*;
 import com.meng.pt2.encryAndDecry.*;
 import com.meng.pt2.gif.*;
-import com.meng.pt2.libAndHelper.*;
+import com.meng.pt2.tools.*;
 import com.meng.pt2.ocr.*;
 import com.meng.pt2.pixivPictureDownloader.*;
 import com.meng.pt2.qrCode.creator.*;
@@ -24,6 +24,7 @@ import com.meng.pt2.upgrade.*;
 
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import java.util.*;
 
 
 public class MainActivity2 extends AppCompatActivity {
@@ -36,6 +37,8 @@ public class MainActivity2 extends AppCompatActivity {
 
     public FragmentManager manager;
 
+	private HashMap<String,Fragment> fragments=new HashMap<>();
+	
     private Welcome welcomeFragment;
     private LogoQRCreator logoCreatorFragment;
     public AwesomeCreator awesomeCreatorFragment;

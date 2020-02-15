@@ -10,19 +10,13 @@ import android.os.*;
 import android.support.v4.app.*;
 import android.view.*;
 import android.widget.*;
-
 import com.meng.pt2.*;
-import com.meng.pt2.libAndHelper.ContentHelper;
-import com.meng.pt2.libAndHelper.FileHelper;
-import com.meng.pt2.libAndHelper.FileType;
-import com.meng.pt2.libAndHelper.AwesomeQRCode;
-import com.meng.pt2.libAndHelper.mengViews.*;
-
+import com.meng.pt2.tools.*;
+import com.meng.pt2.tools.mengViews.*;
 import java.io.*;
 import java.text.*;
 
 import android.app.Fragment;
-
 import com.meng.pt2.R;
 
 public class AwesomeCreator extends Fragment {
@@ -176,7 +170,7 @@ public class AwesomeCreator extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == MainActivity2.instence.SELECT_FILE_REQUEST_CODE && resultCode == Activity.RESULT_OK && data.getData() != null) {
             imgPathTextView.setVisibility(View.VISIBLE);
-            String path = ContentHelper.absolutePathFromUri(getActivity().getApplicationContext(), cropPhoto(data.getData(), cbCrop.isChecked()));
+            String path = Tools.ContentHelper.absolutePathFromUri(getActivity().getApplicationContext(), cropPhoto(data.getData(), cbCrop.isChecked()));
             imgPathTextView.setText(MessageFormat.format("当前图片：{0}", path));
             if (!cbCrop.isChecked()) {
                 backgroundImage = BitmapFactory.decodeFile(path);

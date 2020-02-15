@@ -7,18 +7,13 @@ import android.content.pm.*;
 import android.graphics.*;
 import android.net.*;
 import android.os.*;
+import android.support.v7.app.*;
 import android.text.*;
 import android.view.*;
 import android.view.View.*;
 import android.widget.*;
-
-import com.meng.pt2.LogTool;
-import com.meng.pt2.MainActivity2;
-import com.meng.pt2.libAndHelper.ContentHelper;
-import com.meng.pt2.libAndHelper.FileHelper;
-import com.meng.pt2.libAndHelper.FileType;
-import com.meng.pt2.libAndHelper.QrUtils;
-
+import com.meng.pt2.*;
+import com.meng.pt2.tools.*;
 import java.io.*;
 
 import android.support.v7.app.AlertDialog;
@@ -33,7 +28,7 @@ public class pictureEncry extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.picture_encry_decry, container, false);
-	  }
+	}
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -42,67 +37,48 @@ public class pictureEncry extends Fragment {
         imageView = (ImageView)view.findViewById(R.id.qr_imageview);
 		btnSave = (Button) view.findViewById(R.id.qr_ButtonSave);
         btnOpenGallery.setOnClickListener(new OnClickListener() {
-			  @Override
-			  public void onClick(View v) {
-				  openGallery();
+				@Override
+				public void onClick(View v) {
+					openGallery();
 				}
 			});
 		btnSave.setOnClickListener(new OnClickListener(){
 
-			  @Override
-			  public void onClick(View p) {
-				  String s= FileHelper.saveBitmap(encryBitmap, FileType.bus);
-				  getActivity().getApplicationContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(s))));//更新图库
+				@Override
+				public void onClick(View p) {
+					String s= FileHelper.saveBitmap(encryBitmap, FileType.bus);
+					getActivity().getApplicationContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(s))));//更新图库
 				}
 			});
-	  }
+	}
 
 	private void createBitmap(String path) {
         encryBitmap = QrUtils.encryBitmap(BitmapFactory.decodeFile(path));
         imageView.setImageBitmap(encryBitmap);
 		btnSave.setVisibility(View.VISIBLE);
 
-	  }
+	}
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == getActivity().RESULT_OK && data != null && requestCode == MainActivity2.instence.SELECT_FILE_REQUEST_CODE) {
             Uri inputUri = data.getData();
-            String path = ContentHelper.absolutePathFromUri(getActivity(), inputUri);
+            String path = Tools.ContentHelper.absolutePathFromUri(getActivity(), inputUri);
             if (!TextUtils.isEmpty(path)) {     
 				createBitmap(path);
-			  } else {
+			} else {
 				LogTool.t("图片路径未找到");
-			  }
-		  }
-	  }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (grantResults.length > 0 && requestCode == REQUEST_PERMISSION_PHOTO) {
-            if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                new AlertDialog.Builder(getActivity())
-				  .setTitle("提示")
-				  .setMessage("请在系统设置中为App中开启文件权限后重试")
-				  .setPositiveButton("确定", null)
-				  .show();
-			  } else {
-                MainActivity2.instence.selectImage(this);
-			  }
-		  }
-	  }
+			}
+		}
+	}
 
     public void openGallery() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-			&& getActivity().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-			!= PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-							   REQUEST_PERMISSION_PHOTO);
-		  } else {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && getActivity().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSION_PHOTO);
+		} else {
             MainActivity2.instence.selectImage(this);
-		  }
-	  }
+		}
+	}
 
-  }
+}
 

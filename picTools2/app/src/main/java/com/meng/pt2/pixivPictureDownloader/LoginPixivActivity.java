@@ -4,7 +4,7 @@ import android.app.*;
 import android.os.*;
 import android.webkit.*;
 
-import com.meng.pt2.libAndHelper.SharedPreferenceHelper;
+import com.meng.pt2.tools.SharedPreferenceHelper;
 
 public class LoginPixivActivity extends Activity {
 

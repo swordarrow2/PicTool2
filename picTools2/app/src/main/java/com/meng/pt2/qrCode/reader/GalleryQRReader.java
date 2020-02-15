@@ -1,29 +1,17 @@
 package com.meng.pt2.qrCode.reader;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.TextView;
-
-import com.google.zxing.Result;
-import com.meng.pt2.LogTool;
-import com.meng.pt2.MainActivity2;
-import com.meng.pt2.R;
-import com.meng.pt2.libAndHelper.ContentHelper;
-import com.meng.pt2.libAndHelper.SharedPreferenceHelper;
-import com.meng.pt2.libAndHelper.QrUtils;
-import com.meng.pt2.libAndHelper.ScreenShotListenService;
+import android.app.*;
+import android.content.*;
+import android.graphics.*;
+import android.net.*;
+import android.os.*;
+import android.text.*;
+import android.view.*;
+import android.view.View.*;
+import android.widget.*;
+import com.google.zxing.*;
+import com.meng.pt2.*;
+import com.meng.pt2.tools.*;
 
 public class GalleryQRReader extends Fragment {
     private Button btnCreateAwesomeQR;
@@ -100,7 +88,7 @@ public class GalleryQRReader extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK && data != null && requestCode == MainActivity2.instence.SELECT_FILE_REQUEST_CODE) {
             Uri inputUri = data.getData();
-            String path = ContentHelper.absolutePathFromUri(getActivity(), inputUri);
+            String path = Tools.ContentHelper.absolutePathFromUri(getActivity(), inputUri);
             if (!TextUtils.isEmpty(path)) {
                 Result result = QrUtils.decodeImage(path);
                 if (result != null) {

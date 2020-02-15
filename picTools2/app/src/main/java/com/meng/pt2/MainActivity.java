@@ -6,7 +6,7 @@ import android.content.*;
 import android.content.pm.*;
 import android.os.*;
 
-import com.meng.pt2.libAndHelper.*;
+import com.meng.pt2.tools.*;
 
 
 public class MainActivity extends Activity {

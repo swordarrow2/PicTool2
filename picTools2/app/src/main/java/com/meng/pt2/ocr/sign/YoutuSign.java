@@ -1,6 +1,10 @@
 package com.meng.pt2.ocr.sign;
 
-import java.util.Random;
+import com.meng.pt2.tools.*;
+import java.util.*;
+import javax.crypto.*;
+import javax.crypto.spec.*;
+import com.meng.pt2.*;
 
 
 public class YoutuSign {
@@ -34,25 +38,23 @@ public class YoutuSign {
         long now = System.currentTimeMillis() / 1000;
         int rdm = Math.abs(new Random().nextInt());
         String plain_text = "a=" + appId + "&k=" + secret_id + "&e=" + expired + "&t=" + now + "&r=" + rdm + "&u=" + puserid;//+ "&f=" + fileid.toString();
-        byte[] bin = hashHmac(plain_text, secret_key);
+		byte[] bin = null;
+		try {
+			Mac mac = Mac.getInstance("HmacSHA1");
+			SecretKeySpec signingKey = new SecretKeySpec(secret_key.getBytes(), mac.getAlgorithm());
+			mac.init(signingKey);
+			bin = mac.doFinal(plain_text.getBytes());
+		} catch (Exception e) {
+			LogTool.e(e);
+		}
         byte[] all = new byte[bin.length + plain_text.getBytes().length];
         System.arraycopy(bin, 0, all, 0, bin.length);
         System.arraycopy(plain_text.getBytes(), 0, all, bin.length, plain_text.getBytes().length);
-        mySign.append(Base64Util.encode(all));
+        mySign.append(new String(Tools.Base64.encode(all)));
         return 0;
     }
-
-    private static byte[] hashHmac(String plain_text, String accessKey) {
-        try {
-            return HMACSHA1.getSignature(plain_text, accessKey);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
+	
     public static boolean empty(String s) {
         return s == null || s.trim().equals("") || s.trim().equals("null");
     }
-
 }

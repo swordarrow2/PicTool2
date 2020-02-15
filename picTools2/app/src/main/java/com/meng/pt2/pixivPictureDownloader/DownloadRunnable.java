@@ -4,16 +4,9 @@ import android.content.*;
 import android.graphics.*;
 import android.net.*;
 import android.widget.*;
-
 import com.meng.pt2.*;
-import com.meng.pt2.libAndHelper.DataBaseHelper;
-import com.meng.pt2.libAndHelper.FileHelper;
-import com.meng.pt2.libAndHelper.FileType;
-import com.meng.pt2.libAndHelper.SharedPreferenceHelper;
-import com.meng.pt2.libAndHelper.*;
-import com.meng.pt2.libAndHelper.javaBean.*;
-import com.meng.pt2.libAndHelper.mengViews.*;
-
+import com.meng.pt2.tools.*;
+import com.meng.pt2.tools.mengViews.*;
 import java.io.*;
 import java.net.*;
 import java.text.*;

@@ -19,9 +19,9 @@ import android.widget.*;
 
 import com.google.zxing.*;
 import com.meng.pt2.*;
-import com.meng.pt2.libAndHelper.zxing.camera.*;
-import com.meng.pt2.libAndHelper.zxing.decoding.*;
-import com.meng.pt2.libAndHelper.zxing.view.*;
+import com.meng.pt2.tools.zxing.camera.*;
+import com.meng.pt2.tools.zxing.decoding.*;
+import com.meng.pt2.tools.zxing.view.*;
 
 import java.util.*;
 
