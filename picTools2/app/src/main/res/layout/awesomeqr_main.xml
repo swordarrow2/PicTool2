@@ -22,33 +22,33 @@
             android:orientation="vertical"
             android:padding="8dp">
 
-            <com.meng.pt2.tools.mengViews.MengEditText
+            <com.meng.pt2.tools.MaterialDesign.MDEditText
                 android:id="@+id/awesomeqr_main_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                ran:edittextHint="@string/input_text"
-                ran:textviewText="@string/contents" />
+                ran:default_value="@string/input_text"
+                ran:hint="@string/contents" />
 
-            <com.meng.pt2.tools.mengViews.MengEditText
+            <com.meng.pt2.tools.MaterialDesign.MDEditText
                 android:id="@+id/awesomeqr_main_mengEdittext_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                ran:edittextHint="800"
-                ran:textviewText="@string/barcode_size" />
+                ran:default_value="800"
+                ran:hint="@string/barcode_size" />
 
-            <com.meng.pt2.tools.mengViews.MengEditText
+            <com.meng.pt2.tools.MaterialDesign.MDEditText
                 android:id="@+id/awesomeqr_main_margin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                ran:edittextHint="20"
-                ran:textviewText="@string/margin_px" />
+                ran:default_value="20"
+                ran:hint="@string/margin_px" />
 
-            <com.meng.pt2.tools.mengViews.MengEditText
+            <com.meng.pt2.tools.MaterialDesign.MDEditText
                 android:id="@+id/awesomeqr_main_dotScale"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                ran:edittextHint="0.3"
-                ran:textviewText="@string/data_dot_scale" />
+                ran:default_value="0.3"
+                ran:hint="@string/data_dot_scale" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -117,13 +117,13 @@
                 android:layout_height="wrap_content"
                 android:text="@string/binarize_background_image" />
 
-            <com.meng.pt2.tools.mengViews.MengEditText
+            <com.meng.pt2.tools.MaterialDesign.MDEditText
                 android:id="@+id/awesomeqr_main_mengEdittext_binarizeThreshold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                ran:edittextHint="128"
-                ran:textviewText="@string/binNumber" />
+                ran:default_value="128"
+                ran:hint="@string/binNumber" />
 
             <Button
                 android:id="@+id/awesomeqr_main_generate"

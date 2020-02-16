@@ -12,6 +12,7 @@ import android.view.*;
 import android.widget.*;
 import com.meng.pt2.*;
 import com.meng.pt2.tools.*;
+import com.meng.pt2.tools.MaterialDesign.*;
 import com.meng.pt2.tools.mengViews.*;
 import java.io.*;
 import java.text.*;
@@ -22,7 +23,7 @@ import com.meng.pt2.R;
 public class AwesomeCreator extends Fragment {
 
     private ImageView qrCodeImageView;
-    private MengEditText mengEtDotScale, mengEtContents, mengEtMargin, mengEtSize;
+    private MDEditText mengEtDotScale, mengEtContents, mengEtMargin, mengEtSize;
     private CheckBox ckbWhiteMargin;
     private Bitmap backgroundImage = null;
 
@@ -31,7 +32,7 @@ public class AwesomeCreator extends Fragment {
     private ScrollView scrollView;
     private CheckBox ckbBinarize;
     private CheckBox cbCrop;
-    private MengEditText mengEtBinarize;
+    private MDEditText mengEtBinarize;
     private Button btnSave;
     private TextView imgPathTextView;
     private Bitmap bmpQRcode = null;
@@ -54,14 +55,14 @@ public class AwesomeCreator extends Fragment {
         mColorBar = (MengColorBar) view.findViewById(R.id.gif_arb_qr_main_colorBar);
         scrollView = (ScrollView) view.findViewById(R.id.awesomeqr_main_scrollView);
         qrCodeImageView = (ImageView) view.findViewById(R.id.awesomeqr_main_qrcode);
-        mengEtContents = (MengEditText) view.findViewById(R.id.awesomeqr_main_content);
-        mengEtSize = (MengEditText) view.findViewById(R.id.awesomeqr_main_mengEdittext_size);
-        mengEtMargin = (MengEditText) view.findViewById(R.id.awesomeqr_main_margin);
-        mengEtDotScale = (MengEditText) view.findViewById(R.id.awesomeqr_main_dotScale);
+        mengEtContents = (MDEditText) view.findViewById(R.id.awesomeqr_main_content);
+        mengEtSize = (MDEditText) view.findViewById(R.id.awesomeqr_main_mengEdittext_size);
+        mengEtMargin = (MDEditText) view.findViewById(R.id.awesomeqr_main_margin);
+        mengEtDotScale = (MDEditText) view.findViewById(R.id.awesomeqr_main_dotScale);
         ckbWhiteMargin = (CheckBox) view.findViewById(R.id.awesomeqr_main_whiteMargin);
         ckbAutoColor = (CheckBox) view.findViewById(R.id.awesomeqr_main_autoColor);
         ckbBinarize = (CheckBox) view.findViewById(R.id.awesomeqr_main_binarize);
-        mengEtBinarize = (MengEditText) view.findViewById(R.id.awesomeqr_main_mengEdittext_binarizeThreshold);
+        mengEtBinarize = (MDEditText) view.findViewById(R.id.awesomeqr_main_mengEdittext_binarizeThreshold);
         btnSave = (Button) view.findViewById(R.id.awesomeqr_mainButton_save);
         imgPathTextView = (TextView) view.findViewById(R.id.awesomeqr_main_imgPathTextView);
         cbCrop = (CheckBox) view.findViewById(R.id.awesomeqr_main_crop);

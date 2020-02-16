@@ -21,7 +21,8 @@ public class PicResults {
 	private ArrayList<Result> mResults = new ArrayList<>();
 
 	public PicResults(Document document) {
-		for (Element result : document.getElementsByClass(CLASS_RESULT_TABLE)) {
+		Elements els=document.getElementsByClass(CLASS_RESULT_TABLE);
+		for (Element result :els) {
 			Element resultImage = result.getElementsByClass(CLASS_RESULT_IMAGE).first();
 			Element resultMatchInfo = result.getElementsByClass(CLASS_RESULT_MATCH_INFO).first();
 			Element resultTitle = result.getElementsByClass(CLASS_RESULT_TITLE).first();
@@ -33,14 +34,14 @@ public class PicResults {
 			newResult.loadExtUrls(resultMatchInfo, resultContentColumns);
 			newResult.loadColumns(resultContentColumns);
 			mResults.add(newResult);
-		  }
-	  }
+		}
+	}
 
 	public ArrayList<Result> getResults() {
 		return mResults;
-	  }
+	}
 
-	class Result {
+	public class Result {
 		String mSimilarity;
 		String mThumbnail;
 		String mTitle;
@@ -50,10 +51,10 @@ public class PicResults {
 		private void loadSimilarityInfo(Element resultMatchInfo) {
 			try {
 				mSimilarity = resultMatchInfo.getElementsByClass(CLASS_RESULT_SIMILARITY_INFO).first().text();
-			  } catch (NullPointerException e) {
+			} catch (NullPointerException e) {
 				System.out.println("Unable to load similarity info");
-			  }
-		  }
+			}
+		}
 
 		private void loadThumbnail(Element resultImage) {
 			try {
@@ -61,21 +62,21 @@ public class PicResults {
 
 				if (img.hasAttr("data-src")) {
 					mThumbnail = img.attr("data-src");
-				  } else if (img.hasAttr("src")) {
+				} else if (img.hasAttr("src")) {
 					mThumbnail = img.attr("src");
-				  }
-			  } catch (NullPointerException e) {
+				}
+			} catch (NullPointerException e) {
 				System.out.println("Unable to load thumbnail");
-			  }
-		  }
+			}
+		}
 
 		private void loadTitle(Element resultTitle) {
 			try {
 				mTitle = new HtmlToPlainText().getPlainText(resultTitle);
-			  } catch (NullPointerException e) {
+			} catch (NullPointerException e) {
 				System.out.println("Unable to load title");
-			  }
-		  }
+			}
+		}
 
 		private void loadExtUrls(Element resultMatchInfo, Elements resultContentColumns) {
 			try {
@@ -84,31 +85,31 @@ public class PicResults {
 
 					if (!href.isEmpty() && !href.startsWith(URL_LOOKUP_SUBSTRING)) {
 						mExtUrls.add(href);
-					  }
-				  }
+					}
+				}
 
 				for (Element resultContentColumn : resultContentColumns) {
 					for (Element a : resultContentColumn.getElementsByTag("a")) {
 						String href = a.attr("href");
 						if (!href.isEmpty() && !href.startsWith(URL_LOOKUP_SUBSTRING)) {
 							mExtUrls.add(href);
-						  }
-					  }
-				  }
-			  } catch (NullPointerException e) {
+						}
+					}
+				}
+			} catch (NullPointerException e) {
 				System.out.println("Unable to load external URLs");
-			  }
+			}
 			Collections.sort(mExtUrls);
-		  }
+		}
 
 		private void loadColumns(Elements resultContentColumns) {
 			try {
 				for (Element resultContentColumn : resultContentColumns) {
 					mColumns.add(new HtmlToPlainText().getPlainText(resultContentColumn));
-				  }
-			  } catch (NullPointerException e) {
+				}
+			} catch (NullPointerException e) {
 				System.out.println("Unable to load columns");
-			  }
-		  }
-	  }
-  }
+			}
+		}
+	}
+}

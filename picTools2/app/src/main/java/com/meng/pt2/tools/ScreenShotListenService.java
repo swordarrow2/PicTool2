@@ -25,14 +25,10 @@ public class ScreenShotListenService extends Service{
 
     @Override
     public int onStartCommand(Intent intent,int flags,int startId){
-
         manager= ScreenShotListener.newInstance(this);
-        LogTool.i("监听器");
         manager.setListener(new ScreenShotListener.OnScreenShotListener(){
             @Override
             public void onShot(final String imagePath){
-                // TODO: Implement this method
-                LogTool.i("文件改变"+imagePath);
                 try{
                     Thread.sleep(1000);
                 }catch(InterruptedException e){

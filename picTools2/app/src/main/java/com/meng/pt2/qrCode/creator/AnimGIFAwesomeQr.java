@@ -10,6 +10,7 @@ import android.view.View.*;
 import android.widget.*;
 import com.meng.pt2.*;
 import com.meng.pt2.tools.*;
+import com.meng.pt2.tools.MaterialDesign.*;
 import com.meng.pt2.tools.mengViews.*;
 import java.io.*;
 
@@ -18,10 +19,10 @@ public class AnimGIFAwesomeQr extends Fragment {
     private boolean coding = false;
     private Button btnSelectImage;
     private CheckBox cbAutoColor;
-    private MengEditText mengEtDotScale;
-    private MengEditText mengEtTextToEncode;
+    private MDEditText mengEtDotScale;
+    private MDEditText mengEtTextToEncode;
     private CheckBox cbAutoSize;
-    private MengEditText mengEtSize;
+    private MDEditText mengEtSize;
     private ProgressBar pbCodingProgress;
     private String strSelectedGifPath = "";
     private TextView tvImagePath;
@@ -39,9 +40,9 @@ public class AnimGIFAwesomeQr extends Fragment {
         Button btnEncodeGif = (Button) view.findViewById(R.id.gif_arb_qr_button_encode_gif);
         btnSelectImage = (Button) view.findViewById(R.id.gif_arb_qr_button_selectImg);
         cbAutoColor = (CheckBox) view.findViewById(R.id.gif_arb_qr_checkbox_autocolor);
-        mengEtDotScale = (MengEditText) view.findViewById(R.id.gif_arb_qr_mengEdittext_dotScale);
-        mengEtTextToEncode = (MengEditText) view.findViewById(R.id.gif_arb_qr_mainmengTextview_content);
-        mengEtSize = (MengEditText) view.findViewById(R.id.gif_qr_mainEditText_size);
+        mengEtDotScale = (MDEditText) view.findViewById(R.id.gif_arb_qr_mengEdittext_dotScale);
+        mengEtTextToEncode = (MDEditText) view.findViewById(R.id.gif_arb_qr_mainmengTextview_content);
+        mengEtSize = (MDEditText) view.findViewById(R.id.gif_qr_mainEditText_size);
         cbAutoSize = (CheckBox) view.findViewById(R.id.gif_qr_mainCheckbox_size);
         pbCodingProgress = (ProgressBar) view.findViewById(R.id.gif_arb_qr_mainProgressBar);
         tvImagePath = (TextView) view.findViewById(R.id.gif_arb_qr_selected_path);

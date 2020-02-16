@@ -9,17 +9,21 @@ import android.os.*;
 import android.view.*;
 import android.view.View.*;
 import android.widget.*;
+import android.widget.AdapterView.*;
 import com.google.zxing.*;
 import com.meng.pt2.*;
 import com.meng.pt2.tools.*;
+import com.meng.pt2.tools.MaterialDesign.*;
 import com.meng.pt2.tools.mengViews.*;
 import java.io.*;
+
+import android.view.View.OnClickListener;
 
 public class LogoQRCreator extends Fragment {
     private ScrollView scrollView;
     private ImageView qrcodeImageView;
-    private MengEditText mengEtContent;
-    private MengEditText mengEtSize;
+    private MDEditText mengEtContent;
+    private MDEditText mengEtSize;
     private TextView tvImgPath;
     private Button btnSave;
     private Bitmap bmpQRcode = null;
@@ -28,7 +32,7 @@ public class LogoQRCreator extends Fragment {
     private CheckBox cbCrop;
     private MengColorBar mColorBar;
     private String barcodeFormat;
-
+	
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.barcode_main, container, false);
@@ -39,8 +43,8 @@ public class LogoQRCreator extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mColorBar = (MengColorBar) view.findViewById(R.id.gif_arb_qr_main_colorBar);
         qrcodeImageView = (ImageView) view.findViewById(R.id.qr_imageview);
-        mengEtContent = (MengEditText) view.findViewById(R.id.qr_mengEditText_content);
-        mengEtSize = (MengEditText) view.findViewById(R.id.qr_mengEditText_size);
+        mengEtContent = (MDEditText) view.findViewById(R.id.qr_mengEditText_content);
+        mengEtSize = (MDEditText) view.findViewById(R.id.qr_mengEditText_size);
         scrollView = (ScrollView) view.findViewById(R.id.qr_mainScrollView);
         cbAutoColor = (CheckBox) view.findViewById(R.id.qr_main_autoColor);
         cbCrop = (CheckBox) view.findViewById(R.id.qr_main_crop);
@@ -49,7 +53,7 @@ public class LogoQRCreator extends Fragment {
         ((Button) view.findViewById(R.id.qr_ButtonSelectImage)).setOnClickListener(click);
         ((Button) view.findViewById(R.id.qr_ButtonRemoveImage)).setOnClickListener(click);
         ((Button) view.findViewById(R.id.qr_ButtonCreate)).setOnClickListener(click);
-        btnSave.setOnClickListener(click);
+		btnSave.setOnClickListener(click);
         cbAutoColor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

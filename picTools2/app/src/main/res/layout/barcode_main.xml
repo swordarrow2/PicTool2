@@ -1,5 +1,4 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:ran="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -17,19 +16,19 @@
                     style="@style/MDEditText"
                     app:errorEnable="true"
                     app:hint="username" />-->
-            <com.meng.pt2.tools.mengViews.MengEditText
+            <com.meng.pt2.tools.MaterialDesign.MDEditText
                 android:id="@+id/qr_mengEditText_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                ran:edittextHint="@string/input_text"
-                ran:textviewText="@string/contents" />
+                ran:hint="@string/input_text"
+				ran:default_value="content" />
 
-            <com.meng.pt2.tools.mengViews.MengEditText
+            <com.meng.pt2.tools.MaterialDesign.MDEditText
                 android:id="@+id/qr_mengEditText_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                ran:edittextHint="500"
-                ran:textviewText="@string/barcode_size" />
+                ran:hint="@string/size"
+				ran:default_value="500" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -37,15 +36,16 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/select_barcode_format" />
 
                 <Spinner
                     android:id="@+id/qr_main_spinner"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:entries="@array/barcode_format" />
+				
             </LinearLayout>
 
             <TextView

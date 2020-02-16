@@ -28,7 +28,7 @@ public class LoginPixivActivity extends Activity {
                 if (url.equals("https://www.pixiv.net/")) {
                     CookieManager cookieManager = CookieManager.getInstance();
                     String CookieStr = cookieManager.getCookie(url) == null ? "null" : cookieManager.getCookie(url);
-                    SharedPreferenceHelper.putValue(Data.preferenceKeys.cookieValue, CookieStr);
+                    SharedPreferenceHelper.putValue("cookievalue", CookieStr);
                     finish();
                 }
             }

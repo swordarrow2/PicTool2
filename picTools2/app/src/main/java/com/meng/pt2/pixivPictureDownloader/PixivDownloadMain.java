@@ -293,7 +293,7 @@ public class PixivDownloadMain extends Fragment {
 									return;
 								  }
 								taskLinearLayout.addView(new MengProgressBar(getActivity(), downloadedList, pictureInfoJavaBean,
-																			 SharedPreferenceHelper.getBoolean(Data.preferenceKeys.downloadBigGif) ?
+																			 SharedPreferenceHelper.getBoolean("bigpicturegif") ?
 																			 pictureInfoJavaBean.animPicJavaBean.body.originalSrc :
 																			 pictureInfoJavaBean.animPicJavaBean.body.src));
 							  } else {
@@ -303,7 +303,7 @@ public class PixivDownloadMain extends Fragment {
 								  }
 								for (int i = 0; i < pictureInfoJavaBean.staticPicJavaBean.body.size(); ++i) {
 									taskLinearLayout.addView(new MengProgressBar(getActivity(), downloadedList, pictureInfoJavaBean,
-																				 SharedPreferenceHelper.getBoolean(Data.preferenceKeys.downloadBigPicture) ?
+																				 SharedPreferenceHelper.getBoolean("bigpicture") ?
 																				 pictureInfoJavaBean.staticPicJavaBean.body.get(i).urls.original :
 																				 pictureInfoJavaBean.staticPicJavaBean.body.get(i).urls.regular));
 
@@ -534,7 +534,7 @@ public class PixivDownloadMain extends Fragment {
         Connection.Response response = null;
         try {
             Connection connection = Jsoup.connect(url);
-            connection.cookies(cookieToMap(SharedPreferenceHelper.getValue(Data.preferenceKeys.cookieValue)));
+            connection.cookies(cookieToMap(SharedPreferenceHelper.getValue("cookievalue")));
             connection.referrer("https://www.pixiv.net/member_illust.php?mode=medium&illust_id=" + getPixivId(url));
             connection.userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:28.0) Gecko/20100101 Firefox/28.0");
             connection.ignoreContentType(true).method(Connection.Method.GET);

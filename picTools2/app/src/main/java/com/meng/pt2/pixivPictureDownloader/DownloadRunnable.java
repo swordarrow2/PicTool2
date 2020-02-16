@@ -68,7 +68,7 @@ public class DownloadRunnable implements Runnable {
             HttpURLConnection connection = (HttpURLConnection) u.openConnection();
             connection.setRequestMethod("GET");
             connection.setRequestProperty("Referer", picUrl);
-            connection.setRequestProperty("cookie", SharedPreferenceHelper.getValue(Data.preferenceKeys.cookieValue));
+            connection.setRequestProperty("cookie", SharedPreferenceHelper.getValue("cookievalue"));
             connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:28.0) Gecko/20100101 Firefox/28.0");
             connection.setReadTimeout(30000);
             imageSize = connection.getContentLength();
@@ -154,7 +154,7 @@ public class DownloadRunnable implements Runnable {
             }
             filesNow = 0;
 			LogTool.t(zipName+".gif"+"完成");
-			if(SharedPreferenceHelper.getBoolean(Data.preferenceKeys.deleteZipAfterMakeGif)){
+			if(SharedPreferenceHelper.getBoolean("deleteZipAfterMakeGif")){
 			    file.delete();
             }
         }else{

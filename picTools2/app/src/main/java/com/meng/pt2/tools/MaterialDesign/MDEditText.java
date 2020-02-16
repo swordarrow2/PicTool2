@@ -15,78 +15,81 @@ public class MDEditText extends LinearLayout {
 
     private Context mContext;
 
-    private EditText mEditText;
+    private EditText editText;
     private TextInputLayout mInputLayout;
 
+	private String defaultValue=null;
     public MDEditText(Context cxt, AttributeSet attrs) {
         super(cxt, attrs);
         mContext = cxt;
         init();
         TypedArray a = mContext.obtainStyledAttributes(attrs, R.styleable.MDEdittext);
         if (a != null) {
-            int textColor = a.getColor(R.styleable.MDEdittext_textColor,  ContextCompat.getColor(mContext, R.color.color_c4));
-            mEditText.setTextColor(textColor);
-            float textSize = a.getDimension(R.styleable.MDEdittext_textSize,mContext.getResources().getDimension(R.dimen.common_s3));
-            mEditText.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
-            String hint = a.getString(R.styleable.MDEdittext_hint);
-            mInputLayout.setHint(hint);
+            editText.setTextColor(a.getColor(R.styleable.MDEdittext_textColor,  ContextCompat.getColor(mContext, R.color.color_c4)));
+            editText.setTextSize(TypedValue.COMPLEX_UNIT_PX, a.getDimension(R.styleable.MDEdittext_textSize, mContext.getResources().getDimension(R.dimen.common_s3)));
+			defaultValue = a.getString(R.styleable.MDEdittext_default_value);
+            mInputLayout.setHint(a.getString(R.styleable.MDEdittext_hint) + " 默认:" + defaultValue);
             mInputLayout.setErrorEnabled(a.getBoolean(R.styleable.MDEdittext_errorEnable, false));
             if (mInputLayout.isErrorEnabled()) {
                 mInputLayout.setError("");
-			  }
+			}
             a.recycle();
-		  }
-	  }
+		}
+	}
+
+	public String getString() {
+        return isEmpty() ? defaultValue: editText.getText().toString();
+    }
+
+    public int getInt() {
+        return Integer.parseInt(getString());
+    }
+
+    public void setString(String s) {
+        editText.setText(s);
+    }
+
+    private boolean isEmpty() {
+        return editText.getText().toString().trim().length() == 0;
+    }
 
     private void init() {
         LayoutInflater.from(mContext).inflate(R.layout.conmon_edittext_layout, this, true);
-        mEditText = (EditText) findViewById(R.id.edittext);
+        editText = (EditText) findViewById(R.id.edittext);
         mInputLayout = (TextInputLayout) findViewById(R.id.input_layout);
-	  }
-
-    public TextInputLayout getInputLayout() {
-        return mInputLayout;
-	  }
-
-    public EditText getEditText() {
-        return mEditText;
-	  }
+	}
 
     public void setHintAnimationEnabled(boolean enabled) {
         mInputLayout.setHintAnimationEnabled(enabled);
-	  }
+	}
 
     public void setErrorEnabled(boolean enabled) {
         mInputLayout.setErrorEnabled(enabled);
-	  }
+	}
 
     public void setError(CharSequence error) {
         mInputLayout.setError(error);
-	  }
+	}
 
     public void setHintTextAppearance(int resid) {
         mInputLayout.setHintTextAppearance(resid);
-	  }
+	}
 
     public void setText(CharSequence text) {
-        mEditText.setText(text);
-	  }
+        editText.setText(text);
+	}
 
-    public void setText(@StringRes int resid) {
-        mEditText.setText(resid);
-
-	  }
-
-    public void setSelection(int index) {
-        mEditText.setSelection(index);
-
-	  }
-
-    public void addTextChangedListener(TextWatcher watcher) {
-        mEditText.addTextChangedListener(watcher);
-	  }
+	public void addTextChangedListener(TextWatcher watcher) {
+        editText.addTextChangedListener(watcher);
+	}
 
     public void setOnFocusChangeListener(OnFocusChangeListener l) {
-        mEditText.setOnFocusChangeListener(l);
-	  }
-  }
+        editText.setOnFocusChangeListener(l);
+	}
+	
+	@Override
+    public void setEnabled(boolean enabled){
+        super.setEnabled(enabled);
+        setVisibility(enabled?VISIBLE:GONE);
+    }
+}

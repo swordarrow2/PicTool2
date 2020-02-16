@@ -26,6 +26,7 @@ import java.util.*;
 
 import android.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import org.java_websocket.exceptions.*;
 
 
 public class MainActivity2 extends AppCompatActivity {
@@ -120,6 +121,8 @@ public class MainActivity2 extends AppCompatActivity {
 								sanaeConnect.send(BotDataPack.encode(-2).getData());
 							} catch (InterruptedException e) {
 
+							} catch (WebsocketNotConnectedException e) {
+								break;
 							}
 						}
 					}
@@ -150,7 +153,6 @@ public class MainActivity2 extends AppCompatActivity {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
 								showFragment(CameraQRReader.class);
-								fragments.get(CameraQRReader.class).onResume();
 							}
 						}).show();
 					break;
@@ -275,9 +277,6 @@ public class MainActivity2 extends AppCompatActivity {
     public void hideFragment(FragmentTransaction transaction) {
         for (Fragment f : fragments.values()) {
 			transaction.hide(f);
-			if (f instanceof CameraQRReader) {
-				f.onPause();
-			}
 		}
 	}
 

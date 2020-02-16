@@ -12,6 +12,7 @@ import android.view.*;
 import android.widget.*;
 import com.meng.pt2.*;
 import com.meng.pt2.tools.*;
+import com.meng.pt2.tools.MaterialDesign.*;
 import com.meng.pt2.tools.mengViews.*;
 import java.io.*;
 
@@ -23,8 +24,8 @@ public class AnimGIFArbAwesome extends Fragment {
     private int qrSize;
     private Button btnSelectImage;
     private CheckBox cbAutoColor;
-    private MengEditText mengEtDotScale;
-    private MengEditText mengEtTextToEncode;
+    private MDEditText mengEtDotScale;
+    private MDEditText mengEtTextToEncode;
     private ProgressBar pbCodingProgress;
     private String strSelectedGifPath = "";
     private TextView tvImagePath;
@@ -51,8 +52,8 @@ public class AnimGIFArbAwesome extends Fragment {
         btnEncodeGif = (Button) view.findViewById(R.id.gif_arb_qr_button_encode_gif);
         btnSelectImage = (Button) view.findViewById(R.id.gif_arb_qr_button_selectImg);
         cbAutoColor = (CheckBox) view.findViewById(R.id.gif_arb_qr_checkbox_autocolor);
-        mengEtDotScale = (MengEditText) view.findViewById(R.id.gif_arb_qr_mengEdittext_dotScale);
-        mengEtTextToEncode = (MengEditText) view.findViewById(R.id.gif_arb_qr_mainmengTextview_content);
+        mengEtDotScale = (MDEditText) view.findViewById(R.id.gif_arb_qr_mengEdittext_dotScale);
+        mengEtTextToEncode = (MDEditText) view.findViewById(R.id.gif_arb_qr_mainmengTextview_content);
         pbCodingProgress = (ProgressBar) view.findViewById(R.id.gif_arb_qr_mainProgressBar);
         tvImagePath = (TextView) view.findViewById(R.id.gif_arb_qr_selected_path);
         mengSeekBar = (MengSeekBar) view.findViewById(R.id.gif_arb_qr_mainMengSeekBar);

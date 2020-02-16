@@ -9,10 +9,13 @@ import android.text.*;
 import android.view.*;
 import android.view.View.*;
 import android.widget.*;
+import android.widget.AdapterView.*;
 import com.google.zxing.*;
 import com.meng.pt2.*;
-import com.meng.pt2.tools.*;
 import com.meng.pt2.qrCode.creator.*;
+import com.meng.pt2.tools.*;
+
+import android.view.View.OnClickListener;
 
 public class GalleryQRReader extends Fragment {
     private Button btnCreateAwesomeQR;
@@ -31,7 +34,7 @@ public class GalleryQRReader extends Fragment {
         tvResult = (TextView) view.findViewById(R.id.read_galleryTextView_result);
         tvFormat = (TextView) view.findViewById(R.id.read_galleryTextView_format);
         btnCreateAwesomeQR = (Button) view.findViewById(R.id.read_galleryButton_createAwesomeQR);
-        btnOpenGallery.setOnClickListener(click);
+		btnOpenGallery.setOnClickListener(click);
         btnCreateAwesomeQR.setOnClickListener(click);
         CheckBox cbAutoRead = (CheckBox) view.findViewById(R.id.read_gallery_autoread);
         boolean b = SharedPreferenceHelper.getBoolean("service", false);
@@ -110,5 +113,4 @@ public class GalleryQRReader extends Fragment {
     private void stopService() {
         getActivity().stopService(new Intent(getActivity(), ScreenShotListenService.class));
     }
-
 }

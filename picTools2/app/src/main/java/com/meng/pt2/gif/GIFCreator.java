@@ -21,7 +21,7 @@ import android.support.v7.app.AlertDialog;
 
 public class GIFCreator extends Fragment {
 
-    public MengEditText mengEtFrameDelay;
+    public MDEditText mengEtFrameDelay;
     public ArrayList<GIFFrame> selectedImages = new ArrayList<>();
     public EditFrameAdapter editFrameAdapter;
     public FloatingButton fabAdd;
@@ -38,7 +38,7 @@ public class GIFCreator extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mengEtFrameDelay = (MengEditText) view.findViewById(R.id.gif_creator_delay);
+        mengEtFrameDelay = (MDEditText) view.findViewById(R.id.gif_creator_delay);
         fabAdd = (FloatingButton) view.findViewById(R.id.fab_add);
         fabEncode = (FloatingButton) view.findViewById(R.id.fab_encode);
         ListView listView = (ListView) view.findViewById(R.id.gif_creator_list);

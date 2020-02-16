@@ -16,45 +16,37 @@
 
 package com.meng.pt2.tools.zxing.decoding;
 
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.util.Log;
+import android.os.*;
+import android.util.*;
+import com.google.zxing.*;
+import com.google.zxing.common.*;
+import com.meng.pt2.*;
+import com.meng.pt2.qrCode.reader.*;
+import com.meng.pt2.tools.zxing.camera.*;
+import java.util.concurrent.*;
 
-import com.google.zxing.BinaryBitmap;
-import com.google.zxing.DecodeHintType;
-import com.google.zxing.MultiFormatReader;
-import com.google.zxing.ReaderException;
-import com.google.zxing.Result;
-import com.google.zxing.common.HybridBinarizer;
-import com.meng.pt2.R;
-import com.meng.pt2.tools.zxing.camera.CameraManager;
 import com.meng.pt2.tools.zxing.camera.PlanarYUVLuminanceSource;
-import com.meng.pt2.qrCode.reader.CameraQRReader;
-
-import java.util.Hashtable;
 
 
-final class DecodeHandler extends Handler{
+final class DecodeHandler extends Handler {
 
     private static final String TAG=DecodeHandler.class.getSimpleName();
 
     private final CameraQRReader activity;
     private final MultiFormatReader multiFormatReader;
 
-    DecodeHandler(CameraQRReader activity, Hashtable<DecodeHintType,Object> hints){
-        multiFormatReader=new MultiFormatReader();
+    DecodeHandler(CameraQRReader activity, ConcurrentHashMap<DecodeHintType,Object> hints) {
+        multiFormatReader = new MultiFormatReader();
         multiFormatReader.setHints(hints);
-        this.activity=activity;
+        this.activity = activity;
     }
 
     @Override
-    public void handleMessage(Message message){
-        if(message.what==R.id.decode){
+    public void handleMessage(Message message) {
+        if (message.what == R.id.decode) {
             //Log.d(TAG, "Got decode message");
-            decode((byte[])message.obj,message.arg1,message.arg2);
-        }else if(message.what==R.id.quit){
+            decode((byte[])message.obj, message.arg1, message.arg2);
+        } else if (message.what == R.id.quit) {
             Looper.myLooper().quit();
         }
     }
@@ -67,43 +59,42 @@ final class DecodeHandler extends Handler{
      * @param width  The width of the preview frame.
      * @param height The height of the preview frame.
      */
-    private void decode(byte[] data,int width,int height){
+    private void decode(byte[] data, int width, int height) {
         long start=System.currentTimeMillis();
         Result rawResult=null;
 
         //modify here
         byte[] rotatedData=new byte[data.length];
-        for(int y=0;y<height;y++){
-            for(int x=0;x<width;x++)
-                rotatedData[x*height+height-y-1]=data[x+y*width];
+        for (int y=0;y < height;y++) {
+            for (int x=0;x < width;x++)
+                rotatedData[x * height + height - y - 1] = data[x + y * width];
         }
         int tmp=width; // Here we are swapping, that's the difference to #11
-        width=height;
-        height=tmp;
+        width = height;
+        height = tmp;
 
-        PlanarYUVLuminanceSource source=CameraManager.get().buildLuminanceSource(rotatedData,width,height);
+        PlanarYUVLuminanceSource source=CameraManager.get().buildLuminanceSource(rotatedData, width, height);
         BinaryBitmap bitmap=new BinaryBitmap(new HybridBinarizer(source));
-        try{
-            rawResult=multiFormatReader.decodeWithState(bitmap);
-        }catch(ReaderException re){
+        try {
+            rawResult = multiFormatReader.decodeWithState(bitmap);
+        } catch (ReaderException re) {
             // continue
-        }finally{
+        } finally {
             multiFormatReader.reset();
         }
 
-        if(rawResult!=null){
+        if (rawResult != null) {
             long end=System.currentTimeMillis();
-            Log.d(TAG,"Found barcode ("+(end-start)+" ms):\n"+rawResult.toString());
-            Message message=Message.obtain(activity.getHandler(),R.id.decode_succeeded,rawResult);
+            Log.d(TAG, "Found barcode (" + (end - start) + " ms):\n" + rawResult.toString());
+            Message message=Message.obtain(activity.getHandler(), R.id.decode_succeeded, rawResult);
             Bundle bundle=new Bundle();
-            bundle.putParcelable(DecodeThread.BARCODE_BITMAP,source.renderCroppedGreyscaleBitmap());
+            bundle.putParcelable(DecodeThread.BARCODE_BITMAP, source.renderCroppedGreyscaleBitmap());
             message.setData(bundle);
             //Log.d(TAG, "Sending decode succeeded message...");
             message.sendToTarget();
-        }else{
-            Message message=Message.obtain(activity.getHandler(),R.id.decode_failed);
+        } else {
+            Message message=Message.obtain(activity.getHandler(), R.id.decode_failed);
             message.sendToTarget();
         }
     }
-
 }

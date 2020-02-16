@@ -22,19 +22,19 @@
             android:orientation="vertical"
             android:padding="8dp">
 
-            <com.meng.pt2.tools.mengViews.MengEditText
+            <com.meng.pt2.tools.MaterialDesign.MDEditText
                 android:id="@+id/awesomeqr_main_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                ran:edittextHint="@string/input_text"
-                ran:textviewText="@string/contents" />
+                ran:default_value="@string/input_text"
+                ran:hint="@string/contents" />
 
-            <com.meng.pt2.tools.mengViews.MengEditText
+            <com.meng.pt2.tools.MaterialDesign.MDEditText
                 android:id="@+id/awesomeqr_main_dotScale"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                ran:edittextHint="0.4"
-                ran:textviewText="@string/data_dot_scale" />
+                ran:default_value="0.4"
+                ran:hint="@string/data_dot_scale" />
 
             <CheckBox
                 android:id="@+id/awesomeqr_main_autoColor"
