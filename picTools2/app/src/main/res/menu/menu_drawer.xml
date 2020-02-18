@@ -39,7 +39,7 @@
 		<item
             android:id="@+id/crash"
             android:icon="@drawable/ic_menu"
-            android:title="上传崩溃日志" />
+            android:title="联系开发者" />
         <item
             android:id="@+id/settings"
             android:icon="@drawable/ic_menu"

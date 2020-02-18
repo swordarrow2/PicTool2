@@ -229,7 +229,19 @@ public class MainActivity2 extends AppCompatActivity {
 					showFragment(OcrMain.class);
 					break;
 				case R.id.crash:
-					showFragment(CrashUploadFragment.class);
+					new AlertDialog.Builder(MainActivity2.this)
+						.setTitle("选择操作")
+						.setPositiveButton("上传崩溃日志", new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface p1, int p2) {
+								showFragment(CrashUploadFragment.class);
+							}
+						}).setNegativeButton("给开发者留言", new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								showFragment(SendToMasterFragment.class);
+							}
+						}).show();
 					break;
                 case R.id.settings:
 					showFragment(SettingsPreference.class);

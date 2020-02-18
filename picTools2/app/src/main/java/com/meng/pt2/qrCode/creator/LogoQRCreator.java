@@ -27,12 +27,12 @@ public class LogoQRCreator extends Fragment {
     private TextView tvImgPath;
     private Button btnSave;
     private Bitmap bmpQRcode = null;
-    private Bitmap logoImage = null;
+    public Bitmap logoImage = null;
     private CheckBox cbAutoColor;
     private CheckBox cbCrop;
     private MengColorBar mColorBar;
     private String barcodeFormat;
-	
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.barcode_main, container, false);
@@ -55,25 +55,25 @@ public class LogoQRCreator extends Fragment {
         ((Button) view.findViewById(R.id.qr_ButtonCreate)).setOnClickListener(click);
 		btnSave.setOnClickListener(click);
         cbAutoColor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mColorBar.setVisibility(isChecked ? View.GONE : View.VISIBLE);
-                if (!isChecked) LogTool.t("如果颜色搭配不合理,二维码将会难以识别");
-            }
-        });
+				@Override
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					mColorBar.setVisibility(isChecked ? View.GONE : View.VISIBLE);
+					if (!isChecked) LogTool.t("如果颜色搭配不合理,二维码将会难以识别");
+				}
+			});
         ((Spinner) view.findViewById(R.id.qr_main_spinner)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                barcodeFormat = ((TextView) view).getText().toString();
-                if (btnSave.getVisibility() == View.VISIBLE) {
-                    createBarcode();
-                }
-            }
+				@Override
+				public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+					barcodeFormat = ((TextView) view).getText().toString();
+					if (btnSave.getVisibility() == View.VISIBLE) {
+						createBarcode();
+					}
+				}
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
+				@Override
+				public void onNothingSelected(AdapterView<?> parent) {
+				}
+			});
     }
 
     OnClickListener click = new OnClickListener() {
@@ -106,20 +106,20 @@ public class LogoQRCreator extends Fragment {
 
     private void createBarcode() {
         bmpQRcode = QrUtils.flex(
-                QrUtils.createBarcode(
-                        mengEtContent.getString(),
-                        switchFormat(barcodeFormat),
-                        cbAutoColor.isChecked() ? Color.BLACK : mColorBar.getTrueColor(),
-                        cbAutoColor.isChecked() ? Color.WHITE : mColorBar.getFalseColor(),
-                        500,
-                        logoImage),
-                mengEtSize.getInt());
+			QrUtils.createBarcode(
+				mengEtContent.getString(),
+				switchFormat(barcodeFormat),
+				cbAutoColor.isChecked() ? Color.BLACK : mColorBar.getTrueColor(),
+				cbAutoColor.isChecked() ? Color.WHITE : mColorBar.getFalseColor(),
+				500,
+				logoImage),
+			mengEtSize.getInt());
         scrollView.post(new Runnable() {
-            @Override
-            public void run() {
-                scrollView.fullScroll(View.FOCUS_DOWN);
-            }
-        });
+				@Override
+				public void run() {
+					scrollView.fullScroll(View.FOCUS_DOWN);
+				}
+			});
         qrcodeImageView.setImageBitmap(bmpQRcode);
     }
 
@@ -137,43 +137,28 @@ public class LogoQRCreator extends Fragment {
         return BarcodeFormat.QR_CODE;
     }
 
-    private Uri cropPhoto(Uri uri, boolean needCrop) {
-        if (!needCrop) return uri;
-        Intent intent = new Intent("com.android.camera.action.CROP");
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-        intent.setDataAndType(uri, "image/*");
-        intent.putExtra("crop", "true");
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
-        intent.putExtra("outputX", 300);
-        intent.putExtra("outputY", 300);
-        intent.putExtra("return-data", true);
-        startActivityForResult(intent, MainActivity2.instence.CROP_REQUEST_CODE);
-        return uri;
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == MainActivity2.instence.SELECT_FILE_REQUEST_CODE && resultCode == Activity.RESULT_OK && data.getData() != null) {
-            String path = Tools.ContentHelper.absolutePathFromUri(getActivity().getApplicationContext(), cropPhoto(data.getData(), cbCrop.isChecked()));
-            tvImgPath.setText(String.format("当前图片：%s", path));
-            if (!cbCrop.isChecked()) {
-                logoImage = BitmapFactory.decodeFile(path);
-            }
-        } else if (requestCode == MainActivity2.instence.CROP_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            Bundle bundle = data.getExtras();
-            if (bundle != null) {
-                logoImage = bundle.getParcelable("data");
-                LogTool.t("图片添加成功");
-            } else {
-                LogTool.t("取消了添加图片");
-            }
-        } else if (resultCode == Activity.RESULT_CANCELED) {
-            LogTool.t("取消选择图片");
-        } else {
-            MainActivity2.instence.selectImage(this);
-        }
+		if (resultCode == Activity.RESULT_OK) {
+			if (requestCode == MainActivity2.instence.SELECT_FILE_REQUEST_CODE && data.getData() != null) {
+				String path = Tools.ContentHelper.absolutePathFromUri(getActivity().getApplicationContext(), data.getData());
+				tvImgPath.setText(String.format("当前图片：%s", path));
+				if (cbCrop.isChecked()) {
+					Intent in=new Intent(getActivity(), CropActivity.class);
+					in.putExtra("path", path);
+					startActivityForResult(in, 9961);
+				} else {
+					logoImage = BitmapFactory.decodeFile(path);
+				}
+			} else if (requestCode == 9961) {
+				byte[] bis = data.getByteArrayExtra("bitmap");
+				if (bis != null) {
+					logoImage = BitmapFactory.decodeByteArray(bis, 0, bis.length);
+				}
+			} 
+		} else if (resultCode == Activity.RESULT_CANCELED) {
+			LogTool.t("取消选择图片");
+		}
         super.onActivityResult(requestCode, resultCode, data);
     }
 

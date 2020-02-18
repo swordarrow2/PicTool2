@@ -43,6 +43,7 @@
             android:label="@string/app_name"
             android:launchMode="singleTask" />
         <activity android:name=".gif.FileBrowserActivity" />
+		<activity android:name=".qrCode.creator.CropActivity" />
         <activity
             android:name=".gif.SelectFileActivity"
             android:launchMode="singleTask"

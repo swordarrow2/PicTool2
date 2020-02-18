@@ -38,12 +38,6 @@ public class AwesomeCreator extends Fragment {
     private Bitmap bmpQRcode = null;
     private MengColorBar mColorBar;
 
-    private static final int REQUEST_EXTERNAL_STORAGE = 1;
-    private static String[] PERMISSIONS_STORAGE = {
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-    };
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.awesomeqr_main, container, false);
@@ -103,17 +97,17 @@ public class AwesomeCreator extends Fragment {
                     break;
                 case R.id.awesomeqr_main_generate:
                     generate(mengEtContents.getString(),
-                            mengEtSize.getInt(),
-                            mengEtMargin.getInt(),
-                            Float.parseFloat(mengEtDotScale.getString()),
-                            mColorBar.getTrueColor(),
-                            ckbAutoColor.isChecked() ? Color.WHITE : mColorBar.getFalseColor(),
-                            backgroundImage,
-                            ckbWhiteMargin.isChecked(),
-                            ckbAutoColor.isChecked(),
-                            ckbBinarize.isChecked(),
-                            mengEtBinarize.getInt()
-                    );
+							 mengEtSize.getInt(),
+							 mengEtMargin.getInt(),
+							 Float.parseFloat(mengEtDotScale.getString()),
+							 mColorBar.getTrueColor(),
+							 ckbAutoColor.isChecked() ? Color.WHITE : mColorBar.getFalseColor(),
+							 backgroundImage,
+							 ckbWhiteMargin.isChecked(),
+							 ckbAutoColor.isChecked(),
+							 ckbBinarize.isChecked(),
+							 mengEtBinarize.getInt()
+							 );
                     btnSave.setVisibility(View.VISIBLE);
                     break;
                 case R.id.awesomeqr_mainButton_save:
@@ -134,63 +128,27 @@ public class AwesomeCreator extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        acquireStoragePermissions();
-    }
-
-
-    private void acquireStoragePermissions() {
-        int permission = ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                    getActivity(),
-                    PERMISSIONS_STORAGE,
-                    REQUEST_EXTERNAL_STORAGE
-            );
-        }
-    }
-
-    private Uri cropPhoto(Uri uri, boolean needCrop) {
-        if (!needCrop) return uri;
-        Intent intent = new Intent("com.android.camera.action.CROP");
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-        intent.setDataAndType(uri, "image/*");
-        intent.putExtra("crop", "true");
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
-        intent.putExtra("outputX", 300);
-        intent.putExtra("outputY", 300);
-        intent.putExtra("return-data", true);
-        startActivityForResult(intent, MainActivity2.instence.CROP_REQUEST_CODE);
-        return uri;
-    }
-
-    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == MainActivity2.instence.SELECT_FILE_REQUEST_CODE && resultCode == Activity.RESULT_OK && data.getData() != null) {
-            imgPathTextView.setVisibility(View.VISIBLE);
-            String path = Tools.ContentHelper.absolutePathFromUri(getActivity().getApplicationContext(), cropPhoto(data.getData(), cbCrop.isChecked()));
-            imgPathTextView.setText(MessageFormat.format("当前图片：{0}", path));
-            if (!cbCrop.isChecked()) {
-                backgroundImage = BitmapFactory.decodeFile(path);
-            }
-        } else if (requestCode == MainActivity2.instence.CROP_REQUEST_CODE) {
-            Bundle bundle = data.getExtras();
-            if (bundle == null) {
-                LogTool.t("bundle is null");
-            }
-            if (bundle != null) {
-                backgroundImage = bundle.getParcelable("data");
-                LogTool.t(getResources().getString(R.string.Background_image_added));
-            } else {
-                LogTool.t("取消了添加图片");
-            }
-        } else if (resultCode == Activity.RESULT_CANCELED) {
-            LogTool.t("取消选择图片");
-        } else {
-            MainActivity2.instence.selectImage(this);
+		if (resultCode == Activity.RESULT_OK) {
+			if (requestCode == MainActivity2.instence.SELECT_FILE_REQUEST_CODE && data.getData() != null) {
+				imgPathTextView.setVisibility(View.VISIBLE);
+				String path = Tools.ContentHelper.absolutePathFromUri(getActivity().getApplicationContext(), data.getData());
+				imgPathTextView.setText(MessageFormat.format("当前图片：{0}", path));
+				if (cbCrop.isChecked()) {
+					Intent in=new Intent(getActivity(), CropActivity.class);
+					in.putExtra("path", path);
+					startActivityForResult(in, 9961);
+				} else {
+					backgroundImage = BitmapFactory.decodeFile(path);
+				}
+			} else if (requestCode == 9961) {
+				byte[] bis = data.getByteArrayExtra("bitmap");
+				if (bis != null) {
+					backgroundImage = BitmapFactory.decodeByteArray(bis, 0, bis.length);
+				}
+			} 
+		} else if (resultCode == Activity.RESULT_CANCELED) {
+			LogTool.t("取消选择图片");
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -201,29 +159,29 @@ public class AwesomeCreator extends Fragment {
         if (generating) return;
         generating = true;
         new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    final Bitmap b = AwesomeQRCode.create(contents, size, margin, dotScale, colorDark, colorLight, background, whiteMargin, autoColor, binarize, binarizeThreshold);
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            qrCodeImageView.setImageBitmap(b);
-                            bmpQRcode = b;
-                            scrollView.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    scrollView.fullScroll(View.FOCUS_DOWN);
-                                }
-                            });
-                            generating = false;
-                        }
-                    });
-                } catch (Exception e) {
-                    LogTool.e(e);
-                    generating = false;
-                }
-            }
-        }).start();
+				@Override
+				public void run() {
+					try {
+						final Bitmap b = AwesomeQRCode.create(contents, size, margin, dotScale, colorDark, colorLight, background, whiteMargin, autoColor, binarize, binarizeThreshold);
+						getActivity().runOnUiThread(new Runnable() {
+								@Override
+								public void run() {
+									qrCodeImageView.setImageBitmap(b);
+									bmpQRcode = b;
+									scrollView.post(new Runnable() {
+											@Override
+											public void run() {
+												scrollView.fullScroll(View.FOCUS_DOWN);
+											}
+										});
+									generating = false;
+								}
+							});
+					} catch (Exception e) {
+						LogTool.e(e);
+						generating = false;
+					}
+				}
+			}).start();
     }
 }

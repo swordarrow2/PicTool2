@@ -12,9 +12,9 @@ public class EachSoftInfo {
 	public String toString() {
 		StringBuilder sb=new StringBuilder();
 		for (SoftInfo si:infoList) {
-			sb.append(si.versionDescribe).append("\n");
+			sb.append("v").append(si.versionName).append(":").append(si.versionDescribe).append("\n");
 		}
-		sb.append(String.format("大小:%.2f",lastestSize / 1024f / 1024f)).append("M");
+		sb.append(String.format("最新版本大小:%.2f", lastestSize / 1024f / 1024f)).append("M");
 		return sb.toString();
 	}
 }
