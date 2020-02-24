@@ -13,9 +13,9 @@ public class Main {
 		}
 		for (File f:fs) {
 			String s=readString(f);
-			s=s.replace("BaseFragment", "Fragment");
+			s = s.replace("com.meng.pt2.tools.mengViews.MDEditText", "com.meng.pt2.tools.MaterialDesign.MDEditText");
 			//System.out.println(s);
-			saveString(f,s);
+			saveString(f, s);
 		}
 		System.out.println("ok");
 	}
@@ -29,7 +29,7 @@ public class Main {
                 if (fileIndex.isDirectory()) {
                     getFiles(fileIndex.getPath(), list);
                 } else {
-					if (fileIndex.getName().endsWith(".java")) {
+					if (fileIndex.getName().endsWith(".java") || fileIndex.getName().endsWith(".xml")) {
 						list.add(fileIndex);
 					}
                 }

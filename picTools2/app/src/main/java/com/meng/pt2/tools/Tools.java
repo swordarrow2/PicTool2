@@ -307,11 +307,27 @@ public class Tools {
 		}
 
 		public static byte[] getBytes(float f) {
-			return getBytes(Float.floatToIntBits(f));
+			int i = Float.floatToIntBits(f);
+			byte[] bs=new byte[4];
+			bs[0] = (byte) ((i >> 24) & 0xff);
+			bs[1] = (byte) ((i >> 16) & 0xff);
+			bs[2] = (byte) ((i >> 8) & 0xff);
+			bs[3] = (byte) ((i >> 0) & 0xff);
+			return bs;	
 		}
 
-		public static byte[] getBytes(Double d) {
-			return getBytes(Double.doubleToLongBits(d));
+		public static byte[] getBytes(double d) {
+			long l = Double.doubleToLongBits(d);
+			byte[] bs = new byte[8];
+			bs[0] = (byte) ((l >> 56) & 0xff);
+			bs[1] = (byte) ((l >> 48) & 0xff);
+			bs[2] = (byte) ((l >> 40) & 0xff);
+			bs[3] = (byte) ((l >> 32) & 0xff);
+			bs[4] = (byte) ((l >> 24) & 0xff);
+			bs[5] = (byte) ((l >> 16) & 0xff);
+			bs[6] = (byte) ((l >> 8) & 0xff);
+			bs[7] = (byte) ((l >> 0) & 0xff);
+			return bs;
 		}
 
 		public static byte[] getBytes(String s) {
