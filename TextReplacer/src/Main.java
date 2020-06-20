@@ -7,13 +7,13 @@ public class Main {
 
 		ArrayList<File> fs=new ArrayList<>();
 		try {
-			getFiles("/storage/emulated/0/AppProjects/PicTool2/picTools2/app/src/main/", fs);
+			getFiles("/storage/emulated/0/AppProjects/PicTool2/mdt/app/src/main/", fs);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		for (File f:fs) {
 			String s=readString(f);
-			s = s.replace("com.meng.pt2.tools.mengViews.MDEditText", "com.meng.pt2.tools.MaterialDesign.MDEditText");
+			s = s.replace("com.meng.pt2.tools", "com.meng.mediatool.tools");
 			//System.out.println(s);
 			saveString(f, s);
 		}
@@ -29,7 +29,7 @@ public class Main {
                 if (fileIndex.isDirectory()) {
                     getFiles(fileIndex.getPath(), list);
                 } else {
-					if (fileIndex.getName().endsWith(".java") || fileIndex.getName().endsWith(".xml")) {
+					if (fileIndex.getName().endsWith(".javhhha") || fileIndex.getName().endsWith(".xml")) {
 						list.add(fileIndex);
 					}
                 }

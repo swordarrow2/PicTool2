@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.meng.pt2.tools.MaterialDesign.FloatingButton
+    <com.meng.mediatool.tools.MaterialDesign.FloatingButton
         android:id="@+id/fab_select"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

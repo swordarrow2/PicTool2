@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="fill_parent"
+	android:layout_width="fill_parent">
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:orientation="vertical"
+		android:gravity="left"
+		android:padding="64dp">
+
+		<LinearLayout
+			android:id="@+id/qr_op_selectLinearLayout_normal"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+
+			<ImageView
+				android:clickable="false"
+				android:focusable="false"
+				android:layout_height="60dp"
+				android:layout_width="60dp"/>
+
+			<TextView
+				android:clickable="false"
+				android:focusable="false"
+				android:text="normal"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_gravity="center"
+				android:padding="10dp"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/qr_op_selectLinearLayout_normal_pic"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+
+			<ImageView
+				android:clickable="false"
+				android:focusable="false"
+				android:layout_height="60dp"
+				android:layout_width="60dp"/>
+
+			<TextView
+				android:clickable="false"
+				android:focusable="false"
+				android:text="normal"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_gravity="center"
+				android:padding="10dp"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/qr_op_selectLinearLayout_awesome"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+
+			<ImageView
+				android:clickable="false"
+				android:focusable="false"
+				android:layout_height="60dp"
+				android:layout_width="60dp"/>
+
+			<TextView
+				android:clickable="false"
+				android:focusable="false"
+				android:text="awesome"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_gravity="center"
+				android:padding="10dp"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/qr_op_selectLinearLayout_awesome_arb"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+
+			<ImageView
+				android:clickable="false"
+				android:focusable="false"
+				android:layout_height="60dp"
+				android:layout_width="60dp"/>
+
+			<TextView
+				android:clickable="false"
+				android:focusable="false"
+				android:text="awesome_arb"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_gravity="center"
+				android:padding="10dp"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/qr_op_selectLinearLayout_awesome_gif"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+
+			<ImageView
+				android:clickable="false"
+				android:focusable="false"
+				android:layout_height="60dp"
+				android:layout_width="60dp"/>
+
+			<TextView
+				android:clickable="false"
+				android:focusable="false"
+				android:text="awesome_gif"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_gravity="center"
+				android:padding="10dp"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/qr_op_selectLinearLayout_awesome_arb_gif"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+
+			<ImageView
+				android:clickable="false"
+				android:focusable="false"
+				android:layout_height="60dp"
+				android:layout_width="60dp"/>
+
+			<TextView
+				android:clickable="false"
+				android:focusable="false"
+				android:text="awesome_arb_gif"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_gravity="center"
+				android:padding="10dp"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/qr_op_selectLinearLayout_read"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+
+			<ImageView
+				android:clickable="false"
+				android:focusable="false"
+				android:layout_height="60dp"
+				android:layout_width="60dp"/>
+
+			<TextView
+				android:clickable="false"
+				android:focusable="false"
+				android:text="read"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_gravity="center"
+				android:padding="10dp"/>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+</ScrollView>
+

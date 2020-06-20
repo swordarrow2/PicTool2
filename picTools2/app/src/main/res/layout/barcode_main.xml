@@ -16,14 +16,14 @@
                     style="@style/MDEditText"
                     app:errorEnable="true"
                     app:hint="username" />-->
-            <com.meng.pt2.tools.MaterialDesign.MDEditText
+            <com.meng.mediatool.tools.MaterialDesign.MDEditText
                 android:id="@+id/qr_mengEditText_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 ran:hint="@string/input_text"
 				ran:default_value="content" />
 
-            <com.meng.pt2.tools.MaterialDesign.MDEditText
+            <com.meng.mediatool.tools.MaterialDesign.MDEditText
                 android:id="@+id/qr_mengEditText_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
                     android:text="@string/crop_square" />
             </LinearLayout>
 
-            <com.meng.pt2.tools.mengViews.MengColorBar
+            <com.meng.mediatool.tools.mengViews.MengColorBar
                 android:id="@+id/gif_arb_qr_main_colorBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
