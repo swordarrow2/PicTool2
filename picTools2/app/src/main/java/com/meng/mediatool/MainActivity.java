@@ -29,6 +29,8 @@ import java.util.concurrent.*;
 import android.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import com.meng.mediatool.R;
+import com.meng.mediatool.wallpaper.VideoWallpaper;
+import com.meng.mediatool.wallpaper.WallpaperMain;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         instance = this;FileHelper.init(this);
-		//ExceptionCatcher.getInstance().init(this);
+		ExceptionCatcher.getInstance().init(this);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 321);
         } else {
@@ -103,54 +105,7 @@ public class MainActivity extends AppCompatActivity {
 	}
 
     NavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new NavigationView.OnNavigationItemSelectedListener() {
-
-		AlertDialog ad;
-
-		private void setView(View ll, int bmpId, String text) {
-			Bitmap bmp;
-			if (bmpId == 0) {
-				bmp = null;
-			} else {
-				bmp = BitmapFactory.decodeResource(getResources(), bmpId);
-			}
-			ImageView im = (ImageView) ((LinearLayout)ll).getChildAt(0);
-			TextView tv = (TextView) ((LinearLayout)ll).getChildAt(1);
-			im.setImageBitmap(bmp);
-			tv.setText(text);
-			ll.setOnClickListener(ocl);
-		}
-
-		View.OnClickListener ocl = new View.OnClickListener(){
-
-			@Override
-			public void onClick(View p1) {
-				switch (p1.getId()) {
-					case R.id.qr_op_selectLinearLayout_normal:
-						//break;
-						//case R.id.qr_op_selectLinearLayout_in_pic:
-						//break;
-					case R.id.qr_op_selectLinearLayout_normal_pic:
-						showFragment(BarcodeNormal.class);		
-						break;
-					case R.id.qr_op_selectLinearLayout_awesome:
-						showFragment(BarcodeAwesome.class);
-						break;
-					case R.id.qr_op_selectLinearLayout_awesome_arb:
-						showFragment(BarcodeAwesomeArb.class);		
-						break;
-					case R.id.qr_op_selectLinearLayout_awesome_gif:
-						showFragment(BarcodeAwesomeGif.class);
-						break;
-					case R.id.qr_op_selectLinearLayout_awesome_arb_gif:
-						showFragment(BarcodeAwesomeArbGif.class);
-						break;
-					case R.id.qr_op_selectLinearLayout_read:
-						showFragment(GalleryQRReader.class);
-						break;
-				}
-				ad.dismiss();
-			}
-		};
+        private AlertDialog ad;
 
 		@Override
         public boolean onNavigationItemSelected(MenuItem item) {
@@ -158,18 +113,50 @@ public class MainActivity extends AppCompatActivity {
             mDrawerLayout.closeDrawer(GravityCompat.END);
             switch (item.getItemId()) {
 				case R.id.barcode:
-					View view1 = getLayoutInflater().inflate(R.layout.qr_op_select, null);
-					setView(view1.findViewById(R.id.qr_op_selectLinearLayout_normal), R.drawable.barcode_normal, "普通");
-					setView(view1.findViewById(R.id.qr_op_selectLinearLayout_normal_pic), R.drawable.barcode_normal_pic, "普通");
-					//setView(view1.findViewById(R.id.qr_op_selectLinearLayout_in_pic), null, "在图片中");
-					setView(view1.findViewById(R.id.qr_op_selectLinearLayout_awesome), R.drawable.barcode_awesome, "普通图");
-					setView(view1.findViewById(R.id.qr_op_selectLinearLayout_awesome_arb), R.drawable.barcode_awesome_arb, "普通图");
-					setView(view1.findViewById(R.id.qr_op_selectLinearLayout_awesome_gif), R.drawable.barcode_awesome, "动态图");
-					setView(view1.findViewById(R.id.qr_op_selectLinearLayout_awesome_arb_gif), R.drawable.barcode_awesome_arb, "动态图");
-					setView(view1.findViewById(R.id.qr_op_selectLinearLayout_read), 0, "读取二维码");
-					//setView(view1.findViewById(R.id.qr_op_selectLinearLayout_read_camera), 0, "从相机读取");
-					ad = new AlertDialog.Builder(MainActivity.this).setTitle("选择二维码类型").setView(view1).show();
-					break;
+
+                    final String[] items = {
+                        "普通",
+                        "Awesome",
+                        "Awesome(任意位置)",
+                        "Awesome(动态)",
+                        "Awesome(自选位置，动态)",
+                        "读取条码"};
+
+                    ListView lv = new ListView(MainActivity.this);
+                    ArrayAdapter<String> aa =new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, items);
+                    lv.setAdapter(aa);
+                    lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+                            @Override
+                            public void onItemClick(AdapterView<?> p1, View p2, int p3, long p4) {
+                                ad.dismiss(); 
+                                switch (p3) {
+                                    case 0:
+                                        showFragment(BarcodeNormal.class);      
+                                        break;
+                                    case 1:
+                                        showFragment(BarcodeAwesome.class);
+                                        break;
+                                    case 2:
+                                        showFragment(BarcodeAwesomeArb.class);      
+                                        break;
+                                    case 3:
+                                        showFragment(BarcodeAwesomeGif.class);
+                                        break;
+                                    case 4:
+                                        showFragment(BarcodeAwesomeArbGif.class);
+                                        break;
+                                    case 5:
+                                        showFragment(BarcodeReaderGallery.class);
+                                        break;
+                                }
+                            }
+                        });
+                    ad = new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("选择操作")
+                        .setView(lv)
+                        .show(); 
+                    break;
                 case R.id.crypt:
 					showFragment(PictureCrypt.class);
 					break;
@@ -185,12 +172,21 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.ocr:
 					showFragment(OcrMain.class);
 					break;
+                case R.id.pic_format_convert:
+                    showFragment(FfmpegFragment.class);
+                    break;
+                case R.id.push_rtmp:
+                    showFragment(RtmpFragment.class);
+                    break;
 				case R.id.settings:
 					showFragment(SettingsPreference.class);
 					break;
                 case R.id.pixiv_download:
 					showFragment(PixivDownloadMain.class);
 					break;
+                case R.id.videowallpaper:
+                    showFragment(WallpaperMain.class);
+                    break;
                 case R.id.exit:
 					exit();
 					break;	
@@ -206,13 +202,20 @@ public class MainActivity extends AppCompatActivity {
         f.startActivityForResult(intent, SELECT_FILE_REQUEST_CODE);
 	}
 
+    public void selectVideo(Fragment f) {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("*/*");
+        f.startActivityForResult(intent, SELECT_FILE_REQUEST_CODE);
+	}
+
 	public <T extends Fragment> T getFragment(Class<T> c) {
 		return (T)fragments.get(c.getName());
 	}
 
 	public <T extends Fragment> void showFragment(Class<T> c) {
 		FragmentTransaction transactionWelcome = manager.beginTransaction();
-		Fragment frag=fragments.get(c.getName());
+		Fragment frag = fragments.get(c.getName());
 		if (frag == null) {
 			try {
 				Class<?> cls = Class.forName(c.getName());

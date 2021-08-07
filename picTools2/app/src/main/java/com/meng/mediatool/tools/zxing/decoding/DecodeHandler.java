@@ -32,10 +32,10 @@ final class DecodeHandler extends Handler {
 
     private static final String TAG=DecodeHandler.class.getSimpleName();
 
-    private final CameraQRReader activity;
+    private final BarcodeReaderCamera activity;
     private final MultiFormatReader multiFormatReader;
 
-    DecodeHandler(CameraQRReader activity, ConcurrentHashMap<DecodeHintType,Object> hints) {
+    DecodeHandler(BarcodeReaderCamera activity, ConcurrentHashMap<DecodeHintType,Object> hints) {
         multiFormatReader = new MultiFormatReader();
         multiFormatReader.setHints(hints);
         this.activity = activity;

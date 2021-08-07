@@ -24,6 +24,14 @@
             android:id="@+id/pixiv_download"
             android:icon="@drawable/ic_menu"
             android:title="Pixiv图片下载" />
+        <item
+            android:id="@+id/pic_format_convert"
+            android:icon="@drawable/ic_menu"
+            android:title="格式转换" />
+        <item
+            android:id="@+id/push_rtmp"
+            android:icon="@drawable/ic_menu"
+            android:title="推流" />
 		<item
             android:id="@+id/sauce_nao"
             android:icon="@drawable/ic_menu"
@@ -32,6 +40,10 @@
             android:id="@+id/ocr"
             android:icon="@drawable/ic_menu"
             android:title="OCR(印刷体，腾讯优图)" />
+        <item
+            android:id="@+id/videowallpaper"
+            android:icon="@drawable/ic_menu"
+            android:title="视频动态壁纸" />
 	</group>
 
 	<group

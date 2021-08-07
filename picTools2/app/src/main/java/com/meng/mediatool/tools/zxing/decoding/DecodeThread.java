@@ -26,12 +26,12 @@ import java.util.concurrent.*;
 final class DecodeThread extends Thread {
 
     public static final String BARCODE_BITMAP="barcode_bitmap";
-    private final CameraQRReader activity;
+    private final BarcodeReaderCamera activity;
     private final ConcurrentHashMap<DecodeHintType,Object> hints;
     private final CountDownLatch handlerInitLatch;
     private Handler handler;
 
-    DecodeThread(CameraQRReader activity, Vector<BarcodeFormat> decodeFormats, String characterSet, ResultPointCallback resultPointCallback) {
+    DecodeThread(BarcodeReaderCamera activity, Vector<BarcodeFormat> decodeFormats, String characterSet, ResultPointCallback resultPointCallback) {
         this.activity = activity;
         handlerInitLatch = new CountDownLatch(1);
         hints = new ConcurrentHashMap<DecodeHintType,Object>();

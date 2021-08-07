@@ -12,7 +12,7 @@ import com.google.zxing.*;
 import com.meng.mediatool.*;
 import com.meng.mediatool.tools.*;
 
-public class GalleryQRReader extends Fragment implements View.OnClickListener {
+public class BarcodeReaderGallery extends Fragment implements View.OnClickListener {
     private Button btnCreateAwesomeQR;
     private TextView tvResult;
     private TextView tvFormat;
@@ -45,7 +45,7 @@ public class GalleryQRReader extends Fragment implements View.OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.read_galleryButton:
-				MainActivity.instance.selectImage(GalleryQRReader.this);
+				MainActivity.instance.selectImage(BarcodeReaderGallery.this);
 				break;
 			case R.id.read_galleryButton_createAwesomeQR:
 				MainActivity.instance.showFragment(BarcodeAwesome.class);

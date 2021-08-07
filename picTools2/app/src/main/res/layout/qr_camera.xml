@@ -19,7 +19,7 @@
 		xdj:qr_errorHint="@string/no_camera_permission"
 		xdj:qr_hint="@string/scan_tip"
 		xdj:qr_offsetX="0"
-		xdj:qr_offsetY="-120"
+		xdj:qr_offsetY="-240"
 		xdj:qr_showPossiblePoint="true"
 		xdj:qr_textErrorHintColor="@android:color/white"
 		xdj:qr_textHintColor="@android:color/darker_gray"/>

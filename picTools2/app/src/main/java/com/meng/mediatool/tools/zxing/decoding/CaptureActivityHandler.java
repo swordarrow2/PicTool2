@@ -34,11 +34,11 @@ public final class CaptureActivityHandler extends Handler{
 
     private static final String TAG=CaptureActivityHandler.class.getSimpleName();
 
-    private final CameraQRReader activity;
+    private final BarcodeReaderCamera activity;
     private final DecodeThread decodeThread;
     private State state;
 
-    public CaptureActivityHandler(CameraQRReader activity, Vector<BarcodeFormat> decodeFormats,
+    public CaptureActivityHandler(BarcodeReaderCamera activity, Vector<BarcodeFormat> decodeFormats,
                                   String characterSet){
         this.activity=activity;
         decodeThread=new DecodeThread(activity,decodeFormats,characterSet,

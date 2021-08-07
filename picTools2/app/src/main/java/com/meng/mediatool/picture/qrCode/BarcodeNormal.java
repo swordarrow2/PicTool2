@@ -17,7 +17,7 @@ import java.io.*;
 
 public class BarcodeNormal extends Fragment {
     private ScrollView scrollView;
-    private ImageView qrcodeImageView;
+    private ImageView qrcodeImageView,tipImageView;
     private MDEditText mengEtContent;
     private MDEditText mengEtSize;
     private TextView tvImgPath;
@@ -27,7 +27,8 @@ public class BarcodeNormal extends Fragment {
     private CheckBox cbAutoColor;
     private CheckBox cbCrop;
     private MengColorBar mColorBar;
-    private String barcodeFormat;
+    private LinearLayout forQr;
+    private Spinner spinner;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,6 +47,16 @@ public class BarcodeNormal extends Fragment {
         cbCrop = (CheckBox) view.findViewById(R.id.qr_main_crop);
         btnSave = (Button) view.findViewById(R.id.qr_ButtonSave);
         tvImgPath = (TextView) view.findViewById(R.id.qr_main_imgPathTextView);
+        tipImageView = (ImageView)view.findViewById(R.id.barcode_mainImageView_tip);
+        spinner = (Spinner) view.findViewById(R.id.qr_main_spinner);
+        forQr = (LinearLayout)view.findViewById(R.id.barcode_mainLinearLayout_for_qr);
+        tipImageView.setOnClickListener(new OnClickListener(){
+
+                @Override
+                public void onClick(View p1) {
+                    MainActivity.instance.showToast(getResources().getString(R.string.format_tip));
+                }
+            });
         ((Button) view.findViewById(R.id.qr_ButtonSelectImage)).setOnClickListener(click);
         ((Button) view.findViewById(R.id.qr_ButtonRemoveImage)).setOnClickListener(click);
         ((Button) view.findViewById(R.id.qr_ButtonCreate)).setOnClickListener(click);
@@ -57,13 +68,15 @@ public class BarcodeNormal extends Fragment {
 					if (!isChecked) MainActivity.instance.showToast("如果颜色搭配不合理,二维码将会难以识别");
 				}
 			});
-        ((Spinner) view.findViewById(R.id.qr_main_spinner)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 				@Override
 				public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-					barcodeFormat = ((TextView) view).getText().toString();
+					String barcodeFormat = ((TextView) view).getText().toString();
 					if (btnSave.getVisibility() == View.VISIBLE) {
-						createBarcode();
+						createBarcode(barcodeFormat);
 					}
+                    forQr.setVisibility(barcodeFormat.equals("QRcode") ?View.VISIBLE: View.GONE);
 				}
 
 				@Override
@@ -84,7 +97,7 @@ public class BarcodeNormal extends Fragment {
                     tvImgPath.setText("未选择图片，将会生成普通二维码");
                     break;
                 case R.id.qr_ButtonCreate:
-                    createBarcode();
+                    createBarcode(spinner.getSelectedItem().toString());
                     btnSave.setVisibility(View.VISIBLE);
                     break;
                 case R.id.qr_ButtonSave:
@@ -100,7 +113,7 @@ public class BarcodeNormal extends Fragment {
         }
     };
 
-    private void createBarcode() {
+    private void createBarcode(String barcodeFormat) {
         bmpQRcode = QrUtils.flex(
 			QrUtils.createBarcode(
 				mengEtContent.getString(),

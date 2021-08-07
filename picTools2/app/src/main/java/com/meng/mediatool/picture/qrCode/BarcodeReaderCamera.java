@@ -25,7 +25,7 @@ import java.util.*;
 
 import com.meng.mediatool.R;
 
-public class CameraQRReader extends Fragment implements Callback {
+public class BarcodeReaderCamera extends Fragment implements Callback {
 
     private final int REQUEST_PERMISSION_CAMERA = 1000;
     private CaptureActivityHandler handler;
@@ -36,7 +36,7 @@ public class CameraQRReader extends Fragment implements Callback {
     private InactivityTimer inactivityTimer;
     private boolean flashLightOpen = false;
     private ImageButton flashIbtn;
-   	private GalleryQRReader galleryReader;
+   	private BarcodeReaderGallery galleryReader;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ public class CameraQRReader extends Fragment implements Callback {
 					toggleFlashLight();
 				}
 			});
-		galleryReader = MainActivity.instance.getFragment(GalleryQRReader.class);
+		galleryReader = MainActivity.instance.getFragment(BarcodeReaderGallery.class);
 	}
 
 
@@ -129,7 +129,7 @@ public class CameraQRReader extends Fragment implements Callback {
 
     public void handleDecode(Result result, Bitmap barcode) {
         inactivityTimer.onActivity();
-		if (result.getText().equals(galleryReader.getLastResult())) {
+		if (galleryReader != null && result.getText().equals(galleryReader.getLastResult())) {
 			return;
 		}
         MainActivity.instance.doVibrate(200L);
