@@ -49,12 +49,11 @@ public class RtmpFragment extends Fragment {
         btnSelectFile.setOnClickListener(click);
         FFmpeg ffmpeg = FFmpeg.getInstance(this.getActivity());
         MainActivity.instance.showToast(ffmpeg.init(getActivity()) + "");
-        SharedPreferenceHelper.init(getActivity(), "rtmpCode");
-        String rtmp = SharedPreferenceHelper.getValue("rtmp");
+        String rtmp = SharedPreferenceHelper.getString("rtmp");
         if (rtmp != null) {
             etRtmpServer.setText(rtmp);
         }
-        String pushCode = SharedPreferenceHelper.getValue("code");
+        String pushCode = SharedPreferenceHelper.getString("code");
         if (pushCode != null) {
             etPushCode.setText(pushCode);
         }
@@ -84,8 +83,8 @@ public class RtmpFragment extends Fragment {
                         MainActivity.instance.showToast("推流码不能为空");
                         return;
                     } 
-                    SharedPreferenceHelper.putValue("rtmp", rtmp);
-                    SharedPreferenceHelper.putValue("code", pushCode);
+                    SharedPreferenceHelper.putString("rtmp", rtmp);
+                    SharedPreferenceHelper.putString("code", pushCode);
                     try {
                         push(rtmp + pushCode);
                         MainActivity.instance.showToast("开始向" + rtmp + pushCode + "推流");

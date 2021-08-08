@@ -145,7 +145,7 @@ public class PixivDownloadMain extends Fragment {
             likeAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, likeJavaBean.info);
             likeList.setAdapter(likeAdapter);
 		}
-        threadPool = Executors.newFixedThreadPool(Integer.parseInt(SharedPreferenceHelper.getValue("threads", "3")));
+        threadPool = Executors.newFixedThreadPool(Integer.parseInt(SharedPreferenceHelper.getString("threads", "3")));
         checkFailed();
 	}
 
@@ -327,7 +327,7 @@ public class PixivDownloadMain extends Fragment {
 							String key = (String) o;
 							//    String value = (String) linkedTreeMap.get(key);
 							createDownloadTask(key);
-							Thread.sleep(Integer.parseInt(SharedPreferenceHelper.getValue("sleep", "2000")));
+							Thread.sleep(Integer.parseInt(SharedPreferenceHelper.getString("sleep", "2000")));
 						}
 					} catch (InterruptedException e) {
 						e.printStackTrace();
@@ -534,7 +534,7 @@ public class PixivDownloadMain extends Fragment {
         Connection.Response response = null;
         try {
             Connection connection = Jsoup.connect(url);
-            connection.cookies(cookieToMap(SharedPreferenceHelper.getValue("cookievalue")));
+            connection.cookies(cookieToMap(SharedPreferenceHelper.getString("cookievalue")));
             connection.referrer("https://www.pixiv.net/member_illust.php?mode=medium&illust_id=" + getPixivId(url));
             connection.userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:28.0) Gecko/20100101 Firefox/28.0");
             connection.ignoreContentType(true).method(Connection.Method.GET);

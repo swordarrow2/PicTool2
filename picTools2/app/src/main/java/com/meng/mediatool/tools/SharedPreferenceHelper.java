@@ -27,15 +27,15 @@ public class SharedPreferenceHelper {
         editor.apply();
     }
 
-    public static String getValue(String key) {
+    public static String getString(String key) {
         return sp.getString(key, null);
     }
 
-    public static String getValue(String key, String defaultValue) {
+    public static String getString(String key, String defaultValue) {
         return sp.getString(key, defaultValue);
     }
 
-    public static void putValue(String key, String value) {
+    public static void putString(String key, String value) {
         editor = sp.edit();
         editor.putString(key, value);
         editor.apply();

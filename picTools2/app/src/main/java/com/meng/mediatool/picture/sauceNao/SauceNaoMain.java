@@ -41,7 +41,7 @@ public class SauceNaoMain extends Fragment {
         mFabSelect = (FloatingButton) view.findViewById(R.id.fab_select);
         listView = (ListView) view.findViewById(R.id.list);
 		//      spinner=(Spinner)view.findViewById(R.id.spinner_simple);
-        threadPool = Executors.newFixedThreadPool(Integer.parseInt(SharedPreferenceHelper.getValue("threads", "3")));
+        threadPool = Executors.newFixedThreadPool(Integer.parseInt(SharedPreferenceHelper.getString("threads", "3")));
         mFabSelect.setOnClickListener(onClickListener);
         mFabSelect.hide(false);
         new Handler().postDelayed(new Runnable() {

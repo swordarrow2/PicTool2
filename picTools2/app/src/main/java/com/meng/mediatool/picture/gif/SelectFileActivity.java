@@ -154,7 +154,7 @@ public class SelectFileActivity extends AppCompatActivity {
 
     @Override
     public void setTheme(int resid) {
-        switch (SharedPreferenceHelper.getValue("color", "芳")) {
+        switch (SharedPreferenceHelper.getString("color", "芳")) {
             case "芳":
                 super.setTheme(theme = R.style.green);
                 break;
