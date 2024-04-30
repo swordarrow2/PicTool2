@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/group1"
+        android:title="模块记录"
+        android:checkableBehavior="none">
+		<item
+            android:id="@+id/add_model_history"
+            android:icon="@drawable/ic_menu"
+            android:title="模块数量增减" />	
+        <item
+            android:id="@+id/model_history"
+            android:icon="@drawable/ic_menu"
+            android:title="模块数量记录" />
+		<item
+            android:id="@+id/add_model_kind"
+            android:icon="@drawable/ic_menu"
+            android:title="增加模块种类" />
+		<item
+            android:id="@+id/all_model"
+            android:icon="@drawable/ic_menu"
+            android:title="模块库存一览" />
+    </group>
+    <group
+        android:id="@+id/group2"
+        android:title="半导小芯"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/search_semiee"
+            android:icon="@drawable/ic_menu"
+            android:title="datasheet查询" />   
+        <item
+            android:id="@+id/local_datasheet"
+            android:icon="@drawable/ic_menu"
+            android:title="本地datasheet" />
+    </group>
+	<group
+        android:id="@+id/group3"
+        android:checkableBehavior="none">
+     	<item
+            android:id="@+id/settings"
+            android:icon="@drawable/ic_menu"
+            android:title="设置" />
+        <item
+            android:id="@+id/exit"
+            android:icon="@drawable/ic_menu"
+            android:title="退出" />
+    </group>
+
+</menu>

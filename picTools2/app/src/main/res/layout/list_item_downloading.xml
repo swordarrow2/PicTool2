@@ -14,7 +14,7 @@
 		android:orientation="horizontal">
 
 		<TextView
-			android:id="@+id/main_list_item_textview_filename"
+			android:id="@+id/main_list_item_textview_title"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:gravity="center_vertical"
@@ -36,7 +36,7 @@
 	</LinearLayout>
 
 	<TextView
-		android:id="@+id/main_list_item_textview_statu_byte"
+		android:id="@+id/main_list_item_textview_statu_progress_text"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:gravity="right|center"

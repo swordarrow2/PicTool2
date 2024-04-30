@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="barcode_format">
+        <item>QRcode</item>
+        <item>AZTEC</item>
+        <item>DataMatrix</item>
+        <item>PDF417</item>
+    </string-array>
+	
+	<string-array name="color_list">
+        <item>芳</item>
+        <item>红</item>
+        <item>黑</item>
+        <item>紫</item>
+        <item>蓝</item>
+    </string-array>
+
+    <string-array name="intype">
+        <item>优信</item>
+        <item>嘉立创</item>
+        <item>欣薇</item>
+        <item>risym</item>
+        <item>美好</item>
+        <item>祥旺</item>
+        <item>动力</item>
+        <item>小山</item>
+        <item>木兰</item>
+        <item>老表</item>
+        <item>千机</item>
+        <item>老三</item>
+        <item>进口杂物</item>
+        <item>电子库存</item>
+        <item>灯火</item>
+        <item>老兰</item>
+        <item>立华</item>
+        <item>老陈</item>
+        <item>志鑫</item>
+        <item>淘客</item>
+        <item>安鑫</item>
+        <item>DIY配件作坊</item>
+        <item>钜洧</item>
+        <item>老猫</item>
+        <item>老郑</item>
+        <item>老殷</item>
+        <item>老万</item>
+        <item>老五</item>
+        <item>老黑</item>
+    </string-array>
+</resources>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="horizontal">
+
+	<ImageView
+		android:id="@+id/element_list_itemImageView"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:padding="12dp"/>
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+			<TextView
+				android:padding="5dp"
+				android:id="@+id/element_list_itemTextView_id"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="id"/>
+
+			<TextView
+				android:id="@+id/element_list_itemTextView_model"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="model"
+				android:padding="5dp"/>
+
+			<TextView
+				android:padding="5dp"
+				android:id="@+id/element_list_itemTextView_pack"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="pack"/>
+
+            <TextView
+                android:padding="5dp"
+                android:id="@+id/element_list_itemTextView_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+				android:text="count"/>
+		</LinearLayout>
+
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+			<TextView
+				android:padding="5dp"
+				android:id="@+id/element_list_itemTextView_type"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="type"/>
+
+			<TextView
+				android:padding="5dp"
+				android:id="@+id/element_list_itemTextView_print"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="print"/>
+
+			<TextView
+				android:padding="5dp"
+				android:id="@+id/element_list_itemTextView_time"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="time"/>
+
+		</LinearLayout>
+
+		<TextView
+			android:padding="5dp"
+			android:id="@+id/element_list_itemTextView_note"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="note"/>
+
+	</LinearLayout>
+
+</LinearLayout>
+

@@ -1,19 +1,15 @@
 package com.meng.mediatool.wallpaper;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.Button;
-import com.meng.mediatool.MainActivity;
-import com.meng.mediatool.R;
-import com.meng.mediatool.tools.Tools;
+import android.app.*;
+import android.content.*;
+import android.os.*;
+import android.view.*;
+import android.view.View.*;
+import android.widget.*;
+import com.meng.mediatool.*;
+import com.meng.mediatool.tools.*;
 
-public class WallpaperMain extends Fragment {
+public class WallpaperMain extends BaseFragment {
     
     private VideoWallpaper mVideoWallpaper = new VideoWallpaper();
     private Button select,silence,voice;
@@ -38,7 +34,7 @@ public class WallpaperMain extends Fragment {
         public void onClick(View p1) {
             switch (p1.getId()) {
                 case R.id.wallpaper_mainButtonselect:
-                    MainActivity.instance.selectVideo(WallpaperMain.this);
+                    selectVideo();
                     break;
                 case R.id.wallpaper_mainButtonsilence:
                     VideoWallpaper.setVoiceSilence(MainActivity.instance);
@@ -53,7 +49,7 @@ public class WallpaperMain extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK && data.getData() != null) {
-            if (requestCode == MainActivity.instance.SELECT_FILE_REQUEST_CODE) {
+            if (requestCode == StaticVars.SELECT_FILE_REQUEST_CODE) {
                 final String path = Tools.ContentHelper.absolutePathFromUri(getActivity(), data.getData());
                 if (path == null) {
                     MainActivity.instance.showToast("选择视频出错");
@@ -64,7 +60,7 @@ public class WallpaperMain extends Fragment {
         } else if (resultCode == Activity.RESULT_CANCELED) {
             MainActivity.instance.showToast("取消选择视频");
         } else {
-            MainActivity.instance.selectImage(this);
+            selectImage();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

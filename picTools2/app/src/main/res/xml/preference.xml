@@ -24,7 +24,7 @@
     <PreferenceCategory android:title="Pixiv下载">
         <Preference android:title="登录Pixiv">
             <intent
-                android:targetClass="com.meng.mediatool.picture.pixivPictureDownloader.LoginPixivActivity"
+                android:targetClass="com.meng.mediatool.picture.pixiv.LoginPixivActivity"
                 android:targetPackage="com.meng.mediatool" />
         </Preference>
         <CheckBoxPreference
@@ -52,11 +52,11 @@
 
     </PreferenceCategory>
 
-    <CheckBoxPreference
+    <!--<CheckBoxPreference
         android:defaultValue="false"
         android:key="useTimeStamp"
         android:summaryOff="使用具体时间"
         android:summaryOn="使用时间戳"
-        android:title="使用时间戳为图片文件命名" />
+        android:title="使用时间戳为图片文件命名" />-->
 
 </PreferenceScreen>

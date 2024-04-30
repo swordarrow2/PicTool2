@@ -19,9 +19,9 @@ public class SjfProgressBar extends LinearLayout {
         super(context);
         this.context = context;
         LayoutInflater.from(context).inflate(R.layout.list_item_downloading, this);
-        fileNameTextView = (TextView) findViewById(R.id.main_list_item_textview_filename);
+        fileNameTextView = (TextView) findViewById(R.id.main_list_item_textview_title);
         textViewStatus = (TextView) findViewById(R.id.main_list_item_textview_statu);
-        textViewProgress = (TextView) findViewById(R.id.main_list_item_textview_statu_byte);
+        textViewProgress = (TextView) findViewById(R.id.main_list_item_textview_statu_progress_text);
         progressBar = (ProgressBar) findViewById(R.id.main_list_item_progressbar);
     progressBar.setVisibility(View.VISIBLE);
         }

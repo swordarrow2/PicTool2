@@ -36,7 +36,7 @@ public class FileFormat {
         return null;
     }
 
-    public static File checkFormat(File file) throws IOException {
+    public static File renameByFormat(File file) throws IOException {
         File ret;
         String type = getFileType(file).extendName;
         String fullName = file.getName();
@@ -208,6 +208,72 @@ public class FileFormat {
         rpy_th16_replay,
         rpy_th16_5_replay,
         rpy_th17_replay,
-        rpy_th18_replay,
+        rpy_th18_replay;
+
+        public String getExtendName(){
+            switch(this){
+                case gif_87a:
+                case gif_89a:
+                    return "gif";
+                case jpg_JFIF:
+                case jpg_Exif:
+                    return "jpg";
+                case png:
+                    return "png";
+                case bmp_16colors:
+                case bmp_24colors:
+                case bmp_256colors:
+                    return "bmp";
+                case Unicode_LE:
+                case Unicode_BE:
+                case UTF_8:
+                    return "txt";
+                case cad:
+                case pdf:
+                case zip:
+                case rar:
+                case wav:
+                case avi:
+                case rmvb:
+                case mov:
+                case gzip:
+                case mid:                   
+                    return name();
+//                case elf:
+//                case x_directx_data:
+                case exe_maybe_dll:
+                    return "exe";
+                case dex_android_executeable:
+                    return "dex";
+                case class_jvm_executeable:
+                    return "jar";
+                case ecl_zun_danmaku:
+                    return "ecl";
+                case anm_zun_texture:
+                    return "anm"; 
+                case rpy_thsss_replay:
+                case rpy_th06_replay:
+                case rpy_th07_replay:
+                case rpy_th08_replay:
+                case rpy_th09_replay:
+                case rpy_th09_5_replay:
+                case rpy_th10_replay:
+                case rpy_th11_replay:
+                case rpy_th12_replay:
+                case rpy_th12_5_replay:
+                case rpy_th12_8_replay:
+                case rpy_th13_th14_replay:
+                case rpy_th14_3_replay:
+                case rpy_th15_replay:
+                case rpy_th16_replay:
+                case rpy_th16_5_replay:
+                case rpy_th17_replay:
+                case rpy_th18_replay:
+                    return "rpy";                                                       
+                default :
+                    throw new IllegalArgumentException("not expect value :" + name());
+            }
+        }
+
     }
 }

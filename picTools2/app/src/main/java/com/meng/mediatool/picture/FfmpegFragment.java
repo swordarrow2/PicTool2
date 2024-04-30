@@ -1,28 +1,20 @@
 package com.meng.mediatool.picture;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import com.meng.mediatool.MainActivity;
-import com.meng.mediatool.R;
-import com.meng.mediatool.tools.ExceptionCatcher;
-import com.meng.mediatool.tools.Tools;
-import com.meng.mediatool.tools.ffmpeg.FFmpeg;
-import com.meng.mediatool.tools.ffmpeg.CommandBuilder;
-import com.meng.mediatool.tools.mengViews.SjfProgressBar;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.time.LocalTime;
+import android.app.*;
+import android.content.*;
+import android.os.*;
+import android.view.*;
+import android.widget.*;
+import com.meng.mediatool.*;
+import com.meng.mediatool.tools.*;
+import com.meng.mediatool.tools.ffmpeg.*;
+import com.meng.mediatool.tools.mengViews.*;
+import java.io.*;
+import java.time.*;
 
-public class FfmpegFragment extends Fragment {
+import java.lang.Process;
+
+public class FfmpegFragment extends BaseFragment {
 
     private TextView tv;
 
@@ -45,7 +37,7 @@ public class FfmpegFragment extends Fragment {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.ffmpeg_mainTextView1:
-                    MainActivity.instance.selectVideo(FfmpegFragment.this);
+                    selectVideo();
                     break;
             }
         }
@@ -54,7 +46,7 @@ public class FfmpegFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == MainActivity.instance.SELECT_FILE_REQUEST_CODE && data.getData() != null) {
+            if (requestCode == StaticVars.SELECT_FILE_REQUEST_CODE && data.getData() != null) {
                 String path = Tools.ContentHelper.absolutePathFromUri(getActivity().getApplicationContext(), data.getData());
                 try {
                     generate(path, path.substring(0, path.lastIndexOf(".")) + ".mp4");
@@ -76,7 +68,7 @@ public class FfmpegFragment extends Fragment {
         SjfProgressBar spb = new SjfProgressBar(getActivity());
         spb.setTitle(ipt.getName() + " → " + opt.getName());
         ((LinearLayout) tv.getParent().getParent()).addView(spb, 0);
-        MainActivity.instance.threadPool.execute(new ConverterRunnable(Runtime.getRuntime().exec(cb.build(opt)), spb));
+        ThreadPool.execute(new ConverterRunnable(Runtime.getRuntime().exec(cb.build(opt)), spb));
         //getActivity().getFilesDir().getAbsolutePath() + File.separator + "ffmpeg "+"-re -i /storage/emulated/0/01.flv -c copy -vcodec libx264 -acodec aac -f flv rtmp://live-push.bilivideo.com/live-bvc/?streamname=live_64483321_2582558&key=7776fcf83eb2bb7883733f598285caf7&schedule=rtmp"
     }
 

@@ -21,7 +21,7 @@ import android.util.*;
 import com.google.zxing.*;
 import com.google.zxing.common.*;
 import com.meng.mediatool.*;
-import com.meng.mediatool.picture.qrCode.*;
+import com.meng.mediatool.picture.barcode.*;
 import com.meng.mediatool.tools.zxing.camera.*;
 import java.util.concurrent.*;
 

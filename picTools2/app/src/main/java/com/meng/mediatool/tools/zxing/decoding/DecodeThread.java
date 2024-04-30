@@ -18,7 +18,7 @@ package com.meng.mediatool.tools.zxing.decoding;
 
 import android.os.*;
 import com.google.zxing.*;
-import com.meng.mediatool.picture.qrCode.*;
+import com.meng.mediatool.picture.barcode.*;
 import java.util.*;
 import java.util.concurrent.*;
 

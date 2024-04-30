@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group
-        android:id="@+id/group1"
+        android:id="@+id/group_picture"
         android:checkableBehavior="none">
 		<item
             android:id="@+id/barcode"
@@ -36,20 +36,63 @@
             android:id="@+id/sauce_nao"
             android:icon="@drawable/ic_menu"
             android:title="搜图(sauceNao)" />
-		<item
+		<!--<item
             android:id="@+id/ocr"
             android:icon="@drawable/ic_menu"
-            android:title="OCR(印刷体，腾讯优图)" />
+            android:title="OCR(印刷体，腾讯优图)" />-->
         <item
             android:id="@+id/videowallpaper"
             android:icon="@drawable/ic_menu"
             android:title="视频动态壁纸" />
 	</group>
-
-	<group
-        android:id="@+id/group2"
+    
+    <group
+        android:id="@+id/group_datasheet"
+        android:title="datasheet"
         android:checkableBehavior="none">
-     	<item
+        <item
+            android:id="@+id/semiee"
+            android:icon="@drawable/ic_menu"
+            android:title="搜索semiee" />    
+        
+    </group>
+
+    <group
+        android:id="@+id/group_dcdc"
+        android:title="DCDC元件选型"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/boost"
+            android:icon="@drawable/ic_menu"
+            android:title="boost元件选型" />    
+        <item
+            android:id="@+id/buck"
+            android:icon="@drawable/ic_menu"
+            android:title="buck元件选型" />
+        <item
+            android:id="@+id/farad"
+            android:icon="@drawable/ic_menu"
+            android:title="法拉电容容量估算" />
+    </group>
+
+    <group
+        android:id="@+id/group_ai"
+        android:title="AI"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/vits"
+            android:icon="@drawable/ic_menu"
+            android:title="VITS语音合成" />    
+        <item
+            android:id="@+id/androidtts"
+            android:icon="@drawable/ic_menu"
+            android:title="安卓TTS" />
+    </group>
+
+    <group
+        android:id="@+id/group_system"
+        android:checkableBehavior="none">
+        <item
             android:id="@+id/settings"
             android:icon="@drawable/ic_menu"
             android:title="设置" />
@@ -58,5 +101,4 @@
             android:icon="@drawable/ic_menu"
             android:title="退出" />
     </group>
-
 </menu>

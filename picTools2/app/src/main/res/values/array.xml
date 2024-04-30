@@ -6,7 +6,23 @@
         <item>DataMatrix</item>
         <item>PDF417</item>
     </string-array>
-	
+
+    <string-array name="create_type">
+        <item>普通</item>
+        <item>Awesome</item>
+        <item>Awesome(任意位置)</item>
+        <item>Awesome(动态)</item>
+        <item>Awesome(自选位置，动态)</item>
+        <item>读取条码</item>    
+    </string-array>
+    
+    <string-array name="dcdc_cal_type">
+        <item>电感值选择</item>
+        <item>电感电流计算</item>
+        <item>输入滤波电容选择</item>
+        <item>输出滤波电容选择</item>
+    </string-array>
+    
 	<string-array name="color_list">
         <item>芳</item>
         <item>红</item>

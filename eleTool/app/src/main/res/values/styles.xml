@@ -1,0 +1,70 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+		<item name="actionBarStyle">@style/ActionBarStyle</item>
+	</style>
+
+    <style name="green" parent="BaseTheme">
+		<item name="colorPrimary">@color/sjf</item>
+        <item name="colorPrimaryDark">@color/sjf_dark</item>
+    </style>
+    <style name="red" parent="BaseTheme">
+        <item name="colorPrimary">@color/color_c2</item>
+        <item name="colorPrimaryDark">@color/color_c2</item>
+    </style>
+    <style name="black" parent="BaseTheme">
+        <item name="colorPrimary">@color/viewfinder_frame</item>
+        <item name="colorPrimaryDark">@color/viewfinder_frame</item>
+    </style>
+    <style name="purple" parent="BaseTheme">
+        <item name="colorPrimary">@color/purple</item>
+        <item name="colorPrimaryDark">@color/purple</item>
+    </style>
+    <style name="blue" parent="BaseTheme">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryDark">@color/blue</item>
+    </style>
+    <style name="ActionBarStyle" parent="Widget.AppCompat.ActionBar.Solid">
+        <item name="elevation">0dp</item>
+    </style>
+
+    <style name="MenuLabelsStyle">
+        <item name="android:background">@drawable/fab_label_background</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="MenuButtonsStyle">
+        <item name="fab_size">mini</item>
+        <item name="fab_showAnimation">@anim/jump_from_down</item>
+        <item name="fab_hideAnimation">@anim/jump_to_down</item>
+        <item name="fab_shadowColor">#444</item>
+        <item name="fab_colorNormal">#FFB805</item>
+        <item name="fab_colorPressed">#F2AB00</item>
+        <item name="fab_colorRipple">#D99200</item>
+    </style>
+
+    <style name="MenuButtonsSmall">
+        <item name="fab_size">mini</item>
+        <item name="fab_colorNormal">#1565C0</item>
+        <item name="fab_colorPressed">#2272CD</item>
+        <item name="fab_colorRipple">#62B2FF</item>
+    </style>
+
+    <style name="MenuButtonsSmall.Green">
+        <item name="fab_colorNormal">#43A047</item>
+        <item name="fab_colorPressed">#2E7D32</item>
+        <item name="fab_colorRipple">#1B5E20</item>
+    </style>
+
+    <style name="EdittextStateNormal">
+        <item name="android:textColor">@color/color_c1</item>
+        <item name="android:textSize">@dimen/common_s8</item>
+    </style>
+    <style name="EdittextStateError">
+        <item name="android:textColor">@color/color_c2</item>
+        <item name="android:textSize">@dimen/common_s8</item>
+    </style>
+</resources>

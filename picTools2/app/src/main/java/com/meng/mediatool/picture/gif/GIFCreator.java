@@ -19,7 +19,7 @@ import java.util.*;
 
 import android.support.v7.app.AlertDialog;
 
-public class GIFCreator extends Fragment {
+public class GIFCreator extends BaseFragment {
 
     public MDEditText mengEtFrameDelay;
     public ArrayList<GIFFrame> selectedImages = new ArrayList<>();
@@ -128,13 +128,13 @@ public class GIFCreator extends Fragment {
                     if (encoding) return;
                     encoding = true;
                     MainActivity.instance.showToast("开始生成gif");
-                    new Thread(new Runnable() {
+                    ThreadPool.execute(new Runnable() {
 
 							@Override
 							public void run() {
 								try {
 									fabEncode.setMax(selectedImages.size());
-									String filePath = FileHelper.getFileAbsPath(FileType.gif);
+									String filePath = FileTool.getSaveFileAbsPath(FileType.gif, FileFormat.FileType.gif_89a);
 									ByteArrayOutputStream baos = new ByteArrayOutputStream();
 									getActivity().runOnUiThread(new Runnable() {
 											@Override
@@ -167,7 +167,7 @@ public class GIFCreator extends Fragment {
 								}
 								encoding = false;
 							}
-						}).start();
+						});
                     break;
             }
         }

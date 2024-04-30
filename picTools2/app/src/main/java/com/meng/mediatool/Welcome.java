@@ -5,7 +5,7 @@ import android.view.*;
 import android.widget.*;
 import com.meng.mediatool.*;
 
-public class Welcome extends Fragment {
+public class Welcome extends BaseFragment {
 
     private TextView tv;
 

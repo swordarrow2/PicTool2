@@ -39,7 +39,7 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <com.meng.mediatool.picture.qrCode.ClipSquareImageView
+    <com.meng.mediatool.picture.barcode.ClipSquareImageView
         android:id="@+id/clipSquareIV"
         ClipSquareImageView:ClipSquareIV_BorderDistance="10dp"
         ClipSquareImageView:ClipSquareIV_OutsideColor="#f2ffffff"
@@ -49,3 +49,4 @@
         android:layout_height="0dp" />
 
 </LinearLayout>
+

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/element_info_managerLinearLayout_inoytitem"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="3"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/element_info_managerTextView_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:text="@string/element_out"
+            android:textColor="#ffffff"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/element_info_managerTextView_tvInOutMoney"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/money"
+            android:textSize="20sp">
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/element_info_managerEditText_money"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="9" />
+
+        <TextView
+            android:id="@+id/element_info_managerTextView_time" 
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="@string/time"
+            android:textSize="20sp">
+
+        </TextView>
+
+        <EditText
+
+            android:id="@+id/element_info_managerEditText_time"       android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:inputType="datetime" />
+
+        <TextView
+            android:id="@+id/element_info_managerTextView_type"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="@string/kind_of"
+            android:textSize="20sp">
+
+        </TextView>
+
+        <Spinner
+            android:id="@+id/element_info_managerSpinner_type"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:entries="@array/intype"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/element_info_managerTextView_payer"    android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="@string/payer"
+            android:textSize="20sp">
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/element_info_managerEditText_payer"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/bob"
+            android:singleLine="false" />
+
+        <TextView
+            android:id="@+id/element_info_managerTextView_mark"     android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="@string/note"
+            android:textSize="20sp">
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/element_info_managerEditText_mark"
+            android:layout_width="210dp"
+            android:layout_height="150dp"
+            android:gravity="top"
+            android:hint="@string/empty"
+            android:singleLine="false" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="3"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="10dp">
+
+            <Button
+                android:id="@+id/element_info_managerButton_delete"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:text="@string/delete" />
+
+            <Button
+                android:id="@+id/element_info_managerButton_edit"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/element_info_managerButton_delete"
+                android:layout_toStartOf="@id/element_info_managerButton_delete"
+                android:text="@string/edit" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
+

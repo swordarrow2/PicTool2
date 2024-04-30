@@ -9,14 +9,14 @@ public abstract class Hash {
 
 	private static MD5 md5Instance = null;
 	
-	public static MD5 getMd5Instance() {
+	public static MD5 getMd5() {
 		if(md5Instance == null){
 			md5Instance = new MD5();
 		}
 		return md5Instance;
 	}
 	
-	public static CRC32A getCRC32aInstance() {
+	public static CRC32A getCRC32a() {
 		return CRC32A.getInstance();
 	}
 	

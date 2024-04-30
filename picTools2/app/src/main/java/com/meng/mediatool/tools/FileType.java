@@ -9,6 +9,8 @@ public enum FileType {
 	pixivDynamic,
 	pixivAnimate,
 	pixivZIP,
-	binPng,
-	binGif
+	gray8picture,
+    convertVideo,
+    convertAudio,
+    convertImage
 	}

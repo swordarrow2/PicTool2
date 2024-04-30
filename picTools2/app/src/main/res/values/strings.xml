@@ -49,4 +49,7 @@
     <string name="get_all_pictures">这是画师的ID</string>
     <string name="fafafa">发 发 发</string>
 
+    <string name="input_model_id">输入模型id</string>
+    <string name="generate_voice">开始合成</string>
+ 
 </resources>

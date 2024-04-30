@@ -17,7 +17,7 @@ import java.io.*;
 
 import com.meng.mediatool.R;
 
-public class PictureCrypt extends Fragment implements View.OnClickListener{
+public class PictureCrypt extends BaseFragment implements View.OnClickListener {
     private final int REQUEST_PERMISSION_PHOTO = 1001;
 	private ImageView imageView;
 	private Bitmap cryptBitmap;
@@ -43,16 +43,16 @@ public class PictureCrypt extends Fragment implements View.OnClickListener{
 
 	@Override
 	public void onClick(View p1) {
-		if(p1.getId()==R.id.picture_cryptButton_read_gallery){
+		if (p1.getId() == R.id.picture_cryptButton_read_gallery) {
 			openGallery();
-		}else if(p1.getId()==R.id.picture_cryptButton_save){
-			String s = FileHelper.saveBitmap(cryptBitmap, FileType.bus);
+		} else if (p1.getId() == R.id.picture_cryptButton_save) {
+			String s = FileTool.saveToFile(cryptBitmap, FileType.bus);
 			getActivity().getApplicationContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(s))));
 		}
 	}
 
 	private void createBitmap(final String path) {
-		MainActivity.instance.threadPool.execute(new Runnable(){
+		ThreadPool.execute(new Runnable(){
 
 				@Override
 				public void run() {
@@ -77,7 +77,7 @@ public class PictureCrypt extends Fragment implements View.OnClickListener{
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == getActivity().RESULT_OK && data != null && requestCode == MainActivity.instance.SELECT_FILE_REQUEST_CODE) {
+        if (resultCode == getActivity().RESULT_OK && data != null && requestCode == StaticVars.SELECT_FILE_REQUEST_CODE) {
             Uri inputUri = data.getData();
             String path = Tools.ContentHelper.absolutePathFromUri(getActivity(), inputUri);
             if (!TextUtils.isEmpty(path)) {     
@@ -92,7 +92,7 @@ public class PictureCrypt extends Fragment implements View.OnClickListener{
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && getActivity().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSION_PHOTO);
 		} else {
-            MainActivity.instance.selectImage(this);
+            selectImage();
 		}
 	}
 }

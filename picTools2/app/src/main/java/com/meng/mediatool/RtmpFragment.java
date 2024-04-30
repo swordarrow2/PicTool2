@@ -21,8 +21,9 @@ import java.io.IOException;
 import android.widget.EditText;
 import android.widget.Button;
 import com.meng.mediatool.tools.SharedPreferenceHelper;
+import com.meng.mediatool.tools.*;
 
-public class RtmpFragment extends Fragment {
+public class RtmpFragment extends BaseFragment {
 
     private EditText etRtmpServer;
     private EditText etPushCode;
@@ -64,7 +65,7 @@ public class RtmpFragment extends Fragment {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.rtmp_mainButtonSelect:
-                    MainActivity.instance.selectVideo(RtmpFragment.this);
+                    selectVideo();
                     v.setEnabled(true);
                     break;
                 case R.id.rtmp_mainButtonStart:
@@ -99,7 +100,7 @@ public class RtmpFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == MainActivity.instance.SELECT_FILE_REQUEST_CODE && data.getData() != null) {
+            if (requestCode == StaticVars.SELECT_FILE_REQUEST_CODE && data.getData() != null) {
                 file = new File(Tools.ContentHelper.absolutePathFromUri(getActivity().getApplicationContext(), data.getData()));
                 btnSelectFile.setText("已选择" + file.getName());
             }
@@ -118,6 +119,6 @@ public class RtmpFragment extends Fragment {
             " -c copy -acodec aac -f flv " +
             addr  // "rtmp://live-push.bilivideo.com/live-bvc/" + "?streamname=live_64483321_2582558&key=7776fcf83eb2bb7883733f598285caf7&schedule=rtmp"
         );
-        MainActivity.instance.threadPool.execute(new FfmpegFragment.ConverterRunnable(process, spb));
+        ThreadPool.execute(new FfmpegFragment.ConverterRunnable(process, spb));
     }
 }

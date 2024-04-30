@@ -1,18 +1,43 @@
 package com.meng.mediatool.tools;
 
-import android.content.Context;
-import com.meng.mediatool.MainActivity;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
+import android.content.*;
+import android.graphics.*;
+import android.net.*;
+import android.os.*;
+import com.meng.mediatool.*;
+import java.io.*;
+import java.nio.charset.*;
+import java.util.*;
 
 public class FileTool {
-    
+    private static Context context;
+
+    public static void init(Context context) {
+        FileTool.context = context;
+    }
+
+    public static File getDefaultFolder(FileType type) {
+        File f = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/pictures/mdt/" + type.toString());
+        if (!f.exists()) f.mkdirs();
+        return f;
+    }
+
+    public static String getSaveFileAbsPath(String name, FileType type, String format) {
+        return getDefaultFolder(type) + "/" + name + "." + format;
+    }
+
+    public static String getSaveFileAbsPath(String name, FileType type, FileFormat.FileType ft) {
+        return getDefaultFolder(type) + "/" + name + "." + ft.getExtendName();
+    }
+
+    public static String getSaveFileAbsPath(FileType type, FileFormat.FileType ft) {
+        return getDefaultFolder(type) + "/" + (System.currentTimeMillis() / 1000) + "." + ft.getExtendName();
+    }
+
+    public static String getPreDownloadJsonPath() {
+        return Environment.getExternalStorageDirectory().getAbsolutePath() + "/pixivLike.json";
+    }
+
     public static boolean copyAssetsToData(Context context, String fileNameFromAssets) {
         File filesDirectory = context.getFilesDir();
         InputStream is;
@@ -30,9 +55,9 @@ public class FileTool {
         }
         return false;
     }
-    
-    public static String getAutoFileName(byte[] fileBytes) {
-        return Hash.getMd5Instance().calculate(fileBytes).toUpperCase() + "." + FileFormat.getFileType(fileBytes);
+
+    public static String generateHashFileName(byte[] fileBytes) {
+        return Hash.getMd5().calculate(fileBytes).toUpperCase() + "." + FileFormat.getFileType(fileBytes);
     }
 
     public static void deleteFiles(File folder) {
@@ -41,10 +66,8 @@ public class FileTool {
             for (File f : fs) {
                 if (f.isDirectory()) {
                     deleteFiles(f);
-                    f.delete();
-                } else {
-                    f.delete();
-                }
+                } 
+                f.delete();               
             }
         }
     }
@@ -117,7 +140,11 @@ public class FileTool {
         return file;
     }
 
-    public static void saveFile(File file, byte[] content) {
+    public static String saveToFile(File file, String content) {
+        return saveToFile(file, content.getBytes(StandardCharsets.UTF_8)); 
+    }
+
+    public static String saveToFile(File file, byte[] content) {
         try {
             File parent = file.getParentFile();
             if (!parent.exists()) {
@@ -126,8 +153,38 @@ public class FileTool {
             FileOutputStream fos = new FileOutputStream(file);
             fos.write(content);
             fos.close();
+            return file.getAbsolutePath();
         } catch (Exception e) {
             ExceptionCatcher.getInstance().uncaughtException(Thread.currentThread(), e);
+            return null;
+        }
+    }
+
+    public static String saveToFile(Bitmap bmp, FileType t) {
+        String fileAbsPath = getDefaultFolder(t).getAbsolutePath() + "/" + (System.currentTimeMillis() / 1000) + ".png";
+        File f = new File(fileAbsPath);
+        try {
+            f.createNewFile();
+            FileOutputStream fOut = new FileOutputStream(f);
+            bmp.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+            fOut.flush();
+            fOut.close();
+            context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(f)));
+        } catch (IOException e) {
+            ExceptionCatcher.getInstance().uncaughtException(Thread.currentThread(), e);
+            return null;
+        }
+        return f.getAbsolutePath();
+    }
+
+    public static void savePreDownload(String str) {
+        try {
+            FileWriter fw = new FileWriter(getPreDownloadJsonPath());//SD卡中的路径
+            fw.flush();
+            fw.write(str);
+            fw.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
