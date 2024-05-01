@@ -1,27 +1,18 @@
 package com.meng.mediatool;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import com.meng.mediatool.MainActivity;
-import com.meng.mediatool.R;
-import com.meng.mediatool.picture.FfmpegFragment;
-import com.meng.mediatool.tools.ExceptionCatcher;
-import com.meng.mediatool.tools.Tools;
-import com.meng.mediatool.tools.ffmpeg.FFmpeg;
-import com.meng.mediatool.tools.mengViews.SjfProgressBar;
-import java.io.File;
-import java.io.IOException;
-import android.widget.EditText;
-import android.widget.Button;
-import com.meng.mediatool.tools.SharedPreferenceHelper;
+import android.app.*;
+import android.content.*;
+import android.os.*;
+import android.view.*;
+import android.widget.*;
+import com.meng.mediatool.*;
+import com.meng.mediatool.picture.*;
 import com.meng.mediatool.tools.*;
+import com.meng.mediatool.tools.ffmpeg.*;
+import com.meng.mediatool.tools.mengViews.*;
+import java.io.*;
+
+import java.lang.Process;
 
 public class RtmpFragment extends BaseFragment {
 
@@ -50,11 +41,11 @@ public class RtmpFragment extends BaseFragment {
         btnSelectFile.setOnClickListener(click);
         FFmpeg ffmpeg = FFmpeg.getInstance(this.getActivity());
         MainActivity.instance.showToast(ffmpeg.init(getActivity()) + "");
-        String rtmp = SharedPreferenceHelper.getString("rtmp");
+        String rtmp = SharedPreferenceHelper.getRtmpAddr();
         if (rtmp != null) {
             etRtmpServer.setText(rtmp);
         }
-        String pushCode = SharedPreferenceHelper.getString("code");
+        String pushCode = SharedPreferenceHelper.getRtmpCode();
         if (pushCode != null) {
             etPushCode.setText(pushCode);
         }
@@ -84,8 +75,8 @@ public class RtmpFragment extends BaseFragment {
                         MainActivity.instance.showToast("推流码不能为空");
                         return;
                     } 
-                    SharedPreferenceHelper.putString("rtmp", rtmp);
-                    SharedPreferenceHelper.putString("code", pushCode);
+                    SharedPreferenceHelper.setRtmpAddr(rtmp);
+                    SharedPreferenceHelper.setRtmpCode(pushCode);
                     try {
                         push(rtmp + pushCode);
                         MainActivity.instance.showToast("开始向" + rtmp + pushCode + "推流");

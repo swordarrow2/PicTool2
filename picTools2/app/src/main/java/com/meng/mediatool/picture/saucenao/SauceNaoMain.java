@@ -14,13 +14,11 @@ import com.meng.mediatool.picture.pixiv.*;
 import com.meng.mediatool.tools.*;
 import com.meng.mediatool.tools.MaterialDesign.*;
 import java.io.*;
-import java.util.concurrent.*;
 import org.jsoup.*;
 
 public class SauceNaoMain extends BaseFragment {
     private FloatingButton mFabSelect;
     private ListView listView;
-    public ExecutorService threadPool;
     public String uploadBmpAbsPath;
     public boolean running = false;
     private AlertDialog alertDialog;
@@ -37,7 +35,6 @@ public class SauceNaoMain extends BaseFragment {
         mFabSelect = (FloatingButton) view.findViewById(R.id.fab_select);
         listView = (ListView) view.findViewById(R.id.list);
 		//      spinner=(Spinner)view.findViewById(R.id.spinner_simple);
-        threadPool = Executors.newFixedThreadPool(Integer.parseInt(SharedPreferenceHelper.getString("threads", "3")));
         mFabSelect.setOnClickListener(onClickListener);
         mFabSelect.hide(false);
         new Handler().postDelayed(new Runnable() {

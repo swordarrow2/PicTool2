@@ -39,6 +39,7 @@ public class PictureCrypt extends BaseFragment implements View.OnClickListener {
 		rbDe = (RadioButton) view.findViewById(R.id.picture_cryptRadioGroup_decry);
         view.findViewById(R.id.picture_cryptButton_read_gallery).setOnClickListener(this);
 		btnSave.setOnClickListener(this);
+       
 	}
 
 	@Override

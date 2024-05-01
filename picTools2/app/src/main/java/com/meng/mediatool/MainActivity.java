@@ -25,7 +25,7 @@ import com.meng.mediatool.picture.saucenao.*;
 import com.meng.mediatool.task.*;
 import com.meng.mediatool.tools.*;
 import com.meng.mediatool.wallpaper.*;
-import java.util.concurrent.*;
+import java.io.*;
 
 import android.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
@@ -44,10 +44,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 	private boolean firstOpened = false;
     private ActionBarDrawerToggle toggle;
     public int theme = 0;
-	
+
     private NavigationView navigationView;
-    
-    
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,13 +88,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MFragmentManager.getInstance().init(this);
         MFragmentManager.getInstance().showFragment(Welcome.class);
         onWifi = ((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE)).getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnected();
-        navigationView.getHeaderView(0).setVisibility(SharedPreferenceHelper.getBoolean(StaticVars.setting_show_sjf, false) ? View.VISIBLE : View.GONE);
+        navigationView.getHeaderView(0).setVisibility(SharedPreferenceHelper.isShowSJF() ? View.VISIBLE : View.GONE);
+        File logF = new File(Environment.getExternalStorageDirectory() + "/log.txt");
+        File logFe = new File(Environment.getExternalStorageDirectory() + "/loge.txt");
+        if (SharedPreferenceHelper.isSaveDebugLog()) {
+            try {
+                PrintStream ps = new PrintStream(new FileOutputStream(logF));
+                System.setOut(ps);
+                PrintStream pse = new PrintStream(new FileOutputStream(logFe));
+                System.setErr(pse);
+            } catch (FileNotFoundException e) {
+                showToast("log文件创建失败");
+            }
+        } else {
+            logF.delete();
+            logFe.delete();
+        }
 	}
 
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
 		super.onWindowFocusChanged(hasFocus);
-		if (SharedPreferenceHelper.getBoolean(StaticVars.setting_open_draw, true) && hasFocus && !firstOpened) {
+		if (SharedPreferenceHelper.isOpenDrawer() && hasFocus && !firstOpened) {
             mDrawerLayout.openDrawer(GravityCompat.START);
 			firstOpened = true;
 		} else {
@@ -104,19 +119,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private AlertDialog ad;
     private AlertDialog dcdcDialog;
-    
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         mDrawerLayout.closeDrawer(GravityCompat.START);
         mDrawerLayout.closeDrawer(GravityCompat.END);
-                
+
         new TestTask()
             .setTitle("goto genshin")
             .setStatus("自动下载原神中").start();
-            
+
         ListView dcdcList = new ListView(MainActivity.this);
         dcdcList.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.dcdc_cal_type)));
-        
+
         switch (item.getItemId()) {
             case R.id.barcode:
                 ListView lv = new ListView(MainActivity.this);
@@ -147,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                     MFragmentManager.getInstance().showFragment(BarcodeReaderGallery.class);
                                     break;
                             }
-                                  }
+                        }
                     });
                 ad = new AlertDialog.Builder(MainActivity.this)
                     .setTitle("选择操作")
@@ -188,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 MFragmentManager.getInstance().showFragment(SearchSemieeFragment.class);
                 break;
             case R.id.boost:
-                
+
                 dcdcDialog = new AlertDialog.Builder(MainActivity.this)
                     .setTitle("选择操作")
                     .setView(dcdcList)
@@ -265,7 +280,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-	
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -278,7 +293,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void setTheme(int resid) {
 		SharedPreferenceHelper.init(this, "main");
-        switch (SharedPreferenceHelper.getString("color", "芳")) {
+        switch (SharedPreferenceHelper.getTheme()) {
             case "芳":
 				super.setTheme(theme = R.style.green);
 				break;
@@ -324,11 +339,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 			}
             return true;
 		}
-        
-        if(MFragmentManager.getInstance().getCurrent().onKeyDown(keyCode,event)){
+
+        if (MFragmentManager.getInstance().getCurrent().onKeyDown(keyCode, event)) {
             return true;
         }
-        
+
         return super.onKeyDown(keyCode, event);
 	}
 
@@ -338,7 +353,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 	}
 
     public void exit() {
-        if (SharedPreferenceHelper.getBoolean("exitsettings")) {
+        if (SharedPreferenceHelper.isExit0()) {
             System.exit(0);
 		} else {
             finish();

@@ -7,12 +7,12 @@ import java.io.File;
 
 public class FFmpeg {
 
-   private static FFmpeg instance = null;
-    
-   public Boolean init(Context context) {
+    private static FFmpeg instance = null;
+
+    public Boolean init(Context context) {
         File ffmpegFile = new File(context.getApplicationContext().getFilesDir().getAbsolutePath() + File.separator + "ffmpeg");
         if (ffmpegFile.exists()) {
-            return false;
+            return true;
         }
         if (!ffmpegFile.exists()) {
             boolean isFileCopied = FileTool.copyAssetsToData(context, "ffmpeg");
@@ -23,14 +23,14 @@ public class FFmpeg {
                         return true;
                     }
                 } else {
-                  MainActivity.instance.showToast("FFmpeg executable ...");
+                    MainActivity.instance.showToast("FFmpeg executable ...");
                     return true;
                 }
             }
         }
         return null;
     }
-    
+
     public static FFmpeg getInstance(Context context) {
         if (instance == null) {
             instance = new FFmpeg();

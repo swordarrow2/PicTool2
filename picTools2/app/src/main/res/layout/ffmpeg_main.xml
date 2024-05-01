@@ -1,21 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:ran="http://schemas.android.com/apk/res-auto"
 	android:layout_width="fill_parent"
-	android:layout_height="fill_parent"
-	android:orientation="vertical">
+	android:layout_height="fill_parent">
 
-	<ScrollView
+	<LinearLayout
+		android:orientation="horizontal"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:id="@+id/ffmpeg_mainLinearLayout_buttons">
 
-		<TextView
-			android:layout_width="wrap_content"
+		<Button
+			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:text="Text"
-			android:id="@+id/ffmpeg_mainTextView1"/>
+			android:layout_weight="1.0"
+			android:id="@+id/ffmpeg_mainButton_select"
+			android:text="选择视频"/>
 
-	</ScrollView>
+		<Button
+			android:enabled="false"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:id="@+id/ffmpeg_mainButton_start"
+			android:text="转换并保存"/>
 
-</LinearLayout>
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_above="@+id/ffmpeg_mainLinearLayout_buttons"
+		android:id="@+id/ffmpeg_mainLinearLayout_select_output"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<com.meng.mediatool.tools.MaterialDesign.MDEditText
+			android:layout_width="0dp"
+			android:layout_weight="3"
+			android:id="@+id/ffmpeg_mainMDEditText_output_name"
+			android:layout_height="wrap_content"
+            ran:default_value=""
+            android:visibility="gone"
+			ran:hint="输出的文件名"/>
+
+		<Spinner
+            android:visibility="gone"
+			android:layout_width="0dp"
+			android:layout_weight="1"
+			android:layout_height="wrap_content"
+			android:id="@+id/ffmpeg_mainSpinner_format"/>
+
+	</LinearLayout>
+
+	<ImageView
+		android:layout_above="@+id/ffmpeg_mainLinearLayout_select_output"
+		android:id="@+id/ffmpeg_mainImageView"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:scaleType="fitCenter"/>
+
+</RelativeLayout>
 

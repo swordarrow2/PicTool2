@@ -145,7 +145,7 @@ public class PixivDownloadMain extends BaseFragment {
             likeAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, likeJavaBean.info);
             likeList.setAdapter(likeAdapter);
 		}
-        threadPool = Executors.newFixedThreadPool(Integer.parseInt(SharedPreferenceHelper.getString("threads", "3")));
+        threadPool = Executors.newFixedThreadPool(Integer.parseInt(SharedPreferenceHelper.getThreads()));
         checkFailed();
 	}
 
@@ -294,7 +294,7 @@ public class PixivDownloadMain extends BaseFragment {
 									}
 									MengProgressBar mengProgressBar = new MengProgressBar(getActivity());
                                     mengProgressBar.bindingPixivDownload(downloadedList, pictureInfoJavaBean,
-                                                                         SharedPreferenceHelper.getBoolean("bigpicturegif") ?
+                                                                         SharedPreferenceHelper.isDownloadBigGif()?
                                                                          pictureInfoJavaBean.animPicJavaBean.body.originalSrc :
                                                                          pictureInfoJavaBean.animPicJavaBean.body.src);
                                     taskLinearLayout.addView(mengProgressBar);
@@ -303,7 +303,7 @@ public class PixivDownloadMain extends BaseFragment {
                                         for (int i = 0; i < pictureInfoJavaBean.staticPicJavaBean.body.size(); ++i) {
                                             MengProgressBar mengProgressBar = new MengProgressBar(getActivity());
                                             mengProgressBar.bindingPixivDownload(downloadedList, pictureInfoJavaBean,
-                                                                                 SharedPreferenceHelper.getBoolean("bigpicture") ?
+                                                                                 SharedPreferenceHelper.isDownloadBigPic() ?
                                                                                  pictureInfoJavaBean.staticPicJavaBean.body.get(i).urls.original :
                                                                                  pictureInfoJavaBean.staticPicJavaBean.body.get(i).urls.regular);
                                             taskLinearLayout.addView(mengProgressBar);                                       
@@ -330,7 +330,7 @@ public class PixivDownloadMain extends BaseFragment {
 							String key = (String) o;
 							//    String value = (String) linkedTreeMap.get(key);
 							createDownloadTask(key);
-							Thread.sleep(Integer.parseInt(SharedPreferenceHelper.getString("sleep", "2000")));
+							Thread.sleep(2000);
 						}
 					} catch (InterruptedException e) {
 						e.printStackTrace();
@@ -537,7 +537,7 @@ public class PixivDownloadMain extends BaseFragment {
         Connection.Response response = null;
         try {
             Connection connection = Jsoup.connect(url);
-            connection.cookies(cookieToMap(SharedPreferenceHelper.getString("cookievalue")));
+            connection.cookies(cookieToMap(SharedPreferenceHelper.getPixivCookie()));
             connection.referrer("https://www.pixiv.net/member_illust.php?mode=medium&illust_id=" + getPixivId(url));
             connection.userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:28.0) Gecko/20100101 Firefox/28.0");
             connection.ignoreContentType(true).method(Connection.Method.GET);
