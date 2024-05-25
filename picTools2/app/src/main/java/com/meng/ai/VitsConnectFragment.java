@@ -51,7 +51,14 @@ public class VitsConnectFragment extends BaseFragment implements OnClickListener
                             @Override
                             public void run() {
                                 spCharaId.setAdapter(new ArrayAdapter<String>(MainActivity.instance, android.R.layout.simple_list_item_1, vb.models));
-                                spCharaId.setSelection(164);
+                                int index = 0;
+                                for (String m: vb.models) {                                    
+                                    if (m.contains("素裳")) {
+                                        break;
+                                    }
+                                    ++index;
+                                }
+                                spCharaId.setSelection(index);
                             }
                         });                  
                 }
