@@ -23,29 +23,48 @@
         <item
             android:id="@+id/pixiv_download"
             android:icon="@drawable/ic_menu"
-            android:title="Pixiv图片下载" />
-        <item
-            android:id="@+id/pic_format_convert"
-            android:icon="@drawable/ic_menu"
-            android:title="格式转换" />
-        <item
-            android:id="@+id/push_rtmp"
-            android:icon="@drawable/ic_menu"
-            android:title="推流" />
+            android:title="Pixiv图片下载" />       
 		<item
             android:id="@+id/sauce_nao"
             android:icon="@drawable/ic_menu"
             android:title="搜图(sauceNao)" />
 		<!--<item
-            android:id="@+id/ocr"
+        android:id="@+id/ocr"
+        android:icon="@drawable/ic_menu"
+        android:title="OCR(印刷体，腾讯优图)" />-->
+	</group>
+
+    <group
+        android:id="@+id/group_video"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/video_format_convert"
             android:icon="@drawable/ic_menu"
-            android:title="OCR(印刷体，腾讯优图)" />-->
+            android:title="视频格式转换" />
+        <item
+            android:id="@+id/push_rtmp"
+            android:icon="@drawable/ic_menu"
+            android:title="推流" />
         <item
             android:id="@+id/videowallpaper"
             android:icon="@drawable/ic_menu"
             android:title="视频动态壁纸" />
 	</group>
-    
+
+    <group
+        android:id="@+id/group_audio"
+        android:title="Audio"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/vits"
+            android:icon="@drawable/ic_menu"
+            android:title="VITS语音合成" />    
+        <item
+            android:id="@+id/androidtts"
+            android:icon="@drawable/ic_menu"
+            android:title="安卓TTS" />
+    </group>
+
     <group
         android:id="@+id/group_datasheet"
         android:title="datasheet"
@@ -53,8 +72,7 @@
         <item
             android:id="@+id/semiee"
             android:icon="@drawable/ic_menu"
-            android:title="搜索semiee" />    
-        
+            android:title="搜索semiee" />          
     </group>
 
     <group
@@ -75,19 +93,7 @@
             android:title="法拉电容容量估算" />
     </group>
 
-    <group
-        android:id="@+id/group_ai"
-        android:title="AI"
-        android:checkableBehavior="none">
-        <item
-            android:id="@+id/vits"
-            android:icon="@drawable/ic_menu"
-            android:title="VITS语音合成" />    
-        <item
-            android:id="@+id/androidtts"
-            android:icon="@drawable/ic_menu"
-            android:title="安卓TTS" />
-    </group>
+
 
     <group
         android:id="@+id/group_system"

@@ -10,11 +10,11 @@ public class VitsTtsBean {
      */
     public static final String TAG = "VitsTtsBean";      
 
-    public List<Integer> index;
+    public int index;
 
     public List<String> models;
 
-    public List<String> role;
+    public int role;
 
     @Override
     public String toString() {

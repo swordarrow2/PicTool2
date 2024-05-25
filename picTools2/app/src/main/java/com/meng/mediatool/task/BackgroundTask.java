@@ -11,7 +11,7 @@ public abstract class BackgroundTask implements Runnable {
     private String title;
     private String status;
     private String progressText;
-    private int progress;
+    private int progress = -1;
     private int maxProgress = 100;
 
     public BackgroundTask setMaxProgress(int max) {
@@ -48,6 +48,10 @@ public abstract class BackgroundTask implements Runnable {
 
     public String getProgressText() {
         return progressText;
+    }
+
+    public BackgroundTask addProgress(int progress) {        
+        return setProgress(getProgress() + progress);
     }
 
     public BackgroundTask setProgress(final int progress) {

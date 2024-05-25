@@ -13,6 +13,7 @@ import com.meng.mediatool.tools.mengViews.*;
 import java.io.*;
 
 import java.lang.Process;
+import com.meng.mediatool.task.*;
 
 public class RtmpFragment extends BaseFragment {
 
@@ -78,7 +79,7 @@ public class RtmpFragment extends BaseFragment {
                     SharedPreferenceHelper.setRtmpAddr(rtmp);
                     SharedPreferenceHelper.setRtmpCode(pushCode);
                     try {
-                        push(rtmp + pushCode);
+                        push(rtmp, pushCode);
                         MainActivity.instance.showToast("开始向" + rtmp + pushCode + "推流");
                     } catch (IOException e) {
                         ExceptionCatcher.getInstance().uncaughtException(Thread.currentThread(), e);
@@ -101,15 +102,15 @@ public class RtmpFragment extends BaseFragment {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void push(String addr) throws IOException {
-        SjfProgressBar spb = new SjfProgressBar(getActivity());
-        spb.setTitle("推流:" + file.getName());
-        root.addView(spb);
+    private void push(String addr, String code) throws IOException {
+//        SjfProgressBar spb = new SjfProgressBar(getActivity());
+//        spb.setTitle("推流:" + file.getName());
+//        root.addView(spb);
         Process process = Runtime.getRuntime().exec(
             getActivity().getFilesDir().getAbsolutePath() + File.separator + "ffmpeg -re -i " + file.getAbsolutePath() +
             " -c copy -acodec aac -f flv " +
-            addr  // "rtmp://live-push.bilivideo.com/live-bvc/" + "?streamname=live_64483321_2582558&key=7776fcf83eb2bb7883733f598285caf7&schedule=rtmp"
+            addr + code  // "rtmp://live-push.bilivideo.com/live-bvc/" + "?streamname=live_64483321_2582558&key=7776fcf83eb2bb7883733f598285caf7&schedule=rtmp"
         );
-        ThreadPool.execute(new FfmpegFragment.ConverterRunnable(process, spb));
+        new FFmpegBackTask(process, "直播推流" + System.currentTimeMillis()).setTitle("推流至" + addr).start();
     }
 }

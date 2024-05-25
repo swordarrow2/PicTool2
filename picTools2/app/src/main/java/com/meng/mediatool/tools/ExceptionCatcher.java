@@ -70,7 +70,7 @@ public class ExceptionCatcher implements Thread.UncaughtExceptionHandler{
             @Override
             public void run(){
                 Looper.prepare();
-                Toast.makeText(mContext,"程序开小差了呢..",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext,"软件爆炸莉",Toast.LENGTH_SHORT).show();
 				Toast.makeText(mContext,"崩溃记录已保存至"+fileName,Toast.LENGTH_LONG).show();
                 Looper.loop();
             }

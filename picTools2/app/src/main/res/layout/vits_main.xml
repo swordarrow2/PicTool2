@@ -6,46 +6,26 @@
     android:gravity="top|center_horizontal"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical">
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/vits_mainSpinner_charaId"/>
+    
+    <com.meng.mediatool.tools.MaterialDesign.MDEditText
+        android:id="@+id/vits_mainMDEditTextContent"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/vits_mainSpinner_charaId"
+        android:layout_height="wrap_content"
+        ran:default_value="测试"
+        android:maxLength="192"
+        ran:hint="@string/contents" />
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <Button
+        android:layout_below="@+id/vits_mainMDEditTextContent"
+        android:id="@+id/vits_mainButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/generate_voice" />
 
-            <Button
-                android:id="@+id/vits_mainButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/generate_voice" />
-        </LinearLayout>
-
-        <com.meng.mediatool.tools.MaterialDesign.MDEditText
-            android:id="@+id/vits_mainMDEditTextId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            ran:default_value="164"
-            ran:hint="@string/input_model_id" />
-
-        <com.meng.mediatool.tools.MaterialDesign.MDEditText
-            android:id="@+id/vits_mainMDEditTextContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            ran:default_value="测试"
-            ran:hint="@string/contents" />
-        
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-            <TextView
-                android:id="@+id/vits_mainTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </ScrollView>
-
-    </LinearLayout>
 </RelativeLayout>
 

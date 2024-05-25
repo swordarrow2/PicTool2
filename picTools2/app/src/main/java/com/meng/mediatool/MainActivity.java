@@ -30,6 +30,7 @@ import java.io.*;
 import android.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import com.meng.mediatool.R;
+import java.io.File;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -47,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private NavigationView navigationView;
 
+    public void openRightDrawer(){
+        mDrawerLayout.openDrawer(Gravity.RIGHT);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,10 +85,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.inflateMenu(R.menu.menu_drawer);
+        if (!SharedPreferenceHelper.isShowGroupPicture()) {
+            navigationView.getMenu().removeGroup(R.id.group_picture);
+        }
+        if (!SharedPreferenceHelper.isShowGroupVideo()) {
+            navigationView.getMenu().removeGroup(R.id.group_video);
+        }
+        if (!SharedPreferenceHelper.isShowGroupAudio()) {
+            navigationView.getMenu().removeGroup(R.id.group_audio);
+        }
+        if (!SharedPreferenceHelper.isShowGroupDatasheet()) {
+            navigationView.getMenu().removeGroup(R.id.group_datasheet);
+        }
+        if (!SharedPreferenceHelper.isShowGroupDCDC()) {
+            navigationView.getMenu().removeGroup(R.id.group_dcdc);
+        }
+        if(!SharedPreferenceHelper.isDebugMode()){
+            navigationView.getMenu().removeGroup(R.id.group_datasheet);
+        }
         navigationView.inflateHeaderView(R.layout.drawer_header);
         ColorStateList csl = ColorStateList.valueOf(0xff000000);
         navigationView.setItemTextColor(csl);
-        navigationView.setItemIconTintList(csl);
+        navigationView.setItemIconTintList(csl);        
         MFragmentManager.getInstance().init(this);
         MFragmentManager.getInstance().showFragment(Welcome.class);
         onWifi = ((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE)).getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnected();
@@ -134,6 +156,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (item.getItemId()) {
             case R.id.barcode:
+               // new Decrypt().run("","/storage/emulated/0/AppProjects/test/www/","/storage/emulated/0/AppProjects/test/result/");
                 ListView lv = new ListView(MainActivity.this);
                 lv.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.create_type)));
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -184,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //            case R.id.ocr:  疼殉已弃用该API
 //                MFragmentManager.getInstance().showFragment(OcrMain.class);
 //                break;
-            case R.id.pic_format_convert:
+            case R.id.video_format_convert:
                 MFragmentManager.getInstance().showFragment(FfmpegFragment.class);
                 break;
             case R.id.push_rtmp:
@@ -324,14 +347,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            if (mDrawerLayout.isDrawerOpen(Gravity.RIGHT)) {
+                mDrawerLayout.closeDrawer(Gravity.RIGHT);
+            } else if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
                 exit();
 			} else {
                 mDrawerLayout.openDrawer(GravityCompat.START);
 			}
             return true;
-		}
-        if (keyCode == KeyEvent.KEYCODE_MENU) {
+		} else if (keyCode == KeyEvent.KEYCODE_MENU) {
             if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
                 mDrawerLayout.closeDrawer(GravityCompat.START);
 			} else {

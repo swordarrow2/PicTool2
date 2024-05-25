@@ -23,8 +23,43 @@
             android:key="theme"
             android:summary="重启生效"
             android:title="导航栏颜色" />
+
+        <PreferenceScreen  
+            android:title="显示在菜单的功能" 
+            android:summary="重启生效" >
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="groupPic"
+                android:summaryOff="否"
+                android:summaryOn="是"
+                android:title="显示图片相关功能" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="groupVideo"
+                android:summaryOff="否"
+                android:summaryOn="是"
+                android:title="显示视频相关功能" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="groupAudio"
+                android:summaryOff="否"
+                android:summaryOn="是"
+                android:title="显示音频相关功能" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="groupDatasheet"
+                android:summary="开启调试模式时才会显示"
+                android:title="显示数据手册相关功能" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="groupDCDC"
+                android:summaryOff="否"
+                android:summaryOn="是"
+                android:title="显示电路计算相关功能" />                        
+        </PreferenceScreen>
+
     </PreferenceCategory>
-    
+
     <PreferenceCategory android:title="Pixiv下载">
         <PreferenceScreen  
             android:title="pixiv下载器设置" >
@@ -74,6 +109,12 @@
                 android:defaultValue="false"
                 android:title="记录网络日志"
                 android:summary="保存在SD卡/sjfLogNetwork.log"/>
+            
+            <CheckBoxPreference
+                android:key="debugMode"
+                android:defaultValue="false"
+                android:title="调试模式"
+                android:summary="未完成的功能也会显示出来"/>
         </PreferenceScreen>
     </PreferenceCategory> 
     <!--<CheckBoxPreference

@@ -12,5 +12,6 @@ public enum FileType {
 	gray8picture,
     convertVideo,
     convertAudio,
-    convertImage
+    convertImage,
+    TtsVoice
 	}

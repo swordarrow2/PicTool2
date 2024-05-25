@@ -85,11 +85,17 @@ public class BackgroundTaskAdapter extends BaseAdapter {
         holder.tvTitle.setText(mpb.getTitle());
         holder.tvStatus.setText(mpb.getStatus());
         holder.progressBar.setMax(mpb.getMaxProgress());
-        holder.progressBar.setProgress(mpb.getProgress());
+        int progress = mpb.getProgress();
+        if (progress == -1) {
+            holder.progressBar.setIndeterminate(true);
+        } else {
+            holder.progressBar.setIndeterminate(false);
+            holder.progressBar.setProgress(progress);
+        }
         holder.tvProgress.setText(mpb.getProgressText());
         return convertView;
     }
-
+    
     private class ViewHolder {
         private TextView tvTitle;
         private TextView tvStatus;

@@ -41,12 +41,11 @@
 			android:layout_weight="3"
 			android:id="@+id/ffmpeg_mainMDEditText_output_name"
 			android:layout_height="wrap_content"
-            ran:default_value=""
-            android:visibility="gone"
-			ran:hint="输出的文件名"/>
+			ran:default_value=""
+			ran:hint="命令行"/>
 
 		<Spinner
-            android:visibility="gone"
+			android:visibility="gone"
 			android:layout_width="0dp"
 			android:layout_weight="1"
 			android:layout_height="wrap_content"
@@ -58,8 +57,24 @@
 		android:layout_above="@+id/ffmpeg_mainLinearLayout_select_output"
 		android:id="@+id/ffmpeg_mainImageView"
 		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
+		android:layout_height="wrap_content"
 		android:scaleType="fitCenter"/>
+
+	<ScrollView
+		android:layout_above="@+id/ffmpeg_mainImageView"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:id="@+id/ffmpeg_mainScrollView1">
+
+		<TextView
+			android:id="@+id/ffmpeg_mainTextView_log"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:text="ffmpeg log">
+
+		</TextView>
+
+	</ScrollView>
 
 </RelativeLayout>
 
