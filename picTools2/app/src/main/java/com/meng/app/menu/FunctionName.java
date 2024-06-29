@@ -68,7 +68,6 @@ public enum FunctionName {
     FUNCTION_PICTURE_ENCODE_GIF("合成GIF", FunctionGroup.GROUP_PICTURE, GIFCreator.class),
     FUNCTION_PICTURE_PIXIV_DOWNLOAD("PIXIV下载", FunctionGroup.GROUP_PICTURE, PixivDownloadMain.class),
     FUNCTION_PICTURE_SAUCENAO("SauceNAO搜图", FunctionGroup.GROUP_PICTURE, SauceNaoMain.class),
-    //    FUNCTION_PICTURE_TENCENT_OCR("腾讯优图OCR",FunctionGroup.GROUP_PICTURE,OcrMain.class), //疼殉已弃用该API
     FUNCTION_VIDEO_FORMAT_CONVERT("视频格式转换", FunctionGroup.GROUP_VIDEO, FfmpegFragment.class),
     FUNCTION_VIDEO_RTMP_PUSH("RTMP推流", FunctionGroup.GROUP_VIDEO, RtmpFragment.class),
     FUNCTION_VIDEO_WALLPAPER("视频动态壁纸", FunctionGroup.GROUP_VIDEO, WallpaperMain.class),

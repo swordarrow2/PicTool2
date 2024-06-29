@@ -18,6 +18,7 @@ import android.view.SurfaceHolder.*;
 import android.widget.*;
 
 import com.google.zxing.*;
+import com.meng.app.BaseFragment;
 import com.meng.app.MFragmentManager;
 import com.meng.app.MainActivity;
 import com.meng.tools.zxing.camera.*;
@@ -28,7 +29,7 @@ import java.util.*;
 
 import com.meng.toolset.mediatool.R;
 
-public class BarcodeReaderCamera extends Fragment implements Callback {
+public class BarcodeReaderCamera extends BaseFragment implements Callback {
 
     private final int REQUEST_PERMISSION_CAMERA = 1000;
     private CaptureActivityHandler handler;
@@ -157,11 +158,7 @@ public class BarcodeReaderCamera extends Fragment implements Callback {
     }
 
     public void toggleFlashLight() {
-        if (flashLightOpen) {
-            setFlashLightOpen(false);
-        } else {
-            setFlashLightOpen(true);
-        }
+        setFlashLightOpen(!flashLightOpen);
     }
 
     public void setFlashLightOpen(boolean open) {

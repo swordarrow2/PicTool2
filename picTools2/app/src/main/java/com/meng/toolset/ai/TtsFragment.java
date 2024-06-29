@@ -10,7 +10,9 @@ import android.widget.*;
 
 import com.meng.app.BaseFragment;
 import com.meng.app.Constant;
+import com.meng.app.MFragmentManager;
 import com.meng.app.MainActivity;
+import com.meng.app.Welcome;
 import com.meng.toolset.mediatool.*;
 import com.meng.tools.MaterialDesign.*;
 import com.meng.customview.MengSeekBar;
@@ -88,9 +90,11 @@ public class TtsFragment extends BaseFragment implements OnClickListener, TextTo
         });
         Intent checkIntent = new Intent();
         checkIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
-        startActivityForResult(checkIntent, Constant.CHECK_TTS_REQUEST_CODE);
+        try {
+            startActivityForResult(checkIntent, Constant.CHECK_TTS_REQUEST_CODE);
+        } catch (ActivityNotFoundException ignore) {
+        }
     }
-
 
     @Override
     public void onClick(View p1) {
@@ -102,31 +106,18 @@ public class TtsFragment extends BaseFragment implements OnClickListener, TextTo
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Constant.CHECK_TTS_REQUEST_CODE) {
-            switch (resultCode) {
-                case TextToSpeech.Engine.CHECK_VOICE_DATA_PASS:
-//TTS可用                    
-                    mTts = new TextToSpeech(getActivity(), this);
-
-                    break;
-                case TextToSpeech.Engine.CHECK_VOICE_DATA_BAD_DATA:
-//需要的语音数据已损坏
-                case TextToSpeech.Engine.CHECK_VOICE_DATA_MISSING_DATA:
-//缺少需要语言的语音数据
-                case TextToSpeech.Engine.CHECK_VOICE_DATA_MISSING_VOLUME:
-//缺少需要语言的发音数据
-                {
-//这三种情况都表明数据有错,重新下载安装需要的数据
-                    MainActivity.instance.showToast("Need language stuff:" + resultCode);
-                    Intent dataIntent = new Intent();
-                    dataIntent.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
+            if (resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS) {
+                mTts = new TextToSpeech(getActivity(), this);
+            } else if (resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_FAIL) {
+                MainActivity.instance.showToast("Need language stuff:" + resultCode);
+                Intent dataIntent = new Intent();
+                dataIntent.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
+                try {
                     startActivity(dataIntent);
+                } catch (ActivityNotFoundException e) {
+                    MainActivity.instance.showToast(getString(R.string.no_support_tts));
+                    MFragmentManager.getInstance().showFragment(Welcome.class);
                 }
-                break;
-                case TextToSpeech.Engine.CHECK_VOICE_DATA_FAIL:
-//检查失败
-                default:
-                    MainActivity.instance.showToast("Got a failure. TTS apparently not available");
-                    break;
             }
         } else {
 //其他Intent返回的结果

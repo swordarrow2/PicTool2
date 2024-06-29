@@ -1,52 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-	<LinearLayout
-		android:id="@+id/read_galleryLinearLayout"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical"
-		android:layout_alignParentBottom="true">
+    <fragment
+        android:id="@+id/read_galleryfragment"
+        android:name="com.meng.toolset.mediatool.picture.barcode.BarcodeReaderCamera"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
 
-		<TextView
-			android:id="@+id/read_galleryTextView_format"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:id="@+id/read_galleryLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="0dp">
 
-		<TextView
-			android:id="@+id/read_galleryTextView_result"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:autoLink="all"
-			android:enabled="true"
-			android:focusable="true"
-			android:longClickable="true"
-			android:text="@string/long_press_to_copy_result"
-			android:textIsSelectable="true"/>
+        <TextView
+            android:id="@+id/read_galleryTextView_format"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-		<Button
-			android:id="@+id/read_galleryButton"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/select_image"/>
+        <TextView
+            android:id="@+id/read_galleryTextView_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="all"
+            android:enabled="true"
+            android:focusable="true"
+            android:longClickable="true"
+            android:text="@string/long_press_to_copy_result"
+            android:textIsSelectable="true" />
 
-		<Button
-			android:id="@+id/read_galleryButton_createAwesomeQR"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/create_awesomeqr"/>
+        <Button
+            android:id="@+id/read_galleryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/select_image" />
 
-	</LinearLayout>
+        <Button
+            android:id="@+id/read_galleryButton_createAwesomeQR"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/create_awesomeqr" />
 
-	<fragment
-		android:id="@+id/read_galleryfragment"
-		android:name="com.meng.toolset.mediatool.picture.barcode.BarcodeReaderCamera"
-		android:layout_height="fill_parent"
-		android:layout_width="fill_parent"
-		android:layout_above="@id/read_galleryLinearLayout"/>
+    </LinearLayout>
 
-</RelativeLayout>
+
+</FrameLayout>
 

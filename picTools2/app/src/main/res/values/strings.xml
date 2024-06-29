@@ -54,5 +54,6 @@
     <string name="start_calculate">开始计算</string>
     <string name="flashlight">flashlight</string>
     <string name="back_tasks">后台任务</string>
+    <string name="no_support_tts">本设备不支持TTS</string>
 
 </resources>
