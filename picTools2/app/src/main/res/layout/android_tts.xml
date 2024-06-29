@@ -23,20 +23,20 @@
                 android:text="@string/generate_voice" />
         </LinearLayout>
 
-        <com.meng.mediatool.tools.MaterialDesign.MDEditText
+        <com.meng.tools.MaterialDesign.MDEditText
             android:id="@+id/android_tts_MDEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             ran:default_value="164"
             ran:hint="@string/input_model_id" />
 
-        <com.meng.mediatool.tools.mengViews.MengSeekBar
+        <com.meng.customview.MengSeekBar
             android:id="@+id/android_tts_MengSeekBar_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
              />
         
-        <com.meng.mediatool.tools.mengViews.MengSeekBar
+        <com.meng.customview.MengSeekBar
             android:id="@+id/android_tts_MengSeekBar_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

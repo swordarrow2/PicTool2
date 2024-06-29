@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/vits_mainSpinner_charaId"/>
-    
-    <com.meng.mediatool.tools.MaterialDesign.MDEditText
+
+    <com.meng.tools.MaterialDesign.MDEditText
         android:id="@+id/vits_mainMDEditTextContent"
         android:layout_width="match_parent"
         android:layout_below="@+id/vits_mainSpinner_charaId"
@@ -20,10 +20,33 @@
         android:maxLength="192"
         ran:hint="@string/contents" />
 
+    <com.meng.customview.MengSeekBar
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="长度"
+        android:progress="11"
+        android:id="@+id/vits_main_seekbar_length"
+        android:layout_below="@+id/vits_mainMDEditTextContent" />
+
+    <com.meng.customview.MengSeekBar
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"  
+        android:text="情感起伏"
+        android:progress="20"
+        android:id="@+id/vits_main_seekbar_noice"
+        android:layout_below="@+id/vits_main_seekbar_length" />
+
+    <com.meng.customview.MengSeekBar
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="音素长度"
+        android:progress="37"        
+        android:id="@+id/vits_main_seekbar_noicew"
+        android:layout_below="@+id/vits_main_seekbar_noice" />
     <Button
-        android:layout_below="@+id/vits_mainMDEditTextContent"
+        android:layout_below="@+id/vits_main_seekbar_noicew"
         android:id="@+id/vits_mainButton"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/generate_voice" />
 

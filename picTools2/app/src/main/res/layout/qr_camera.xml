@@ -11,7 +11,7 @@
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"/>
 
-	<com.meng.mediatool.tools.zxing.view.ViewfinderView
+	<com.meng.tools.zxing.view.ViewfinderView
 		android:id="@+id/viewfinder_view"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
@@ -36,7 +36,8 @@
 			android:layout_height="wrap_content"
 			android:background="@null"
 			android:padding="12dp"
-			android:src="@drawable/ic_flash_off_white_24dp"/>
+			android:src="@drawable/ic_flash_off_white_24dp"
+			android:contentDescription="@string/flashlight" />
 
 	</LinearLayout>
 

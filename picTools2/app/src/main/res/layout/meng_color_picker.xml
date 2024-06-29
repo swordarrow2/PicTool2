@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.meng.mediatool.tools.mengViews.MengColorPicker
+        <com.meng.customview.MengColorPicker
             android:id="@+id/meng_color_picker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

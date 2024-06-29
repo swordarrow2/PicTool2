@@ -1,6 +1,6 @@
 package com.meng.api.semiee;
 
-import com.meng.mediatool.tools.*;
+import com.meng.tools.*;
 import java.util.*;
 
 public class ContactWay {

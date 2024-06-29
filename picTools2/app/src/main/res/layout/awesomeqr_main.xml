@@ -22,28 +22,28 @@
             android:orientation="vertical"
             android:padding="8dp">
 
-            <com.meng.mediatool.tools.MaterialDesign.MDEditText
+            <com.meng.tools.MaterialDesign.MDEditText
                 android:id="@+id/awesomeqr_main_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 ran:default_value="@string/input_text"
                 ran:hint="@string/contents" />
 
-            <com.meng.mediatool.tools.MaterialDesign.MDEditText
+            <com.meng.tools.MaterialDesign.MDEditText
                 android:id="@+id/awesomeqr_main_mengEdittext_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 ran:default_value="800"
                 ran:hint="@string/barcode_size" />
 
-            <com.meng.mediatool.tools.MaterialDesign.MDEditText
+            <com.meng.tools.MaterialDesign.MDEditText
                 android:id="@+id/awesomeqr_main_margin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 ran:default_value="20"
                 ran:hint="@string/margin_px" />
 
-            <com.meng.mediatool.tools.MaterialDesign.MDEditText
+            <com.meng.tools.MaterialDesign.MDEditText
                 android:id="@+id/awesomeqr_main_dotScale"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
                     android:text="@string/crop_square" />
             </LinearLayout>
 
-            <com.meng.mediatool.tools.mengViews.MengColorBar
+            <com.meng.customview.MengColorBar
                 android:id="@+id/gif_arb_qr_main_colorBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/binarize_background_image" />
 
-            <com.meng.mediatool.tools.MaterialDesign.MDEditText
+            <com.meng.tools.MaterialDesign.MDEditText
                 android:id="@+id/awesomeqr_main_mengEdittext_binarizeThreshold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -50,14 +50,14 @@
                 android:visibility="gone" />
         </LinearLayout>
 
-        <com.meng.mediatool.tools.MaterialDesign.MDEditText
+        <com.meng.tools.MaterialDesign.MDEditText
             android:id="@+id/gif_arb_qr_mainmengTextview_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             ran:default_value="@string/contents"
             ran:hint="@string/input_text" />
 
-        <com.meng.mediatool.tools.MaterialDesign.MDEditText
+        <com.meng.tools.MaterialDesign.MDEditText
             android:id="@+id/gif_arb_qr_mengEdittext_dotScale"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
             android:checked="true"
             android:text="@string/use_first_frame_size" />
 
-        <com.meng.mediatool.tools.MaterialDesign.MDEditText
+        <com.meng.tools.MaterialDesign.MDEditText
             android:id="@+id/gif_qr_mainEditText_size"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
             android:checked="true"
             android:text="@string/auto_color" />
 
-        <com.meng.mediatool.tools.mengViews.MengColorBar
+        <com.meng.customview.MengColorBar
             android:id="@+id/gif_arb_qr_main_colorBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

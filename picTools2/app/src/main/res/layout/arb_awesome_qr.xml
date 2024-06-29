@@ -6,7 +6,7 @@
     android:gravity="top|center_horizontal"
     android:orientation="vertical">
 
-    <com.meng.mediatool.tools.mengViews.MengScrollView
+    <com.meng.customview.MengScrollView
         android:id="@+id/awesomeqr_main_scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,14 +22,14 @@
             android:orientation="vertical"
             android:padding="8dp">
 
-            <com.meng.mediatool.tools.MaterialDesign.MDEditText
+            <com.meng.tools.MaterialDesign.MDEditText
                 android:id="@+id/awesomeqr_main_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 ran:default_value="@string/input_text"
                 ran:hint="@string/contents" />
 
-            <com.meng.mediatool.tools.MaterialDesign.MDEditText
+            <com.meng.tools.MaterialDesign.MDEditText
                 android:id="@+id/awesomeqr_main_dotScale"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
                 android:checked="true"
                 android:text="@string/auto_color" />
 
-            <com.meng.mediatool.tools.mengViews.MengColorBar
+            <com.meng.customview.MengColorBar
                 android:id="@+id/gif_arb_qr_main_colorBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
 
             </LinearLayout>
 
-            <com.meng.mediatool.tools.mengViews.MengSeekBar
+            <com.meng.customview.MengSeekBar
                 android:id="@+id/awesomeqr_mainMengSeekBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -99,12 +99,12 @@
                 android:layout_marginTop="16dp"
                 android:scaleType="fitCenter" />
 
-            <com.meng.mediatool.tools.mengViews.MengSelectRectView
+            <com.meng.customview.MengSelectRectView
                 android:id="@+id/arb_awesome_qrselectRectView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
-    </com.meng.mediatool.tools.mengViews.MengScrollView>
+    </com.meng.customview.MengScrollView>
 
 
 </RelativeLayout>

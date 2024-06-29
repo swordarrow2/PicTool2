@@ -51,5 +51,8 @@
 
     <string name="input_model_id">输入模型id</string>
     <string name="generate_voice">开始合成</string>
- 
+    <string name="start_calculate">开始计算</string>
+    <string name="flashlight">flashlight</string>
+    <string name="back_tasks">后台任务</string>
+
 </resources>

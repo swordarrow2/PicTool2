@@ -29,13 +29,128 @@
                     android:layout_height="0dp"
                     android:layout_weight="1">
 
-                    <include layout="@layout/pixiv_browser" />
+                    <LinearLayout 
+                        xmlns:fab="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/pixiv_download_main_browser"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                    <include layout="@layout/pixiv_downloading" />
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
-                    <include layout="@layout/pixiv_history" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
 
-                    <include layout="@layout/pixiv_favorite" />
+                                <EditText
+                                    android:id="@+id/pixiv_download_main_edittext_url"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/link" />
+
+                                <CheckBox
+                                    android:id="@+id/pixiv_download_main_checkbox_user"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"   
+                                    android:text="@string/get_all_pictures" />
+
+                                <ImageView
+                                    android:id="@+id/imageview"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+
+                            </LinearLayout>
+
+                            <com.meng.tools.MaterialDesign.FloatingMenu
+                                android:id="@+id/menu_star"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="bottom|right"
+                                android:layout_marginBottom="8dp"
+                                android:layout_marginRight="72dp"
+                                fab:menu_colorNormal="#1565C0"
+                                fab:menu_colorPressed="#2272CD"
+                                fab:menu_colorRipple="#62B2FF"
+                                fab:menu_fab_size="normal"
+                                fab:menu_icon="@drawable/ic_star">
+
+                                <com.meng.tools.MaterialDesign.FloatingButton
+                                    android:id="@+id/fab_add_mine"
+                                    style="@style/MenuButtonsSmall"
+                                    android:layout_width="wrap_content"
+                                    fab:fab_label="fafafa"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_star" />
+
+                                <com.meng.tools.MaterialDesign.FloatingButton
+                                    android:id="@+id/fab_add_pixiv"
+                                    style="@style/MenuButtonsSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    fab:fab_label="pixiv"
+                                    android:src="@drawable/ic_star" />
+
+                            </com.meng.tools.MaterialDesign.FloatingMenu>
+
+                            <com.meng.tools.MaterialDesign.FloatingButton
+                                android:id="@+id/fab_start_download"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom|right"
+                                android:layout_marginBottom="8dp"
+                                android:layout_marginRight="8dp"
+                                android:src="@drawable/ic_progress"
+                                fab:fab_hideAnimation="@anim/hide_to_bottom"
+                                fab:fab_showAnimation="@anim/show_from_bottom" />
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <LinearLayout 
+                        android:id="@+id/pixiv_download_main_downloading"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+                        <ScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:id="@+id/pixiv_download_main_downloadlist_task"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical" />
+
+                        </ScrollView>
+                    </LinearLayout>
+
+                    <LinearLayout 
+                        android:id="@+id/pixiv_download_main_downloaded"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ListView
+                            android:id="@+id/saved_files_list"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+
+                    <LinearLayout 
+                        android:id="@+id/pixiv_download_main_like"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ListView
+                            android:id="@+id/like_files_list"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
                 </FrameLayout>
             </LinearLayout>
         </TabHost>

@@ -36,7 +36,7 @@
 		android:layout_height="wrap_content"
 		android:orientation="horizontal">
 
-		<com.meng.mediatool.tools.MaterialDesign.MDEditText
+		<com.meng.tools.MaterialDesign.MDEditText
 			android:layout_width="0dp"
 			android:layout_weight="3"
 			android:id="@+id/ffmpeg_mainMDEditText_output_name"

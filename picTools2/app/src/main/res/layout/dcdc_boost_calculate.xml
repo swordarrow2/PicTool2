@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ran="http://schemas.android.com/apk/res-auto"
+    android:id="@android:id/tabhost"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- TabWidget组件id值不可变-->
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/boost_calculateTextViewResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+        <!-- FrameLayout布局，id值不可变-->
+        <FrameLayout
+
+            android:id="@android:id/tabcontent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- 第一个tab的布局 -->
+            <LinearLayout
+                android:id="@+id/boost_inductor_select"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_inductor_select_vi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="输入电压(V)" />
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_inductor_select_vo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="输出电压(V)" />
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_inductor_select_vd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="二极管压降(V)" />
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_inductor_select_oi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="输出电流(A)" />
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_inductor_select_freq"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="开关频率(kHz)" />
+
+            </LinearLayout>
+
+
+            <!-- 第二个tab的布局 -->
+            <LinearLayout
+                android:id="@+id/boost_inductor_current"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_inductor_current_vi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="输入电压(V)" />
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_inductor_current_vo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="输出电压(V)" />
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_inductor_current_vd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="二极管压降(V)" />
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_inductor_current_oi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="输出电流(A)" />
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_inductor_current_freq"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="开关频率(kHz)" />
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_inductor_current_l"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="电感感值" />
+
+            </LinearLayout>
+
+            <!-- 第三个tab的布局 -->
+            <LinearLayout
+                android:id="@+id/boost_input_capcitor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_input_capcitor_vi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="输入电压(V)" />
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_input_capcitor_vo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="输出电压(V)" />
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_input_capcitor_vd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="二极管压降(V)" />
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_input_capcitor_deltaV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="允许纹波" />
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_input_capcitor_freq"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="开关频率(kHz)" />
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_input_capcitor_l"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="电感感值" />
+
+            </LinearLayout>
+
+            <!-- 第四个tab的布局 -->
+            <LinearLayout
+                android:id="@+id/boost_output_capcitor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_output_capcitor_vi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="输入电压(V)" />
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_output_capcitor_vo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="输出电压(V)" />
+
+
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_output_capcitor_vd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="二极管压降(V)" />   <com.meng.tools.MaterialDesign.MDEditText
+                android:id="@+id/boost_output_capcitor_io"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                ran:default_value="0"
+                ran:hint="输出电流(A)" />
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_output_capcitor_freq"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="开关频率(kHz)" />
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_output_capcitor_l"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="电感感值" />
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_output_capcitor_deltaV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="允许纹波" />
+
+            </LinearLayout>
+
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/dcdc_calculateButton_go"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/start_calculate" />
+
+    </RelativeLayout>
+</TabHost>
+

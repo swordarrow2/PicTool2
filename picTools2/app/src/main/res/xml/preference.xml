@@ -16,15 +16,19 @@
             android:summary="System.exit(0)可以彻底关闭软件"
             android:title="使用System.exit(0)代替finish()" />
         <ListPreference
+            android:defaultValue="胖子黑"
             android:dialogTitle="选择颜色"
             android:entries="@array/color_list"
             android:entryValues="@array/color_list"
-            android:defaultValue="胖子黑"
             android:key="theme"
             android:summary="重启生效"
             android:title="导航栏颜色" />
-
-        <PreferenceScreen  
+        <CheckBoxPreference
+            android:key="show_group_name"
+            android:summaryOff="隐藏"
+            android:summaryOn="显示"
+            android:title="显示或隐藏分组名，重启生效" />
+        <!--<PreferenceScreen  
             android:title="显示在菜单的功能" 
             android:summary="重启生效" >
             <CheckBoxPreference
@@ -52,21 +56,26 @@
                 android:title="显示数据手册相关功能" />
             <CheckBoxPreference
                 android:defaultValue="false"
+                android:key="groupMcu"
+                android:summaryOff="否"
+                android:summaryOn="是"
+                android:title="显示单片机相关功能" />
+            <CheckBoxPreference
+                android:defaultValue="false"
                 android:key="groupDCDC"
                 android:summaryOff="否"
                 android:summaryOn="是"
-                android:title="显示电路计算相关功能" />                        
-        </PreferenceScreen>
+                android:title="显示电路计算相关功能" />       
+        </PreferenceScreen>-->
 
     </PreferenceCategory>
 
     <PreferenceCategory android:title="Pixiv下载">
-        <PreferenceScreen  
-            android:title="pixiv下载器设置" >
+        <PreferenceScreen android:title="pixiv下载器设置">
             <Preference android:title="登录Pixiv">
                 <intent
-                    android:targetClass="com.meng.mediatool.picture.pixiv.LoginPixivActivity"
-                    android:targetPackage="com.meng.mediatool" />
+                    android:targetClass="com.meng.toolset.mediatool.picture.pixiv.LoginPixivActivity"
+                    android:targetPackage="com.meng.toolset.mediatool" />
             </Preference>
             <CheckBoxPreference
                 android:defaultValue="false"
@@ -95,28 +104,28 @@
 
     <PreferenceCategory android:title="调试">
 
-        <PreferenceScreen  
-            android:title="奇怪的设置"  
-            android:summary="不知道作用的话不要修改">  
+        <PreferenceScreen
+            android:summary="不知道作用的话不要修改"
+            android:title="奇怪的设置">
 
             <CheckBoxPreference
+                android:defaultValue="false"
                 android:key="debugLog"
-                android:defaultValue="false"
-                android:title="保存调试信息"/>
+                android:title="保存调试信息" />
 
             <CheckBoxPreference
+                android:defaultValue="false"
                 android:key="netLog"
-                android:defaultValue="false"
-                android:title="记录网络日志"
-                android:summary="保存在SD卡/sjfLogNetwork.log"/>
-            
+                android:summary="保存在SD卡/sjfLogNetwork.log"
+                android:title="记录网络日志" />
+
             <CheckBoxPreference
-                android:key="debugMode"
                 android:defaultValue="false"
-                android:title="调试模式"
-                android:summary="未完成的功能也会显示出来"/>
+                android:key="debugMode"
+                android:summary="未完成的功能也会显示出来,重启生效"
+                android:title="调试模式" />
         </PreferenceScreen>
-    </PreferenceCategory> 
+    </PreferenceCategory>
     <!--<CheckBoxPreference
     android:defaultValue="false"
     android:key="useTimeStamp"

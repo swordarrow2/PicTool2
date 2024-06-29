@@ -34,16 +34,25 @@
             android:background="#eeeeee"
             android:gravity="center_horizontal">
 
+            <TextView
+                android:text="@string/back_tasks"
+                android:id="@+id/main_activity_right_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerVertical="true" />
+
             <ListView
                 android:id="@+id/right_list"
                 android:layout_width="@dimen/navdrawer_width"
                 android:layout_height="match_parent"
+                android:layout_below="@id/main_activity_right_textview"
                 android:layout_gravity="start"
                 android:divider="@android:color/transparent"
                 android:dividerHeight="0dp"
-				android:drawSelectorOnTop="false" />
-            
-            
+                android:drawSelectorOnTop="false" />
+
+
         </RelativeLayout>
     </android.support.v4.widget.DrawerLayout>
 </LinearLayout>
