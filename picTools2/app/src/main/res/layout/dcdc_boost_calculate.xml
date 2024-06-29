@@ -213,19 +213,19 @@
                     ran:default_value="0"
                     ran:hint="输出电压(V)" />
 
-
-
                 <com.meng.tools.MaterialDesign.MDEditText
                     android:id="@+id/boost_output_capcitor_vd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     ran:default_value="0"
-                    ran:hint="二极管压降(V)" />   <com.meng.tools.MaterialDesign.MDEditText
-                android:id="@+id/boost_output_capcitor_io"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                ran:default_value="0"
-                ran:hint="输出电流(A)" />
+                    ran:hint="二极管压降(V)" />
+
+                <com.meng.tools.MaterialDesign.MDEditText
+                    android:id="@+id/boost_output_capcitor_io"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ran:default_value="0"
+                    ran:hint="输出电流(A)" />
 
                 <com.meng.tools.MaterialDesign.MDEditText
                     android:id="@+id/boost_output_capcitor_freq"

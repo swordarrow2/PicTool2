@@ -75,36 +75,7 @@ public enum FunctionName {
     FUNCTION_AUDIO_ANDROID_TTS("安卓语音合成", FunctionGroup.GROUP_AUDIO, TtsFragment.class),
     FUNCTION_AUDIO_VITS_TTS("VITS语音合成", FunctionGroup.GROUP_AUDIO, VitsConnectFragment.class),
     FUNCTION_ELECTRONIC_SEARCH_SEMIEE("搜索半导小芯", FunctionGroup.GROUP_DEVELOPING, SearchSemieeFragment.class),
-    FUNCTION_ELECTRONIC_BOOST_PART_CHOOSE("boost元件选型", FunctionGroup.GROUP_ELECTRONIC, new Runnable() {
-
-        @Override
-        public void run() {
-            ListView dcdcList = new ListView(MainActivity.instance);
-            dcdcList.setAdapter(new ArrayAdapter<String>(MainActivity.instance, android.R.layout.simple_list_item_1, MainActivity.instance.getResources().getStringArray(R.array.dcdc_cal_type)));
-            final AlertDialog dcdcDialog = new AlertDialog.Builder(MainActivity.instance).setTitle("选择操作").setView(dcdcList).show();
-            dcdcList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-                @Override
-                public void onItemClick(AdapterView<?> p1, View p2, int p3, long p4) {
-                    dcdcDialog.dismiss();
-                    switch (p3) {
-                        case 0:
-                            MFragmentManager.getInstance().showFragment(BoostInductSelect.class);
-                            break;
-                        case 1:
-                            MFragmentManager.getInstance().showFragment(BoostInductorCurrent.class);
-                            break;
-                        case 2:
-                            MFragmentManager.getInstance().showFragment(BoostInputCapacitanceChoose.class);
-                            break;
-                        case 3:
-                            MFragmentManager.getInstance().showFragment(BoostOutputCapacitanceChoose.class);
-                            break;
-                    }
-                }
-            });
-        }
-    }),
+    FUNCTION_ELECTRONIC_BOOST_PART_CHOOSE("boost元件选型", FunctionGroup.GROUP_ELECTRONIC, DcdcBoostCalculateFragment.class),
     FUNCTION_ELECTRONIC_BUCK_PART_CHOOSE("buck元件选型", FunctionGroup.GROUP_ELECTRONIC, new Runnable() {
 
         @Override
@@ -152,8 +123,7 @@ public enum FunctionName {
         public void run() {
             MainActivity.instance.exit();
         }
-    }),
-    FUNCTION_DCDC_BOOST("新boost计算", FunctionGroup.GROUP_DEVELOPING, DcdcBoostCalculateFragment.class);;
+    });
 
 
     public static final String TAG = "FunctionName";
