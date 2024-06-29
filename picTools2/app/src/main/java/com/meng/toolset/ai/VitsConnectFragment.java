@@ -45,7 +45,7 @@ public class VitsConnectFragment extends BaseFragment implements OnClickListener
     public String getName() {
         return "vits语音合成";
     }
-    
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.vits_main, container, false);
@@ -104,7 +104,7 @@ public class VitsConnectFragment extends BaseFragment implements OnClickListener
     }
 
     public void download(String content, String id) {
-        String fileName = String.format(Locale.CHINA, "VITS - %s - %d - %s.wav", id, System.currentTimeMillis(), MD5.MD5.getMd5().calculate(content));
+        String fileName = String.format(Locale.CHINA, "VITS - %s - %d - %s.wav", id, System.currentTimeMillis(), MD5.getMd5().calculate(content));
         DownloadManager downloadManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(String.format("https://www.xn--wxtz62e.site/run?text=%s&id_speaker=%s", URLEncoder.encode(content), id)));
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
@@ -146,7 +146,7 @@ public class VitsConnectFragment extends BaseFragment implements OnClickListener
                             setStatus("正在下载");
                         }
                     }
-                    String fname = String.format(Locale.CHINA, "VITS - %s - %d - %s", id, System.currentTimeMillis(), MD5.MD5.getMd5().calculate(content));
+                    String fname = String.format(Locale.CHINA, "VITS - %s - %d - %s", id, System.currentTimeMillis(), MD5.getMd5().calculate(content));
                     File savedVoice = FileTool.getAppFile(FunctionSavePath.TtsVoice, fname, FileFormat.FileType.wav);
                     try (FileOutputStream output = new FileOutputStream(savedVoice)) {
                         try (InputStream input = connection.getInputStream()) {
@@ -158,7 +158,7 @@ public class VitsConnectFragment extends BaseFragment implements OnClickListener
                                 output.write(buffer, 0, index);
                             }
                             output.flush();
-                        } 
+                        }
                     }
                 } catch (Exception e) {
                     setStatus("合成失败");
