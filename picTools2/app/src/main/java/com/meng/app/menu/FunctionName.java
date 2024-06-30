@@ -7,6 +7,7 @@ import android.widget.*;
 import com.meng.app.BaseFragment;
 import com.meng.app.MFragmentManager;
 import com.meng.app.MainActivity;
+import com.meng.app.tester.DBTester;
 import com.meng.toolset.eleTool.UsbSerialFragment;
 import com.meng.toolset.mediatool.*;
 import com.meng.toolset.mediatool.picture.barcode.*;
@@ -24,6 +25,9 @@ public enum FunctionName {
      *@author 清梦
      *@date 2024-06-26 09:48:59
      */
+
+
+    FUNCTION_TEST_DATABASE("db test", FunctionGroup.GROUP_DEVELOPING, DBTester.class),
 
     FUNCTION_PICTURE_BARCODE("条码", FunctionGroup.GROUP_PICTURE, new Runnable() {
 
@@ -108,7 +112,6 @@ public enum FunctionName {
     }),
     FUNCTION_ELECTRONIC_FARAD_TEST("法拉电容估算", FunctionGroup.GROUP_ELECTRONIC, FaradCapacitanceCalculate.class),
     FUNCTION_ELECTRONIC_SERIAL_PORT("串行端口", FunctionGroup.GROUP_DEVELOPING, UsbSerialFragment.class),
-
     FUNCTION_SYSTEM_SETTINGS("设置", FunctionGroup.GROUP_SYSTEM, new Runnable() {
 
         @Override

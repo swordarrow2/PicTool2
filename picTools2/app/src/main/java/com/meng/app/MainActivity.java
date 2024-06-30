@@ -15,7 +15,6 @@ import android.widget.*;
 import com.meng.toolset.mediatool.R;
 import com.meng.toolset.mediatool.task.*;
 import com.meng.tools.*;
-import com.meng.tools.app.DataBaseHelper;
 import com.meng.tools.app.Debuger;
 import com.meng.tools.app.ExceptionCatcher;
 import com.meng.tools.app.SharedPreferenceHelper;
@@ -71,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void init() {
-        DataBaseHelper.init(this);
+        //DataBaseHelperOld.init(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mainLinearLayout = (LinearLayout) findViewById(R.id.main_linear_layout);

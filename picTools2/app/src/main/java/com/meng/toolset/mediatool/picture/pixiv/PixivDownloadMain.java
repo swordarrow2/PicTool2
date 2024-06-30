@@ -16,7 +16,7 @@ import com.meng.app.MainActivity;
 import com.meng.toolset.mediatool.*;
 import com.meng.tools.*;
 import com.meng.tools.MaterialDesign.*;
-import com.meng.tools.app.DataBaseHelper;
+import com.meng.tools.app.DataBaseHelperOld;
 import com.meng.tools.app.SharedPreferenceHelper;
 import com.meng.customview.MengProgressBar;
 
@@ -130,7 +130,7 @@ public class PixivDownloadMain extends BaseFragment {
                     return true;
                 }
             });
-        DataBaseHelper.searchFailedPic();
+        DataBaseHelperOld.searchFailedPic();
         //   editTextURL.addTextChangedListener(textWatcher);
         menuStar.setAnimated(true);
         menuStar.hideMenuButton(false);
@@ -164,7 +164,7 @@ public class PixivDownloadMain extends BaseFragment {
     }
 
     private void checkFailed() {
-        final ArrayList<String> failedURLs = DataBaseHelper.searchFailedPic();
+        final ArrayList<String> failedURLs = DataBaseHelperOld.searchFailedPic();
         if (failedURLs.size() > 0) {
             new android.app.AlertDialog.Builder(getActivity())
                 .setTitle("Boom")
@@ -175,7 +175,7 @@ public class PixivDownloadMain extends BaseFragment {
                         MFragmentManager.getInstance().showFragment(PixivDownloadMain.class);
                         for (String url : failedURLs) {
                             createDownloadTask(url);
-                            DataBaseHelper.deleteData(url);
+                            DataBaseHelperOld.deleteData(url);
                         }
                     }
                 }).setNeutralButton("下次提醒我", null)
@@ -183,7 +183,7 @@ public class PixivDownloadMain extends BaseFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         for (String url : failedURLs) {
-                            DataBaseHelper.deleteData(url);
+                            DataBaseHelperOld.deleteData(url);
                         }
                     }
                 }).show();
@@ -287,7 +287,7 @@ public class PixivDownloadMain extends BaseFragment {
 
     private void createDownloadTask(final String url) {
 
-        DataBaseHelper.insertData(url);
+        DataBaseHelperOld.insertData(url);
         new Thread(new Runnable() {
 
                 @Override

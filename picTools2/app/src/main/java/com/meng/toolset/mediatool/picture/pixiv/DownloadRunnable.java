@@ -7,9 +7,9 @@ import android.widget.*;
 
 import com.meng.app.FunctionSavePath;
 import com.meng.app.MainActivity;
+import com.meng.tools.app.DataBaseHelperOld;
 import com.meng.toolset.mediatool.*;
 import com.meng.tools.*;
-import com.meng.tools.app.DataBaseHelper;
 import com.meng.tools.app.SharedPreferenceHelper;
 import com.meng.customview.MengProgressBar;
 
@@ -165,7 +165,7 @@ public class DownloadRunnable implements Runnable {
             registImage(file.getAbsolutePath());
         }
         taskState = TaskState.end;
-        DataBaseHelper.deleteData(picUrl);
+        DataBaseHelperOld.deleteData(picUrl);
         downloadEnd();
     }
 
