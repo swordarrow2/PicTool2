@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/read_galleryfragment"
-        android:name="com.meng.toolset.mediatool.picture.barcode.BarcodeReaderCamera"
+        android:name="com.meng.toolset.picture.barcode.BarcodeReaderCamera"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
 

@@ -3,7 +3,7 @@ package com.meng.app;
 import android.app.*;
 
 import com.meng.toolset.mediatool.R;
-import com.meng.toolset.mediatool.picture.barcode.*;
+import com.meng.toolset.picture.barcode.*;
 import java.util.*;
 
 public class MFragmentManager {

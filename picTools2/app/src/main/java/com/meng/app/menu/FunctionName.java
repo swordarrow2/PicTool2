@@ -8,16 +8,19 @@ import com.meng.app.BaseFragment;
 import com.meng.app.MFragmentManager;
 import com.meng.app.MainActivity;
 import com.meng.app.tester.DBTester;
-import com.meng.toolset.eleTool.UsbSerialFragment;
+import com.meng.toolset.FfmpegFragment;
+import com.meng.toolset.RtmpFragment;
+import com.meng.toolset.audio.TtsFragment;
+import com.meng.toolset.audio.VitsConnectFragment;
+import com.meng.toolset.electronic.UsbSerialFragment;
 import com.meng.toolset.mediatool.*;
-import com.meng.toolset.mediatool.picture.barcode.*;
-import com.meng.toolset.mediatool.picture.*;
-import com.meng.toolset.mediatool.picture.gif.*;
-import com.meng.toolset.mediatool.picture.pixiv.*;
-import com.meng.toolset.mediatool.picture.saucenao.*;
-import com.meng.toolset.mediatool.wallpaper.*;
-import com.meng.toolset.ai.*;
-import com.meng.toolset.eleTool.calculate.*;
+import com.meng.toolset.picture.barcode.*;
+import com.meng.toolset.picture.*;
+import com.meng.toolset.picture.gif.*;
+import com.meng.toolset.picture.pixiv.*;
+import com.meng.toolset.picture.saucenao.*;
+import com.meng.toolset.wallpaper.*;
+import com.meng.toolset.electronic.calculate.*;
 
 public enum FunctionName {
 

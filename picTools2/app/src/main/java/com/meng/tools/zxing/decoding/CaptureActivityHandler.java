@@ -24,7 +24,7 @@ import android.os.*;
 import android.util.*;
 import com.google.zxing.*;
 import com.meng.toolset.mediatool.*;
-import com.meng.toolset.mediatool.picture.barcode.*;
+import com.meng.toolset.picture.barcode.*;
 import com.meng.tools.zxing.camera.*;
 import com.meng.tools.zxing.view.*;
 import java.util.*;
