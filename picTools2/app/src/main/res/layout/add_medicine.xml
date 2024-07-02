@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ran="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <com.meng.tools.MaterialDesign.MDEditText
+        android:id="@+id/add_medicine_EditText_medicine_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ran:default_value="无"
+        ran:hint="名称" />
+
+    <com.meng.tools.MaterialDesign.MDEditText
+        android:id="@+id/add_medicine_EditText_slot_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ran:default_value="无"
+        ran:hint="所在方格" />
+
+    <com.meng.tools.MaterialDesign.MDEditText
+        android:id="@+id/add_medicine_EditText_describe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ran:default_value="无"
+        ran:hint="描述" />
+
+    <Button
+        android:id="@+id/add_medicine_Button_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select_image" />
+
+    <Button
+        android:id="@+id/add_medicine_Button_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ok" />
+
+</LinearLayout>
+
