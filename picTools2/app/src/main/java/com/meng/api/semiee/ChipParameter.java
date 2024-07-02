@@ -1,6 +1,7 @@
 package com.meng.api.semiee;
 
 import com.meng.tools.*;
+
 import java.util.*;
 
 public class ChipParameter {
@@ -83,7 +84,7 @@ public class ChipParameter {
     public String toString() {
         return GSON.toJson(this);
     }
-    
+
 //       {
 //        "code":0,
 //        "result":{

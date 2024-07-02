@@ -1,10 +1,11 @@
 package com.meng.api.semiee;
 
 import com.meng.tools.*;
+
 import java.util.*;
 
 public class SearchResult {
-        
+
     public int code;
     public String remark;
     public List<Result> result;
@@ -14,7 +15,7 @@ public class SearchResult {
     public boolean isLastPage;
 
     public class Result {
-        
+
         public String id;
         public int fk_t_brand_id;
         public String model;
@@ -36,7 +37,7 @@ public class SearchResult {
         return GSON.toJson(this);
     }
 
-    
+
 //     {
 //     "code": 0,
 //     "remark": null,

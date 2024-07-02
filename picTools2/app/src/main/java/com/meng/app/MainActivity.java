@@ -1,34 +1,46 @@
 package com.meng.app;
 
-import android.*;
-import android.content.*;
-import android.content.pm.*;
-import android.content.res.*;
-import android.os.*;
-import android.support.design.widget.*;
-import android.support.v4.view.*;
-import android.support.v4.widget.*;
-import android.support.v7.app.*;
-import android.view.*;
-import android.widget.*;
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
+import android.content.res.Configuration;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Vibrator;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 
-import com.meng.toolset.mediatool.R;
-import com.meng.app.task.*;
-import com.meng.tools.*;
+import com.meng.app.menu.FunctionName;
+import com.meng.app.menu.MenuManager;
+import com.meng.app.task.BackgroundTaskAdapter;
+import com.meng.app.task.TestTask;
+import com.meng.tools.AndroidContent;
+import com.meng.tools.FileFormat;
+import com.meng.tools.FileTool;
 import com.meng.tools.app.Debuger;
 import com.meng.tools.app.ExceptionCatcher;
 import com.meng.tools.app.SharedPreferenceHelper;
 import com.meng.tools.app.SystemStatus;
-
-import android.app.AlertDialog;
-import android.support.v7.widget.Toolbar;
-
-import com.meng.app.menu.*;
+import com.meng.toolset.mediatool.R;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static MainActivity instance;
+    public static boolean isDebugMode = false;
     private DrawerLayout mDrawerLayout;
     private LinearLayout mainLinearLayout;
 
@@ -67,10 +79,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             init();
         }
         onWifi = SystemStatus.isUsingWifi();
+        isDebugMode = SharedPreferenceHelper.isDebugMode();
     }
 
     private void init() {
-        //DataBaseHelperOld.init(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mainLinearLayout = (LinearLayout) findViewById(R.id.main_linear_layout);

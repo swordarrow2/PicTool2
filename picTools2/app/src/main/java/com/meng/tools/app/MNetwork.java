@@ -7,12 +7,14 @@ package com.meng.tools.app;
 import java.io.*;
 import java.net.*;
 import java.util.*;
+
 import org.jsoup.*;
 
 public class MNetwork {
 
     public static final String UA = "jvav";
-    public static String httpPost(String url, String cookie, Map<String,String> headers, Object... params) throws IOException {
+
+    public static String httpPost(String url, String cookie, Map<String, String> headers, Object... params) throws IOException {
         Connection connection = Jsoup.connect(url);
         connection.userAgent(UA);
         if (headers != null) {
@@ -22,7 +24,7 @@ public class MNetwork {
             connection.cookies(cookieToMap(cookie));
         }
         connection.ignoreContentType(true).method(Connection.Method.POST);
-        for (int i = 0;i < params.length;i += 2) {
+        for (int i = 0; i < params.length; i += 2) {
             connection.data(String.valueOf(params[i]), String.valueOf(params[i + 1]));
         }
         Connection.Response response = null;

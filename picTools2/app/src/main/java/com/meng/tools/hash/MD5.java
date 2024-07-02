@@ -1,8 +1,11 @@
 package com.meng.tools.hash;
 
-import java.io.*;
-import java.security.*;
-import java.nio.charset.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 
 public class MD5 {
 

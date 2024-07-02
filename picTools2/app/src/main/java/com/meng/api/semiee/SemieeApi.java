@@ -8,7 +8,7 @@ public class SemieeApi {
     public static final String API_SERVER = "https://www.semiee.com/bdxx-api/chip";
 
     public static SearchResult search(String keyword) {
-        return search(keyword, 0, 10);  
+        return search(keyword, 0, 10);
     }
 
     public static SearchResult search(String keyword, int index, int pageSize) {

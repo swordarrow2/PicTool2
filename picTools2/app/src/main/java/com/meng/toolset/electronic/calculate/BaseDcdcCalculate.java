@@ -47,8 +47,8 @@ public abstract class BaseDcdcCalculate extends BaseFragment {
     public abstract void init();
 
 
-    public final SjfEditText addEditText(String hint) {
-        SjfEditText et = new SjfEditText(getActivity());
+    public final MengEditText addEditText(String hint) {
+        MengEditText et = new MengEditText(getActivity());
         et.setHint(hint);
         TextView tv = new TextView(getActivity());
         tv.setText("\n" + hint);

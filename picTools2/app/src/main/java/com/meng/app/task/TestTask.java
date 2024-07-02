@@ -13,16 +13,16 @@ public class TestTask extends BackgroundTask {
     @Override
     public void run() {
         setMaxProgress(40);
-        for (int i=0;i <= 40;i++) {
+        for (int i = 0; i <= 40; i++) {
             final int ii = i;
-            MainActivity.instance.runOnUiThread(new Runnable(){
+            MainActivity.instance.runOnUiThread(new Runnable() {
 
-                    @Override
-                    public void run() {
-                        setProgressText(ii + "G/40G");
-                        setProgress(ii);            
-                    }
-                });
+                @Override
+                public void run() {
+                    setProgressText(ii + "G/40G");
+                    setProgress(ii);
+                }
+            });
             try {
                 Thread.sleep(300);
             } catch (InterruptedException e) {

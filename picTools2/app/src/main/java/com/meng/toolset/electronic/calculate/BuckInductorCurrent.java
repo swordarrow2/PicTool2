@@ -10,12 +10,12 @@ import java.util.Locale;
 
 public class BuckInductorCurrent extends BaseDcdcCalculate implements OnClickListener {
 
-    private SjfEditText svi;
-    private SjfEditText svo;
-    private SjfEditText svd;
-    private SjfEditText sio;
-    private SjfEditText sf;
-    private SjfEditText sl;
+    private MengEditText svi;
+    private MengEditText svo;
+    private MengEditText svd;
+    private MengEditText sio;
+    private MengEditText sf;
+    private MengEditText sl;
 
     public void init() {
         setTitle("电感电流计算");

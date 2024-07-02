@@ -160,7 +160,7 @@ public class SharedPreferenceHelper {
         return sp.getBoolean("deleteZipAfterMakeGif", false);
     }
 
-    
+
     public static void setShowGroupName(boolean b) {
         putBoolean("show_group_name", b);
     }
@@ -168,7 +168,6 @@ public class SharedPreferenceHelper {
     public static boolean isShowGroupName() {
         return sp.getBoolean("show_group_name", false);
     }
-
 
 
     public static String getRtmpAddr() {
@@ -196,8 +195,6 @@ public class SharedPreferenceHelper {
      return sp.getBoolean("",false);
      }
      */
-
-
 
 
     private static void putBoolean(String key, Boolean value) {

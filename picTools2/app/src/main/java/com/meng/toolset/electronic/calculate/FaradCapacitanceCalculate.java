@@ -9,10 +9,10 @@ import com.meng.customview.*;
 import java.util.Locale;
 
 public class FaradCapacitanceCalculate extends BaseDcdcCalculate implements OnClickListener {
-    private SjfEditText si;
-    private SjfEditText st;
-    private SjfEditText sv0;
-    private SjfEditText sv1;
+    private MengEditText si;
+    private MengEditText st;
+    private MengEditText sv0;
+    private MengEditText sv1;
 
     public void init() {
         setTitle("法拉电容容量估算");

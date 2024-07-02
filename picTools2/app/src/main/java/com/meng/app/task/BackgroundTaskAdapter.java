@@ -3,7 +3,9 @@ package com.meng.app.task;
 import android.app.*;
 import android.view.*;
 import android.widget.*;
+
 import com.meng.toolset.mediatool.*;
+
 import java.util.*;
 
 import com.meng.tools.app.ThreadPool;
@@ -96,12 +98,12 @@ public class BackgroundTaskAdapter extends BaseAdapter {
         holder.tvProgress.setText(mpb.getProgressText());
         return convertView;
     }
-    
+
     private class ViewHolder {
         private TextView tvTitle;
         private TextView tvStatus;
         private TextView tvProgress;
-        private ProgressBar progressBar;   
+        private ProgressBar progressBar;
     }
 
 }

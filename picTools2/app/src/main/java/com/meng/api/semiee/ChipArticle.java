@@ -1,6 +1,7 @@
 package com.meng.api.semiee;
 
 import com.meng.tools.*;
+
 import java.util.*;
 
 public class ChipArticle {
@@ -59,7 +60,7 @@ public class ChipArticle {
         public Object childModels;
         public Object sampleApplyNum;
         public Object contactWayNum;
-        
+
         public class UseFile {
             public int id;
             public String name;
@@ -73,7 +74,7 @@ public class ChipArticle {
     public String toString() {
         return GSON.toJson(this);
     }
-    
+
 //   {
 //        "code":0,
 //        "result":{

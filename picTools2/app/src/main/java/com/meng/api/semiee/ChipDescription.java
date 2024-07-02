@@ -7,7 +7,7 @@ public class ChipDescription {
     public int code;
     public Object remark;
     public Result result;
-    
+
     public class Result {
 
         public String id;
@@ -66,7 +66,7 @@ public class ChipDescription {
             public String path;
             public String file_type;
             public String file_size;
-        } 
+        }
     }
 
     @Override

@@ -43,17 +43,16 @@ public abstract class DataBaseHelper {
 //            + ID + " text)";
     private SQLiteOpenHelper sqLiteOpenHelper;
 
-    public abstract SQLiteOpenHelper initSQLiteOpenHelper(Context context);
+    abstract SQLiteOpenHelper initSQLiteOpenHelper(Context context);
 
     public void init(Context context) {
         if (sqLiteOpenHelper != null) {
             throw new IllegalStateException("dbHelper has already init.");
         }
         sqLiteOpenHelper = initSQLiteOpenHelper(context);
-
     }
 
-    public final SQLiteOpenHelper getSQLiteOpenHelper() {
+    final SQLiteOpenHelper getSQLiteOpenHelper() {
         return sqLiteOpenHelper;
     }
 
@@ -70,24 +69,24 @@ public abstract class DataBaseHelper {
 //    }
 
     //插入一条数据
-    public long insertData(String tableName, ContentValues values) {
+   public long insertData(String tableName, ContentValues values) {
         SQLiteDatabase db = sqLiteOpenHelper.getWritableDatabase();
         return db.insert(tableName, null, values);
     }
 
     //根据主键删除某条记录
-    public void deleteData(String tableName, String colName, String value) {
+    void deleteData(String tableName, String colName, String value) {
         SQLiteDatabase db = sqLiteOpenHelper.getWritableDatabase();
         db.delete(tableName, colName + "=?", new String[]{value});
     }
 
     //查询数据，返回一个Cursor
-    public Cursor query(String tableName) {
+    Cursor query(String tableName) {
         SQLiteDatabase db = sqLiteOpenHelper.getReadableDatabase();
         return db.rawQuery("select * from " + tableName, null);
     }
 
-    public ArrayList<ContentValues> getAllData(String tableName) {
+    ArrayList<ContentValues> getAllData(String tableName) {
         ArrayList<ContentValues> result = new ArrayList<>();
         SQLiteDatabase db = sqLiteOpenHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from " + tableName, null);
@@ -104,26 +103,10 @@ public abstract class DataBaseHelper {
     }
 
 
-    public long updateData(String tableName, String colName, String value, ContentValues values) {
+    long updateData(String tableName, String colName, String value, ContentValues values) {
         SQLiteDatabase db = sqLiteOpenHelper.getWritableDatabase();
         return db.update(tableName, values, colName + "=?", new String[]{value});
     }
 
-    public enum DatabaseName {
-
-        NAME_PIXIV("pixiv_record"),
-        NAME_MEDICINE("medicine_record"),
-        NAME_VOICE("voice_history");
-
-        private String name;
-
-        DatabaseName(String name) {
-            this.name = name;
-        }
-
-        public String getName() {
-            return name;
-        }
-    }
 }
 

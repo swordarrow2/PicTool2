@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import com.meng.toolset.mediatool.R;
 
 public class SjfProgressBar extends LinearLayout {
@@ -23,8 +24,8 @@ public class SjfProgressBar extends LinearLayout {
         textViewStatus = (TextView) findViewById(R.id.main_list_item_textview_statu);
         textViewProgress = (TextView) findViewById(R.id.main_list_item_textview_statu_progress_text);
         progressBar = (ProgressBar) findViewById(R.id.main_list_item_progressbar);
-    progressBar.setVisibility(View.VISIBLE);
-        }
+        progressBar.setVisibility(View.VISIBLE);
+    }
 
     public void setProgress(int progress) {
         progressBar.setProgress(progress);

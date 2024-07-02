@@ -10,11 +10,11 @@ import java.util.Locale;
 
 public class BuckInductSelect extends BaseDcdcCalculate implements OnClickListener {
 
-    private SjfEditText vi;
-    private SjfEditText vo;
-    private SjfEditText vd;
-    private SjfEditText io;
-    private SjfEditText f;
+    private MengEditText vi;
+    private MengEditText vo;
+    private MengEditText vd;
+    private MengEditText io;
+    private MengEditText f;
 
     public void init() {
         setTitle("电感值选择");

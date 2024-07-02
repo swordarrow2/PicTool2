@@ -26,7 +26,7 @@ public class MengScrollView extends ScrollView {
         return super.onInterceptTouchEvent(motionEvent);
     }
 
-    private boolean checkArea(View view,MotionEvent event){
+    private boolean checkArea(View view, MotionEvent event) {
         float x = event.getRawX();
         float y = event.getRawY();
         int[] locate = new int[2];

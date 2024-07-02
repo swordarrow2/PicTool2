@@ -4,6 +4,7 @@ import android.app.*;
 
 import com.meng.toolset.mediatool.R;
 import com.meng.toolset.picture.barcode.*;
+
 import java.util.*;
 
 public class MFragmentManager {
@@ -12,8 +13,8 @@ public class MFragmentManager {
      *@author 清梦
      *@date 2024-04-19 09:55:53
      */
-    public static final String TAG = "FragmentManager"; 
-    private HashMap<String,BaseFragment> fragments = new HashMap<>();
+    public static final String TAG = "FragmentManager";
+    private HashMap<String, BaseFragment> fragments = new HashMap<>();
     private Activity activity;
     private static MFragmentManager instance;
     private BaseFragment current;
@@ -34,21 +35,21 @@ public class MFragmentManager {
         fragments.put(BarcodeAwesome.class.getName(), frag);
         trans.add(R.id.fragment, frag);
         current = frag;
-        trans.commit();      
+        trans.commit();
     }
 
     public <T extends BaseFragment> T getFragment(Class<T> c) {
-        return (T)fragments.get(c.getName());
+        return (T) fragments.get(c.getName());
     }
 
     public SettingsPreference getSettingPreference() {
         return setting;
-    }    
+    }
 
     public <T extends BaseFragment> void showFragment(Class<T> c) {
         FragmentTransaction transaction = activity.getFragmentManager().beginTransaction();
         BaseFragment frag = fragments.get(c.getName());
-        if (frag == null) {         
+        if (frag == null) {
             try {
                 Class<?> cls = Class.forName(c.getName());
                 frag = (BaseFragment) cls.newInstance();
@@ -78,9 +79,9 @@ public class MFragmentManager {
         }
         ft.hide(setting);
         ft.commit();
-	}
+    }
 
     public BaseFragment getCurrent() {
         return current;
-    }   
+    }
 }

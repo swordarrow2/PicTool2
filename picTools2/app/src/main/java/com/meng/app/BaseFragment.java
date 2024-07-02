@@ -1,20 +1,21 @@
 package com.meng.app;
+
 import android.app.*;
 import android.content.*;
 import android.view.*;
 
-public  class BaseFragment extends Fragment {
+public class BaseFragment extends Fragment {
 
     /*
      *@author 清梦
      *@date 2024-04-19 09:45:07
      */
-    public static final String TAG = "BaseFragment";   
+    public static final String TAG = "BaseFragment";
 
-    public  String getName(){
+    public String getName() {
         return "";
     }
-    
+
     public void selectImage() {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);

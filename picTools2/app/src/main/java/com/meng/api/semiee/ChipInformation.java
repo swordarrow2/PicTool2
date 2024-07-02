@@ -1,6 +1,7 @@
 package com.meng.api.semiee;
 
 import com.meng.tools.*;
+
 import java.util.*;
 
 public class ChipInformation {
@@ -74,7 +75,7 @@ public class ChipInformation {
     public String toString() {
         return GSON.toJson(this);
     }
-    
+
 //    {
 //        "code":0,
 //        "result":{

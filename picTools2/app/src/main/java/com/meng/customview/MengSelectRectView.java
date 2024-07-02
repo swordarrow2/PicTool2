@@ -9,17 +9,17 @@ import android.view.View;
 
 import com.meng.tools.QrUtils;
 
-public class MengSelectRectView extends View{
+public class MengSelectRectView extends View {
 
-    private Bitmap imageViewBackground=null;
-    private Bitmap bmpUseRect=null;
+    private Bitmap imageViewBackground = null;
+    private Bitmap bmpUseRect = null;
     private float xishu;
     private float mLeft;
     private float mTop;
-    private boolean seted=false;
+    private boolean seted = false;
 
-    public MengSelectRectView(Context c, AttributeSet attr){
-        super(c,attr);
+    public MengSelectRectView(Context c, AttributeSet attr) {
+        super(c, attr);
     }
 
     /* public mengSelectRectView(Context context,Bitmap seleBmp,float screenW,float screenH,int qrSize){
@@ -28,59 +28,59 @@ public class MengSelectRectView extends View{
          seted=true;
      }
  */
-    public void setSize(int qrSize){
-        bmpUseRect=Bitmap.createBitmap((int)(qrSize*xishu),(int)(qrSize*xishu),Bitmap.Config.ARGB_8888);
-        Canvas c=new Canvas(bmpUseRect);
-        c.drawARGB(0x7f,0x7f,0xca,0x00);
+    public void setSize(int qrSize) {
+        bmpUseRect = Bitmap.createBitmap((int) (qrSize * xishu), (int) (qrSize * xishu), Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(bmpUseRect);
+        c.drawARGB(0x7f, 0x7f, 0xca, 0x00);
         invalidate();
     }
 
-    public void setup(Bitmap seleBmp,float screenW,float screenH,int qrSize){
-        float bmpW=seleBmp.getWidth();
-        float bmpH=seleBmp.getHeight();
-        xishu=Math.min(screenH/bmpH,screenW/bmpW);
-        imageViewBackground=QrUtils.scaleBitmap(seleBmp,xishu);
-        bmpUseRect=Bitmap.createBitmap((int)(qrSize*xishu),(int)(qrSize*xishu),Bitmap.Config.ARGB_8888);
-        Canvas c=new Canvas(bmpUseRect);
-        c.drawARGB(0x7f,0x7f,0xca,0x00);
-        seted=true;
+    public void setup(Bitmap seleBmp, float screenW, float screenH, int qrSize) {
+        float bmpW = seleBmp.getWidth();
+        float bmpH = seleBmp.getHeight();
+        xishu = Math.min(screenH / bmpH, screenW / bmpW);
+        imageViewBackground = QrUtils.scaleBitmap(seleBmp, xishu);
+        bmpUseRect = Bitmap.createBitmap((int) (qrSize * xishu), (int) (qrSize * xishu), Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(bmpUseRect);
+        c.drawARGB(0x7f, 0x7f, 0xca, 0x00);
+        seted = true;
     }
 
     @Override
-    protected void onDraw(Canvas canvas){
+    protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if(!seted) return;
-        canvas.drawBitmap(imageViewBackground,0,0,null); // 绘制背景图像
-        canvas.drawBitmap(bmpUseRect,mLeft,mTop,null); // 绘制选择框
+        if (!seted) return;
+        canvas.drawBitmap(imageViewBackground, 0, 0, null); // 绘制背景图像
+        canvas.drawBitmap(bmpUseRect, mLeft, mTop, null); // 绘制选择框
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event){
-        if(!seted) return true;
-        int x=(int)event.getX();
-        int y=(int)event.getY();
-        mLeft=between(x-bmpUseRect.getWidth()/2,0,imageViewBackground.getWidth()-bmpUseRect.getWidth());
-        mTop=between(y-bmpUseRect.getHeight()/2,0,imageViewBackground.getHeight()-bmpUseRect.getHeight());
+    public boolean onTouchEvent(MotionEvent event) {
+        if (!seted) return true;
+        int x = (int) event.getX();
+        int y = (int) event.getY();
+        mLeft = between(x - bmpUseRect.getWidth() / 2, 0, imageViewBackground.getWidth() - bmpUseRect.getWidth());
+        mTop = between(y - bmpUseRect.getHeight() / 2, 0, imageViewBackground.getHeight() - bmpUseRect.getHeight());
         //tv.setText("x:"+(mLeft/xishu)+"  y:"+(mTop/xishu));
         invalidate(); // 重绘画布
         return true;
     }
 
-    private int between(float a,int min,int max){
-        if(a<min) a=min;
-        if(a>max) a=max;
-        return (int)a;
+    private int between(float a, int min, int max) {
+        if (a < min) a = min;
+        if (a > max) a = max;
+        return (int) a;
     }
 
-    public float getSelectLeft(){
+    public float getSelectLeft() {
         return mLeft;
     }
 
-    public float getSelectTop(){
+    public float getSelectTop() {
         return mTop;
     }
 
-    public float getXishu(){
+    public float getXishu() {
         return xishu;
     }
 }

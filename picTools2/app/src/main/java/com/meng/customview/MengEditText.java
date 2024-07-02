@@ -4,27 +4,27 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.EditText;
 
-public class SjfEditText extends EditText {
+public class MengEditText extends EditText {
 
     /*
      *@author 清梦
      *@date 2024-04-19 19:47:49
      */
     public static final String TAG = "SjfEditText";
-    
-    public SjfEditText(Context context) {
+
+    public MengEditText(Context context) {
         super(context);
     }
 
-    public SjfEditText(Context context, AttributeSet attrs) {
+    public MengEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public SjfEditText(Context context, AttributeSet attrs, int defStyleAttr) {
+    public MengEditText(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-    public SjfEditText(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public MengEditText(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
 
     }

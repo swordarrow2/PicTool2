@@ -1,5 +1,6 @@
 package com.meng.app.tester;
 
+import android.content.ContentValues;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.meng.app.BaseFragment;
+import com.meng.tools.app.database.BoxDataBase;
 import com.meng.tools.app.database.DataBaseHelper;
 import com.meng.tools.app.database.PixivDataBase;
 import com.meng.toolset.mediatool.R;
@@ -36,13 +38,15 @@ public class DBTester extends BaseFragment {
         //  DataBaseHelperOld.insertData(String.valueOf(1234567));
         //textView.setText(DataBaseHelperOld.searchFailedPic().toString());
         final PixivDataBase pdb = DataBaseHelper.getInstance(PixivDataBase.class);
-//        dataBaseHelper.init(getActivity(), DataBaseHelper.DatabaseName.NAME_PIXIV, "record", "_id", new LinkedHashMap<String, String>() {
-//            {
-//                put("_pid", "text");
-//            }
-//        });
+
         pdb.init(getActivity());
 
+        BoxDataBase dataBase = DataBaseHelper.getInstance(BoxDataBase.class);
+        dataBase.init(getActivity());
+        ContentValues cv = new ContentValues();
+        cv.put("_time", 1111111);
+        cv.put("_action", "some");
+        dataBase.insertData("_op_log", cv);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

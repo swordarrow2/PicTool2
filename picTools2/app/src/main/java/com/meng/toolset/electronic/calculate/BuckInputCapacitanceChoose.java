@@ -10,13 +10,13 @@ import java.util.Locale;
 
 public class BuckInputCapacitanceChoose extends BaseDcdcCalculate implements OnClickListener {
 
-    private SjfEditText svi;
-    private SjfEditText svo;
-    private SjfEditText svd;
-    private SjfEditText sio;
-    private SjfEditText sdeltaV;
-    private SjfEditText sf;
-    private SjfEditText sl;
+    private MengEditText svi;
+    private MengEditText svo;
+    private MengEditText svd;
+    private MengEditText sio;
+    private MengEditText sdeltaV;
+    private MengEditText sf;
+    private MengEditText sl;
 
     public void init() {
         setTitle("输入滤波电容选择");

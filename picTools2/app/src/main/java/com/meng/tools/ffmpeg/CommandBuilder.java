@@ -90,11 +90,11 @@ public class CommandBuilder {
         builder.append(" -vcodec ").append(coder);
         return this;
     }
+
     public CommandBuilder vf_scale(int width, int height) {
         builder.append(" -vf scale=").append(width).append(":").append(height);
         return this;
     }
-
 
 
 //        -ab bitrate 设置音频码率
@@ -139,6 +139,6 @@ public class CommandBuilder {
 
 
     public enum Target {
-        vcd,svcd,dvd
-        }
+        vcd, svcd, dvd
+    }
 }

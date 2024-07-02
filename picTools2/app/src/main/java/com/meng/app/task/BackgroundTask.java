@@ -1,4 +1,5 @@
 package com.meng.app.task;
+
 import com.meng.app.MainActivity;
 
 public abstract class BackgroundTask implements Runnable {
@@ -50,39 +51,39 @@ public abstract class BackgroundTask implements Runnable {
         return progressText;
     }
 
-    public BackgroundTask addProgress(int progress) {        
+    public BackgroundTask addProgress(int progress) {
         return setProgress(getProgress() + progress);
     }
 
     public BackgroundTask setProgress(final int progress) {
         this.progress = progress;
-        MainActivity.instance.runOnUiThread(new Runnable(){
+        MainActivity.instance.runOnUiThread(new Runnable() {
 
-                @Override
-                public void run() {
-                    if (progress >= maxProgress) {
-                        BackgroundTaskAdapter.getInstance().remove(BackgroundTask.this);
-                    }                  
-                    BackgroundTaskAdapter.getInstance().notifyDataSetChanged();
+            @Override
+            public void run() {
+                if (progress >= maxProgress) {
+                    BackgroundTaskAdapter.getInstance().remove(BackgroundTask.this);
                 }
-            });
+                BackgroundTaskAdapter.getInstance().notifyDataSetChanged();
+            }
+        });
         return this;
     }
 
     public int getProgress() {
         return progress;
-    } 
+    }
 
     @Override
     public abstract void run();
 
     public void start() {
-        MainActivity.instance.runOnUiThread(new Runnable(){
+        MainActivity.instance.runOnUiThread(new Runnable() {
 
-                @Override
-                public void run() {
-                    BackgroundTaskAdapter.getInstance().addTask(BackgroundTask.this);
-                }
-            });
+            @Override
+            public void run() {
+                BackgroundTaskAdapter.getInstance().addTask(BackgroundTask.this);
+            }
+        });
     }
 }
