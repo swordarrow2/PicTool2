@@ -55,5 +55,8 @@
     <string name="flashlight">flashlight</string>
     <string name="back_tasks">后台任务</string>
     <string name="no_support_tts">本设备不支持TTS</string>
+    <string name="ok">确定</string>
+    <string name="name">名称:</string>
+    <string name="at_slot">所在位置:</string>
 
 </resources>

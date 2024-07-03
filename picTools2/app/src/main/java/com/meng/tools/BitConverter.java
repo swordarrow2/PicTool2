@@ -6,14 +6,14 @@ public abstract class BitConverter {
     private static BitConverterLE leInstance = null;
     private static BitConverterBE beInstance = null;
 
-    public static BitConverterLE getInstanceLittleEndian() {
+    public static BitConverter getInstanceLittleEndian() {
         if (leInstance == null) {
             leInstance = new BitConverterLE();
         }
         return leInstance;
     }
 
-    public static BitConverterBE getInstanceBigEndian() {
+    public static BitConverter getInstanceBigEndian() {
         if (beInstance == null) {
             beInstance = new BitConverterBE();
         }

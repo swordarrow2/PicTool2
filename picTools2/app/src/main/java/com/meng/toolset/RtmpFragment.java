@@ -1,25 +1,27 @@
 package com.meng.toolset;
 
-import android.app.*;
-import android.content.*;
-import android.os.*;
-import android.view.*;
-import android.widget.*;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.meng.app.BaseFragment;
 import com.meng.app.Constant;
 import com.meng.app.MainActivity;
-import com.meng.tools.*;
+import com.meng.app.task.FFmpegBackTask;
+import com.meng.tools.AndroidContent;
 import com.meng.tools.app.ExceptionCatcher;
 import com.meng.tools.app.SharedPreferenceHelper;
-import com.meng.tools.ffmpeg.*;
-
-import java.io.*;
-
-import java.lang.Process;
-
-import com.meng.app.task.*;
+import com.meng.tools.ffmpeg.FFmpeg;
 import com.meng.toolset.mediatool.R;
+
+import java.io.File;
+import java.io.IOException;
 
 public class RtmpFragment extends BaseFragment {
 
@@ -96,7 +98,7 @@ public class RtmpFragment extends BaseFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == Constant.SELECT_FILE_REQUEST_CODE && data.getData() != null) {
-                fileToPush = new File(Tools.ContentHelper.absolutePathFromUri(getActivity().getApplicationContext(), data.getData()));
+                fileToPush = new File(AndroidContent.absolutePathFromUri(getActivity().getApplicationContext(), data.getData()));
                 btnSelectFile.setText(String.format("已选择%s", fileToPush.getName()));
             }
         } else if (resultCode == Activity.RESULT_CANCELED) {

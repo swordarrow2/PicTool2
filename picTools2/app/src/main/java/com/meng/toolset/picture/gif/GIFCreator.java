@@ -1,26 +1,36 @@
 package com.meng.toolset.picture.gif;
 
-import android.app.*;
-import android.content.*;
-import android.graphics.*;
-import android.net.*;
-import android.os.*;
-import android.view.*;
-import android.widget.*;
-import android.widget.AdapterView.*;
+import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.EditText;
+import android.widget.ListView;
 
 import com.meng.app.BaseFragment;
 import com.meng.app.FunctionSavePath;
 import com.meng.app.MainActivity;
-import com.meng.toolset.mediatool.*;
-import com.meng.tools.*;
-import com.meng.tools.MaterialDesign.*;
+import com.meng.tools.AnimatedGifEncoder;
+import com.meng.tools.FileTool;
+import com.meng.tools.MaterialDesign.FloatingButton;
+import com.meng.tools.MaterialDesign.MDEditText;
 import com.meng.tools.app.ThreadPool;
+import com.meng.toolset.mediatool.R;
 
-import java.io.*;
-import java.util.*;
-
-import android.support.v7.app.AlertDialog;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
 
 public class GIFCreator extends BaseFragment {
 
@@ -137,7 +147,7 @@ public class GIFCreator extends BaseFragment {
                         public void run() {
                             try {
                                 fabEncode.setMax(selectedImages.size());
-                                File outputFile = FileTool.getAppFile(FunctionSavePath.awesomeQR, FileFormat.FileType.gif_89a);
+                                File outputFile = FileTool.getAppFile(FunctionSavePath.awesomeQR, FileTool.FileType.gif_89a);
                                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override

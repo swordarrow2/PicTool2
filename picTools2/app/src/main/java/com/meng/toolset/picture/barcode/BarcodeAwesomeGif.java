@@ -121,7 +121,7 @@ public class BarcodeAwesomeGif extends BaseFragment {
                         localAnimatedGifEncoder.addFrame(encodeAwesome(gifDecoder.getNextFrame()));
                     }
                     localAnimatedGifEncoder.finish();
-                    File outputFile = FileTool.getAppFile(FunctionSavePath.awesomeQR, FileFormat.FileType.gif_89a);
+                    File outputFile = FileTool.getAppFile(FunctionSavePath.awesomeQR, FileTool.FileType.gif_89a);
                     FileOutputStream fos = new FileOutputStream(outputFile);
                     baos.writeTo(fos);
                     baos.flush();
@@ -185,7 +185,7 @@ public class BarcodeAwesomeGif extends BaseFragment {
                 if (coding) {
                     MainActivity.instance.showToast("正在执行操作");
                 } else {
-                    strSelectedGifPath = Tools.ContentHelper.absolutePathFromUri(getActivity().getApplicationContext(), data.getData());
+                    strSelectedGifPath = AndroidContent.absolutePathFromUri(getActivity().getApplicationContext(), data.getData());
                     tvImagePath.setText(strSelectedGifPath);
                 }
             } catch (Exception e) {

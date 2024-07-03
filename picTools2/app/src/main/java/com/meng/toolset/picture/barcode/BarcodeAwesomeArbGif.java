@@ -1,32 +1,48 @@
 package com.meng.toolset.picture.barcode;
 
-import android.app.*;
-import android.content.*;
-import android.graphics.*;
-import android.net.*;
-import android.os.*;
-import android.util.*;
-import android.view.*;
-import android.widget.*;
+import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.util.DisplayMetrics;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.ProgressBar;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.meng.app.BaseFragment;
 import com.meng.app.Constant;
 import com.meng.app.FunctionSavePath;
 import com.meng.app.MainActivity;
-import com.meng.toolset.mediatool.*;
-import com.meng.tools.*;
-import com.meng.tools.MaterialDesign.*;
-
-import java.io.*;
-import java.text.*;
-
-import android.support.v7.app.AlertDialog;
-
-import com.meng.app.task.*;
+import com.meng.app.task.BackgroundTask;
 import com.meng.customview.MengColorBar;
 import com.meng.customview.MengScrollView;
 import com.meng.customview.MengSeekBar;
 import com.meng.customview.MengSelectRectView;
+import com.meng.tools.AndroidContent;
+import com.meng.tools.AnimatedGifDecoder;
+import com.meng.tools.AnimatedGifEncoder;
+import com.meng.tools.FileTool;
+import com.meng.tools.MaterialDesign.MDEditText;
+import com.meng.tools.QrUtils;
+import com.meng.toolset.mediatool.R;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.text.MessageFormat;
 
 public class BarcodeAwesomeArbGif extends BaseFragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
@@ -135,7 +151,7 @@ public class BarcodeAwesomeArbGif extends BaseFragment implements View.OnClickLi
 
                     localAnimatedGifEncoder.finish();
                     setProgress(100);
-                    File outputFile = FileTool.getAppFile(FunctionSavePath.awesomeQR, FileFormat.FileType.gif_89a);
+                    File outputFile = FileTool.getAppFile(FunctionSavePath.awesomeQR, FileTool.FileType.gif_89a);
                     FileOutputStream fos = new FileOutputStream(outputFile);
                     baos.writeTo(fos);
                     baos.flush();
@@ -199,7 +215,7 @@ public class BarcodeAwesomeArbGif extends BaseFragment implements View.OnClickLi
         if (requestCode == Constant.SELECT_FILE_REQUEST_CODE && resultCode == Activity.RESULT_OK && data.getData() != null) {
             try {
                 Uri imageUri = data.getData();
-                strSelectedGifPath = Tools.ContentHelper.absolutePathFromUri(getActivity().getApplicationContext(), imageUri);
+                strSelectedGifPath = AndroidContent.absolutePathFromUri(getActivity().getApplicationContext(), imageUri);
                 tvImagePath.setText(strSelectedGifPath);
                 final Bitmap selectedBmp = BitmapFactory.decodeFile(strSelectedGifPath);
                 final int selectedBmpWidth = selectedBmp.getWidth();

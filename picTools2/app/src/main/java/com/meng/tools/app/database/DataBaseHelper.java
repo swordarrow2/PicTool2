@@ -30,22 +30,11 @@ public abstract class DataBaseHelper {
         return (T) helper;
     }
 
-
-    //表名
-//    private final String TABLE_NAME = "record";//"failedPic";
-//    //表的主键
-//    private final String KEY_ID = "_id";
-//    private final String ID = "pixivId";
-    //创建一个表的sql语句
-//    private final String sql = "create table "
-//            + TABLE_NAME + "( " + KEY_ID
-//            + " integer primary key autoincrement,"
-//            + ID + " text)";
     private SQLiteOpenHelper sqLiteOpenHelper;
 
     abstract SQLiteOpenHelper initSQLiteOpenHelper(Context context);
 
-    public void init(Context context) {
+    public final void init(Context context) {
         if (sqLiteOpenHelper != null) {
             throw new IllegalStateException("dbHelper has already init.");
         }
@@ -56,37 +45,25 @@ public abstract class DataBaseHelper {
         return sqLiteOpenHelper;
     }
 
-//    public ArrayList<String> searchFailedPic() {
-//        ArrayList<String> arrayList = new ArrayList<>();
-//        SQLiteDatabase db = sqLiteOpenHelper.getReadableDatabase();
-//        Cursor cursor = db.rawQuery("select * from " + tableName, null);
-//        for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-//            arrayList.add(cursor.getString(1));
-//        }
-//        cursor.close();
-//        db.close();
-//        return arrayList;
-//    }
-
     //插入一条数据
-   public long insertData(String tableName, ContentValues values) {
+    public long insertData(String tableName, ContentValues values) {
         SQLiteDatabase db = sqLiteOpenHelper.getWritableDatabase();
         return db.insert(tableName, null, values);
     }
 
     //根据主键删除某条记录
-    void deleteData(String tableName, String colName, String value) {
+    public void deleteData(String tableName, String colName, String value) {
         SQLiteDatabase db = sqLiteOpenHelper.getWritableDatabase();
         db.delete(tableName, colName + "=?", new String[]{value});
     }
 
     //查询数据，返回一个Cursor
-    Cursor query(String tableName) {
+    public Cursor query(String tableName) {
         SQLiteDatabase db = sqLiteOpenHelper.getReadableDatabase();
         return db.rawQuery("select * from " + tableName, null);
     }
 
-    ArrayList<ContentValues> getAllData(String tableName) {
+    public ArrayList<ContentValues> getAllData(String tableName) {
         ArrayList<ContentValues> result = new ArrayList<>();
         SQLiteDatabase db = sqLiteOpenHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from " + tableName, null);

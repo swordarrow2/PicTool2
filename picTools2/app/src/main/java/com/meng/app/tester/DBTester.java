@@ -47,6 +47,17 @@ public class DBTester extends BaseFragment {
         cv.put("_time", 1111111);
         cv.put("_action", "some");
         dataBase.insertData("_op_log", cv);
+
+
+        ContentValues cv2 = new ContentValues();
+        cv2.put("_thing_id", 1111111);
+        cv2.put("_name", "some");
+        cv2.put("_describe", 1111111);
+        cv2.put("_slot_id", "some");
+        cv2.put("_picture_file", new byte[]{'9', '9', '6', '1'});
+        dataBase.insertData("_data_main", cv2);
+
+
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

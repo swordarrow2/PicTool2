@@ -23,23 +23,22 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.meng.app.BaseFragment;
+import com.meng.app.Constant;
 import com.meng.app.FunctionSavePath;
 import com.meng.app.MainActivity;
-import com.meng.toolset.mediatool.R;
-import com.meng.app.Constant;
-import com.meng.tools.FileFormat;
-import com.meng.tools.FileTool;
-import com.meng.tools.MaterialDesign.MDEditText;
-import com.meng.tools.MathUtils;
-import com.meng.tools.QrUtils;
-import com.meng.tools.Tools;
 import com.meng.customview.MengColorBar;
 import com.meng.customview.MengScrollView;
 import com.meng.customview.MengSeekBar;
 import com.meng.customview.MengSelectRectView;
+import com.meng.tools.AndroidContent;
+import com.meng.tools.FileTool;
+import com.meng.tools.MaterialDesign.MDEditText;
+import com.meng.tools.MathUtils;
+import com.meng.tools.QrUtils;
+import com.meng.toolset.mediatool.R;
 
 import java.io.File;
-import java.io.*;
+import java.io.IOException;
 
 public class BarcodeAwesomeArb extends BaseFragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
@@ -115,7 +114,7 @@ public class BarcodeAwesomeArb extends BaseFragment implements View.OnClickListe
             case R.id.awesomeqr_mainButton_save:
                 String s = null;
                 try {
-                    s = FileTool.saveToFile(FileTool.getAppFile(FunctionSavePath.awesomeQR, FileFormat.FileType.png), finallyBmp);
+                    s = FileTool.saveToFile(FileTool.getAppFile(FunctionSavePath.awesomeQR, FileTool.FileType.png), finallyBmp);
                 } catch (IOException e) {
                     
                 }
@@ -145,7 +144,7 @@ public class BarcodeAwesomeArb extends BaseFragment implements View.OnClickListe
         if (requestCode == Constant.SELECT_FILE_REQUEST_CODE && resultCode == Activity.RESULT_OK && data.getData() != null) {
             imgPathTextView.setVisibility(View.VISIBLE);
             Uri uri = data.getData();
-            selectedBmpPath = Tools.ContentHelper.absolutePathFromUri(getActivity().getApplicationContext(), uri);
+            selectedBmpPath = AndroidContent.absolutePathFromUri(getActivity().getApplicationContext(), uri);
             imgPathTextView.setText(String.format("当前文件：%s", selectedBmpPath));
             final Bitmap selectedBmp = BitmapFactory.decodeFile(selectedBmpPath);
             selectedBmpWidth = selectedBmp.getWidth();

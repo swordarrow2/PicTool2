@@ -142,7 +142,7 @@ public class DownloadRunnable implements Runnable {
                     ze = zis.getNextEntry();
                 }
                 localAnimatedGifEncoder.finish();
-                File outputFile = FileTool.getAppFile(FunctionSavePath.awesomeQR, FileFormat.FileType.gif_89a);
+                File outputFile = FileTool.getAppFile(FunctionSavePath.awesomeQR, FileTool.FileType.gif_89a);
                 FileOutputStream fos = new FileOutputStream(outputFile);
                 baos.writeTo(fos);
                 baos.flush();

@@ -111,7 +111,7 @@ public class BarcodeAwesome extends BaseFragment implements View.OnClickListener
                 break;
             case R.id.awesomeqr_mainButton_save:
                 try {
-                    String s = FileTool.saveToFile(FileTool.getAppFile(FunctionSavePath.awesomeQR, FileFormat.FileType.png), bmpQRcode);
+                    String s = FileTool.saveToFile(FileTool.getAppFile(FunctionSavePath.awesomeQR, FileTool.FileType.png), bmpQRcode);
                     MainActivity.instance.showToast("已保存至" + s);
                     getActivity().getApplicationContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(s))));//更新图库
                 } catch (IOException e) {
@@ -131,7 +131,7 @@ public class BarcodeAwesome extends BaseFragment implements View.OnClickListener
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == Constant.SELECT_FILE_REQUEST_CODE && data.getData() != null) {
                 imgPathTextView.setVisibility(View.VISIBLE);
-                String path = Tools.ContentHelper.absolutePathFromUri(getActivity().getApplicationContext(), data.getData());
+                String path = AndroidContent.absolutePathFromUri(getActivity().getApplicationContext(), data.getData());
                 imgPathTextView.setText(String.format("当前图片：%s", path));
                 if (cbCrop.isChecked()) {
                     Intent in = new Intent(getActivity(), CropActivity.class);

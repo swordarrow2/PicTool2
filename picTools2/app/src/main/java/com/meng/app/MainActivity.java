@@ -28,12 +28,13 @@ import com.meng.app.menu.MenuManager;
 import com.meng.app.task.BackgroundTaskAdapter;
 import com.meng.app.task.TestTask;
 import com.meng.tools.AndroidContent;
-import com.meng.tools.FileFormat;
 import com.meng.tools.FileTool;
 import com.meng.tools.app.Debuger;
 import com.meng.tools.app.ExceptionCatcher;
 import com.meng.tools.app.SharedPreferenceHelper;
 import com.meng.tools.app.SystemStatus;
+import com.meng.tools.app.database.DataBaseHelper;
+import com.meng.tools.app.database.MedicineDataBase;
 import com.meng.toolset.mediatool.R;
 
 
@@ -69,9 +70,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(com.meng.toolset.mediatool.R.layout.main_activity);
         instance = this;
-        FileFormat.init();
-        BackgroundTaskAdapter.getInstance().init(this);
-        FileTool.init(this);
         ExceptionCatcher.getInstance().init(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 321);
@@ -104,6 +102,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MFragmentManager.getInstance().showFragment(Welcome.class);
         navigationView.getHeaderView(0).setVisibility(SharedPreferenceHelper.isShowSJF() ? View.VISIBLE : View.GONE);
         Debuger.initLogFile();
+        DataBaseHelper.getInstance(MedicineDataBase.class).init(this);
+        BackgroundTaskAdapter.getInstance().init(this);
+        FileTool.init(this);
     }
 
     @Override

@@ -1,23 +1,33 @@
 package com.meng.toolset.picture;
 
-import android.app.*;
-import android.content.*;
-import android.graphics.*;
-import android.net.*;
-import android.os.*;
-import android.view.*;
-import android.widget.*;
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.meng.app.BaseFragment;
 import com.meng.app.Constant;
 import com.meng.app.FunctionSavePath;
 import com.meng.app.MainActivity;
-import com.meng.toolset.mediatool.*;
-import com.meng.tools.*;
+import com.meng.app.task.BackgroundTask;
+import com.meng.tools.AndroidContent;
+import com.meng.tools.AnimatedGifDecoder;
+import com.meng.tools.AnimatedGifEncoder;
+import com.meng.tools.FileTool;
+import com.meng.toolset.mediatool.R;
 
-import java.io.*;
-
-import com.meng.app.task.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class GrayImage extends BaseFragment implements View.OnClickListener {
 
@@ -63,7 +73,7 @@ public class GrayImage extends BaseFragment implements View.OnClickListener {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == Constant.SELECT_FILE_REQUEST_CODE && data.getData() != null) {
-                path = Tools.ContentHelper.absolutePathFromUri(getActivity().getApplicationContext(), data.getData());
+                path = AndroidContent.absolutePathFromUri(getActivity().getApplicationContext(), data.getData());
                 imageView.setImageBitmap(BitmapFactory.decodeFile(path));
             }
         } else if (resultCode == Activity.RESULT_CANCELED) {
@@ -74,8 +84,8 @@ public class GrayImage extends BaseFragment implements View.OnClickListener {
 
     private void generate(final String path) throws IOException {
         MainActivity.instance.showToast("开始转换");
-        final FileFormat.FileType type = FileFormat.getFileType(new File(path)).describe;
-        if (type == FileFormat.FileType.gif_87a || type == FileFormat.FileType.gif_89a) {
+        final FileTool.FileType type = FileTool.getFileType(new File(path)).describe;
+        if (type == FileTool.FileType.gif_87a || type == FileTool.FileType.gif_89a) {
 
             new BackgroundTask() {
 
@@ -102,7 +112,7 @@ public class GrayImage extends BaseFragment implements View.OnClickListener {
                             setProgress(i);
                         }
                         localAnimatedGifEncoder.finish();
-                        File outputFile = FileTool.getAppFile(FunctionSavePath.awesomeQR, FileFormat.FileType.gif_89a);
+                        File outputFile = FileTool.getAppFile(FunctionSavePath.awesomeQR, FileTool.FileType.gif_89a);
                         FileOutputStream fos = new FileOutputStream(outputFile);
                         baos.writeTo(fos);
                         baos.flush();
@@ -120,7 +130,7 @@ public class GrayImage extends BaseFragment implements View.OnClickListener {
             BitmapFactory.Options bo = new BitmapFactory.Options();
             bo.inMutable = true;
             final Bitmap grayBitmap = encode(BitmapFactory.decodeFile(path, bo));
-            String s = FileTool.saveToFile(FileTool.getAppFile(FunctionSavePath.gray8picture, FileFormat.FileType.png), grayBitmap);
+            String s = FileTool.saveToFile(FileTool.getAppFile(FunctionSavePath.gray8picture, FileTool.FileType.png), grayBitmap);
             MainActivity.instance.showToast("已保存至" + s);
             getActivity().getApplicationContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(s))));
             MainActivity.instance.runOnUiThread(new Runnable() {

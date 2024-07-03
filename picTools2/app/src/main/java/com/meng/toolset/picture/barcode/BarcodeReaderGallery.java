@@ -70,7 +70,7 @@ public class BarcodeReaderGallery extends BaseFragment implements View.OnClickLi
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK && data != null && requestCode == Constant.SELECT_FILE_REQUEST_CODE) {
             Uri inputUri = data.getData();
-            String path = Tools.ContentHelper.absolutePathFromUri(getActivity(), inputUri);
+            String path = AndroidContent.absolutePathFromUri(getActivity(), inputUri);
             if (!TextUtils.isEmpty(path)) {
                 Result result = QrUtils.decodeImage(path);
                 if (result != null) {

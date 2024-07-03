@@ -34,7 +34,7 @@ public class MengProgressBar extends LinearLayout {
         String extendName = picUrl.substring(picUrl.lastIndexOf(".") + 1, picUrl.length()).toLowerCase();
         String fileName = picUrl.substring(picUrl.lastIndexOf("/") + 1, picUrl.lastIndexOf("."));
         if (extendName.equalsIgnoreCase("zip")) {
-            fileAbsolutePath = FileTool.getAppFile(FunctionSavePath.pixivZIP, fileName, FileFormat.FileType.zip).getAbsolutePath();
+            fileAbsolutePath = FileTool.getAppFile(FunctionSavePath.pixivZIP, fileName, FileTool.FileType.zip).getAbsolutePath();
         } else if (pictureInfoJavaBean.staticPicJavaBean.body.size() > 1) {
 
             fileAbsolutePath = FileTool.getAppFile(FunctionSavePath.pixivDynamic, pictureInfoJavaBean.id + "/" + fileName, extendName).getAbsolutePath();

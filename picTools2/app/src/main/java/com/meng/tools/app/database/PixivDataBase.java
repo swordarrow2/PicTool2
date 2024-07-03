@@ -28,7 +28,7 @@ public class PixivDataBase extends DataBaseHelper {
         return new SQLiteOpenHelper(context, Environment.getExternalStorageDirectory() + "/" + DATABASE_NAME + ".db", null, DATABASE_VERSION) {
             @Override
             public void onCreate(SQLiteDatabase db) {
-                db.execSQL("create table " + TABLE_NAME + "( _id integer primary key autoincrement , _op varchar(200),_time long)");
+                db.execSQL("create table if not exists " + TABLE_NAME + "( _id integer primary key autoincrement , _op varchar(200),_time long)");
             }
 
             @Override

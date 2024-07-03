@@ -109,7 +109,7 @@ public class BarcodeNormal extends BaseFragment {
                 case R.id.qr_ButtonSave:
                     String s = null;
                     try {
-                        s = FileTool.saveToFile(FileTool.getAppFile(FunctionSavePath.barcode, FileFormat.FileType.png), bmpQRcode);
+                        s = FileTool.saveToFile(FileTool.getAppFile(FunctionSavePath.barcode, FileTool.FileType.png), bmpQRcode);
                     } catch (IOException e) {
                         
                     }
@@ -161,7 +161,7 @@ public class BarcodeNormal extends BaseFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == Constant.SELECT_FILE_REQUEST_CODE && data.getData() != null) {
-                String path = Tools.ContentHelper.absolutePathFromUri(getActivity().getApplicationContext(), data.getData());
+                String path = AndroidContent.absolutePathFromUri(getActivity().getApplicationContext(), data.getData());
                 tvImgPath.setText(String.format("当前图片：%s", path));
                 if (cbCrop.isChecked()) {
                     Intent in = new Intent(getActivity(), CropActivity.class);

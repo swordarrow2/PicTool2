@@ -1,30 +1,39 @@
 package com.meng.toolset.audio;
 
-import android.app.*;
-import android.content.*;
-import android.net.*;
-import android.os.*;
-import android.view.*;
-import android.view.View.*;
-import android.widget.*;
+import android.app.DownloadManager;
+import android.content.Context;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
 
 import com.meng.app.BaseFragment;
 import com.meng.app.FunctionSavePath;
 import com.meng.app.MainActivity;
+import com.meng.app.task.BackgroundTask;
+import com.meng.customview.MengSeekBar;
+import com.meng.tools.FileTool;
+import com.meng.tools.GSON;
+import com.meng.tools.MaterialDesign.MDEditText;
 import com.meng.tools.app.MNetwork;
-import com.meng.toolset.mediatool.*;
-import com.meng.tools.*;
-import com.meng.tools.MaterialDesign.*;
 import com.meng.tools.app.ThreadPool;
 import com.meng.tools.hash.MD5;
+import com.meng.toolset.mediatool.R;
 
-import java.io.*;
-import java.net.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Locale;
-
-import com.meng.app.task.*;
-import com.meng.customview.MengSeekBar;
 
 public class VitsConnectFragment extends BaseFragment implements OnClickListener {
 
@@ -147,7 +156,7 @@ public class VitsConnectFragment extends BaseFragment implements OnClickListener
                         }
                     }
                     String fname = String.format(Locale.CHINA, "VITS - %s - %d - %s", id, System.currentTimeMillis(), MD5.getMd5().calculate(content));
-                    File savedVoice = FileTool.getAppFile(FunctionSavePath.TtsVoice, fname, FileFormat.FileType.wav);
+                    File savedVoice = FileTool.getAppFile(FunctionSavePath.TtsVoice, fname, FileTool.FileType.wav);
                     try (FileOutputStream output = new FileOutputStream(savedVoice)) {
                         try (InputStream input = connection.getInputStream()) {
                             setProgress(0);

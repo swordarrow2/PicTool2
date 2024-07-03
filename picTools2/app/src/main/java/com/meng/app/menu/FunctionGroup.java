@@ -8,6 +8,8 @@ public enum FunctionGroup {
      */
 
     GROUP_DEVELOPING("正在开发"),
+
+    GROUP_BOX_ARRAY("物品存放盒"),
     GROUP_PICTURE("图片处理"),
     GROUP_VIDEO("视频"),
     GROUP_AUDIO("声音"),

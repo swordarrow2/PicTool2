@@ -18,8 +18,8 @@ import com.meng.app.MFragmentManager;
 import com.meng.app.MainActivity;
 import com.meng.app.Welcome;
 import com.meng.app.task.FFmpegBackTask;
+import com.meng.tools.AndroidContent;
 import com.meng.tools.MaterialDesign.MDEditText;
-import com.meng.tools.Tools;
 import com.meng.tools.ffmpeg.CommandBuilder;
 import com.meng.tools.ffmpeg.FFmpeg;
 import com.meng.toolset.mediatool.R;
@@ -84,7 +84,7 @@ public class FfmpegFragment extends BaseFragment implements View.OnClickListener
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == Constant.SELECT_FILE_REQUEST_CODE && data.getData() != null) {
-                selectFile = new File(Tools.ContentHelper.absolutePathFromUri(getActivity().getApplicationContext(), data.getData()));    
+                selectFile = new File(AndroidContent.absolutePathFromUri(getActivity().getApplicationContext(), data.getData()));
                 ivThumb.setImageBitmap(ThumbnailUtils.createVideoThumbnail(selectFile.getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND));
                 btnStart.setEnabled(true);
 

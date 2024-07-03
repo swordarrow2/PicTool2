@@ -29,7 +29,7 @@ public class DebugDataBase extends DataBaseHelper {
         return new SQLiteOpenHelper(context, Environment.getExternalStorageDirectory() + "/" + DATABASE_NAME + ".db", null, DATABASE_VERSION) {
             @Override
             public void onCreate(SQLiteDatabase db) {
-                db.execSQL("create table " + TABLE_NAME + "( _id integer primary key autoincrement , _time long, _op varchar(512))");
+                db.execSQL("create table if not exists " + TABLE_NAME + "( _id integer primary key autoincrement , _time long, _op varchar(512))");
             }
 
             @Override

@@ -1,26 +1,34 @@
 package com.meng.toolset.picture;
 
-import android.*;
+import android.Manifest;
 import android.app.Activity;
-import android.content.*;
-import android.content.pm.*;
-import android.graphics.*;
-import android.net.*;
-import android.os.*;
-import android.text.*;
-import android.view.*;
-import android.widget.*;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RadioButton;
 
 import com.meng.app.BaseFragment;
 import com.meng.app.Constant;
 import com.meng.app.FunctionSavePath;
 import com.meng.app.MainActivity;
-import com.meng.tools.*;
-
-import java.io.*;
-
-import com.meng.toolset.mediatool.R;
+import com.meng.tools.AndroidContent;
+import com.meng.tools.FileTool;
+import com.meng.tools.QrUtils;
 import com.meng.tools.app.ThreadPool;
+import com.meng.toolset.mediatool.R;
+
+import java.io.File;
+import java.io.IOException;
 
 public class PictureCrypt extends BaseFragment implements View.OnClickListener {
     private final int REQUEST_PERMISSION_PHOTO = 1001;
@@ -53,7 +61,7 @@ public class PictureCrypt extends BaseFragment implements View.OnClickListener {
             openGallery();
         } else if (p1.getId() == R.id.picture_cryptButton_save) {
             try {
-                String s = FileTool.saveToFile(FileTool.getAppFile(FunctionSavePath.bus, FileFormat.FileType.png), cryptBitmap);
+                String s = FileTool.saveToFile(FileTool.getAppFile(FunctionSavePath.bus, FileTool.FileType.png), cryptBitmap);
                 getActivity().getApplicationContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(s))));
             } catch (IOException e) {}           
         }
@@ -87,7 +95,7 @@ public class PictureCrypt extends BaseFragment implements View.OnClickListener {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK && data != null && requestCode == Constant.SELECT_FILE_REQUEST_CODE) {
             Uri inputUri = data.getData();
-            String path = Tools.ContentHelper.absolutePathFromUri(getActivity(), inputUri);
+            String path = AndroidContent.absolutePathFromUri(getActivity(), inputUri);
             if (!TextUtils.isEmpty(path)) {
                 createBitmap(path);
             } else {

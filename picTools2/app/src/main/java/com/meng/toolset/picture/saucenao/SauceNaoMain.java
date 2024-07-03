@@ -1,25 +1,37 @@
 package com.meng.toolset.picture.saucenao;
 
-import android.app.*;
-import android.content.*;
-import android.net.*;
-import android.os.*;
-import android.support.annotation.*;
-import android.view.*;
-import android.view.animation.*;
-import android.widget.*;
-import android.widget.AdapterView.*;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.meng.app.BaseFragment;
 import com.meng.app.Constant;
 import com.meng.app.MFragmentManager;
 import com.meng.app.MainActivity;
-import com.meng.toolset.mediatool.*;
-import com.meng.toolset.picture.pixiv.*;
-import com.meng.tools.*;
-import com.meng.tools.MaterialDesign.*;
-import java.io.*;
-import org.jsoup.*;
+import com.meng.tools.AndroidContent;
+import com.meng.tools.MaterialDesign.FloatingButton;
+import com.meng.toolset.mediatool.R;
+import com.meng.toolset.picture.pixiv.PixivDownloadMain;
+
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+
+import java.io.FileInputStream;
 
 public class SauceNaoMain extends BaseFragment {
     private FloatingButton mFabSelect;
@@ -130,7 +142,7 @@ public class SauceNaoMain extends BaseFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data != null && resultCode == Activity.RESULT_OK) {
             //      if (requestCode == MainActivity.instence.SELECT_FILE_REQUEST_CODE) {
-            //  String path = Tools.ContentHelper.absolutePathFromUri(getActivity().getApplicationContext(),
+            //  String path = AndroidContent.absolutePathFromUri(getActivity().getApplicationContext(),
             //        cropPhoto(data.getData());
             //	  } else
             if (requestCode == Constant.SELECT_FILE_REQUEST_CODE) {
@@ -143,7 +155,7 @@ public class SauceNaoMain extends BaseFragment {
 				 running = false;
 				 }
 				 */
-                uploadBmpAbsPath = Tools.ContentHelper.absolutePathFromUri(getActivity(), data.getData());//= Environment.getExternalStorageDirectory().getAbsolutePath() + "/Pictures/picTool/search_tmp.png";
+                uploadBmpAbsPath = AndroidContent.absolutePathFromUri(getActivity(), data.getData());//= Environment.getExternalStorageDirectory().getAbsolutePath() + "/Pictures/picTool/search_tmp.png";
 				/*	File f = new File(uploadBmpAbsPath);
 				 try {
 				 f.createNewFile();

@@ -54,7 +54,7 @@ public class WallpaperMain extends BaseFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK && data.getData() != null) {
             if (requestCode == Constant.SELECT_FILE_REQUEST_CODE) {
-                final String path = Tools.ContentHelper.absolutePathFromUri(getActivity(), data.getData());
+                final String path = AndroidContent.absolutePathFromUri(getActivity(), data.getData());
                 if (path == null) {
                     MainActivity.instance.showToast("选择视频出错");
                     return;
