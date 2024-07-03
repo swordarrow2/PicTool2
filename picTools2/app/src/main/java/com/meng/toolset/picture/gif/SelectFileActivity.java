@@ -1,5 +1,6 @@
 package com.meng.toolset.picture.gif;
 
+import android.app.AlertDialog;
 import android.content.*;
 import android.content.res.*;
 import android.graphics.*;
@@ -9,18 +10,16 @@ import android.support.design.widget.*;
 import android.support.v4.view.*;
 import android.support.v4.widget.*;
 import android.support.v7.app.*;
+import android.support.v7.widget.Toolbar;
 import android.view.*;
 import android.widget.*;
 
-import com.meng.app.MFragmentManager;
+import com.meng.app.*;
+import com.meng.tools.app.*;
 import com.meng.toolset.mediatool.*;
-import com.meng.tools.app.SharedPreferenceHelper;
 
 import java.io.*;
 import java.util.*;
-
-import android.app.AlertDialog;
-import android.support.v7.widget.Toolbar;
 
 public class SelectFileActivity extends AppCompatActivity {
 

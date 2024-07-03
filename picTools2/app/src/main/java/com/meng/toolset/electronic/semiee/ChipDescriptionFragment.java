@@ -3,9 +3,11 @@ package com.meng.toolset.electronic.semiee;
 import android.os.*;
 import android.view.*;
 import android.widget.*;
+
 import com.meng.api.semiee.*;
-import com.meng.app.BaseFragment;
+import com.meng.app.*;
 import com.meng.tools.*;
+
 import java.io.*;
 import java.nio.charset.*;
 

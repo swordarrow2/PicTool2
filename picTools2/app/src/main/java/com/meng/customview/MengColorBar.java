@@ -1,21 +1,14 @@
 package com.meng.customview;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.graphics.Color;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.AttributeSet;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.app.*;
+import android.content.*;
+import android.graphics.*;
+import android.text.*;
+import android.util.*;
+import android.view.*;
+import android.widget.*;
 
-import com.meng.toolset.mediatool.R;
+import com.meng.toolset.mediatool.*;
 
 public class MengColorBar extends LinearLayout {
 

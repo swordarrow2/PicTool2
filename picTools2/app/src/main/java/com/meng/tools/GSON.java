@@ -1,6 +1,7 @@
 package com.meng.tools;
 
 import com.google.gson.*;
+
 import java.lang.reflect.*;
 
 public class GSON {

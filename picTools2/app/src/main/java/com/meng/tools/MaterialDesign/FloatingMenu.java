@@ -10,11 +10,12 @@ import android.text.*;
 import android.util.*;
 import android.view.*;
 import android.view.animation.*;
-import android.widget.*;
-import com.meng.toolset.mediatool.*;
-import java.util.*;
-
 import android.view.animation.Interpolator;
+import android.widget.*;
+
+import com.meng.toolset.mediatool.*;
+
+import java.util.*;
 
 public class FloatingMenu extends ViewGroup {
 

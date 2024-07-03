@@ -7,7 +7,7 @@ import android.os.*;
 import android.provider.*;
 import android.webkit.*;
 
-import com.meng.app.MainActivity;
+import com.meng.app.*;
 
 import java.io.*;
 

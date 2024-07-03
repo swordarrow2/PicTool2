@@ -1,20 +1,12 @@
 package com.meng.tools;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Matrix;
-import android.graphics.Paint;
+import android.graphics.*;
 
-import com.google.zxing.EncodeHintType;
-import com.google.zxing.WriterException;
-import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-import com.google.zxing.qrcode.encoder.ByteMatrix;
-import com.google.zxing.qrcode.encoder.Encoder;
-import com.google.zxing.qrcode.encoder.QRCode;
+import com.google.zxing.*;
+import com.google.zxing.qrcode.decoder.*;
+import com.google.zxing.qrcode.encoder.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class AwesomeQRCode {
     /**

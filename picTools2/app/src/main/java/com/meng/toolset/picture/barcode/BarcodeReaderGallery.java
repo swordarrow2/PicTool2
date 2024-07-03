@@ -9,12 +9,9 @@ import android.view.*;
 import android.widget.*;
 
 import com.google.zxing.*;
-import com.meng.app.BaseFragment;
-import com.meng.app.Constant;
-import com.meng.app.MFragmentManager;
-import com.meng.app.MainActivity;
-import com.meng.toolset.mediatool.*;
+import com.meng.app.*;
 import com.meng.tools.*;
+import com.meng.toolset.mediatool.*;
 
 public class BarcodeReaderGallery extends BaseFragment implements View.OnClickListener {
     private Button btnCreateAwesomeQR;

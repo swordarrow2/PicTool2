@@ -1,13 +1,11 @@
 package com.meng.customview;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.util.AttributeSet;
-import android.view.MotionEvent;
-import android.view.View;
+import android.content.*;
+import android.graphics.*;
+import android.util.*;
+import android.view.*;
 
-import com.meng.tools.QrUtils;
+import com.meng.tools.*;
 
 public class MengSelectRectView extends View {
 

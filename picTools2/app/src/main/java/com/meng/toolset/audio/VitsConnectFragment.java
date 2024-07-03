@@ -1,39 +1,25 @@
 package com.meng.toolset.audio;
 
-import android.app.DownloadManager;
-import android.content.Context;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Environment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Spinner;
+import android.app.*;
+import android.content.*;
+import android.net.*;
+import android.os.*;
+import android.view.*;
+import android.view.View.*;
+import android.widget.*;
 
-import com.meng.app.BaseFragment;
-import com.meng.app.FunctionSavePath;
-import com.meng.app.MainActivity;
-import com.meng.app.task.BackgroundTask;
-import com.meng.customview.MengSeekBar;
-import com.meng.tools.FileTool;
-import com.meng.tools.GSON;
-import com.meng.tools.MaterialDesign.MDEditText;
-import com.meng.tools.app.MNetwork;
-import com.meng.tools.app.ThreadPool;
-import com.meng.tools.hash.MD5;
-import com.meng.toolset.mediatool.R;
+import com.meng.app.*;
+import com.meng.app.task.*;
+import com.meng.customview.*;
+import com.meng.tools.*;
+import com.meng.tools.MaterialDesign.*;
+import com.meng.tools.app.*;
+import com.meng.tools.hash.*;
+import com.meng.toolset.mediatool.*;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.List;
-import java.util.Locale;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
 public class VitsConnectFragment extends BaseFragment implements OnClickListener {
 

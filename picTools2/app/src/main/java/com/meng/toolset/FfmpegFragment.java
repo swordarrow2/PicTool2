@@ -1,31 +1,21 @@
 package com.meng.toolset;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.media.ThumbnailUtils;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.app.*;
+import android.content.*;
+import android.media.*;
+import android.os.*;
+import android.provider.*;
+import android.view.*;
+import android.widget.*;
 
-import com.meng.app.BaseFragment;
-import com.meng.app.Constant;
-import com.meng.app.MFragmentManager;
-import com.meng.app.MainActivity;
-import com.meng.app.Welcome;
-import com.meng.app.task.FFmpegBackTask;
-import com.meng.tools.AndroidContent;
-import com.meng.tools.MaterialDesign.MDEditText;
-import com.meng.tools.ffmpeg.CommandBuilder;
-import com.meng.tools.ffmpeg.FFmpeg;
-import com.meng.toolset.mediatool.R;
+import com.meng.app.*;
+import com.meng.app.task.*;
+import com.meng.tools.*;
+import com.meng.tools.MaterialDesign.*;
+import com.meng.tools.ffmpeg.*;
+import com.meng.toolset.mediatool.*;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public class FfmpegFragment extends BaseFragment implements View.OnClickListener {
 

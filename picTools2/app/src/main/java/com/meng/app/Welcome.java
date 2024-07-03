@@ -4,7 +4,7 @@ import android.os.*;
 import android.view.*;
 import android.widget.*;
 
-import com.meng.toolset.mediatool.R;
+import com.meng.toolset.mediatool.*;
 
 public class Welcome extends BaseFragment {
 

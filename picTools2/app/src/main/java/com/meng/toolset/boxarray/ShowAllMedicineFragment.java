@@ -1,40 +1,22 @@
 package com.meng.toolset.boxarray;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.ThumbnailUtils;
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.app.*;
+import android.content.*;
+import android.graphics.*;
+import android.media.*;
+import android.os.*;
+import android.view.*;
+import android.view.animation.*;
+import android.widget.*;
 
-import com.meng.app.BaseFragment;
-import com.meng.app.Constant;
-import com.meng.app.MainActivity;
-import com.meng.tools.AndroidContent;
-import com.meng.tools.FileTool;
-import com.meng.tools.MaterialDesign.FloatingButton;
-import com.meng.tools.MaterialDesign.FloatingMenu;
-import com.meng.tools.MaterialDesign.MDEditText;
-import com.meng.tools.app.database.DataBaseHelper;
-import com.meng.tools.app.database.MedicineDataBase;
-import com.meng.toolset.mediatool.R;
+import com.meng.app.*;
+import com.meng.tools.*;
+import com.meng.tools.MaterialDesign.*;
+import com.meng.tools.app.database.*;
+import com.meng.toolset.mediatool.*;
 
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.List;
-import java.util.WeakHashMap;
+import java.io.*;
+import java.util.*;
 
 public class ShowAllMedicineFragment extends BaseFragment {
 

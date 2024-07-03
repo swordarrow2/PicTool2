@@ -1,7 +1,7 @@
 package com.meng.api.semiee;
 
 import com.meng.tools.*;
-import com.meng.tools.app.MNetwork;
+import com.meng.tools.app.*;
 
 public class SemieeApi {
 

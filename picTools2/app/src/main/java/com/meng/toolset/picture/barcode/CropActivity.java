@@ -5,7 +5,9 @@ import android.content.*;
 import android.graphics.*;
 import android.os.*;
 import android.view.*;
+
 import com.meng.toolset.mediatool.*;
+
 import java.io.*;
 
 public class CropActivity extends Activity {

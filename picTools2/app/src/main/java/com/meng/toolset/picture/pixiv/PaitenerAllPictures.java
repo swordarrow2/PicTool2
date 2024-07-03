@@ -1,6 +1,7 @@
 package com.meng.toolset.picture.pixiv;
 
 import com.google.gson.annotations.*;
+
 import java.util.*;
 
 public class PaitenerAllPictures {

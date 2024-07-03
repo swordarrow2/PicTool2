@@ -1,33 +1,19 @@
 package com.meng.toolset.picture;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.app.*;
+import android.content.*;
+import android.graphics.*;
+import android.net.*;
+import android.os.*;
+import android.view.*;
+import android.widget.*;
 
-import com.meng.app.BaseFragment;
-import com.meng.app.Constant;
-import com.meng.app.FunctionSavePath;
-import com.meng.app.MainActivity;
-import com.meng.app.task.BackgroundTask;
-import com.meng.tools.AndroidContent;
-import com.meng.tools.AnimatedGifDecoder;
-import com.meng.tools.AnimatedGifEncoder;
-import com.meng.tools.FileTool;
-import com.meng.toolset.mediatool.R;
+import com.meng.app.*;
+import com.meng.app.task.*;
+import com.meng.tools.*;
+import com.meng.toolset.mediatool.*;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 public class GrayImage extends BaseFragment implements View.OnClickListener {
 

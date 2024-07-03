@@ -3,8 +3,9 @@ package com.meng.toolset.picture.pixiv;
 import android.app.*;
 import android.os.*;
 import android.webkit.*;
+
+import com.meng.tools.app.*;
 import com.meng.toolset.mediatool.*;
-import com.meng.tools.app.SharedPreferenceHelper;
 
 public class LoginPixivActivity extends Activity {
 

@@ -8,7 +8,7 @@ import android.service.wallpaper.*;
 import android.text.*;
 import android.view.*;
 
-import com.meng.app.Constant;
+import com.meng.app.*;
 
 import java.io.*;
 

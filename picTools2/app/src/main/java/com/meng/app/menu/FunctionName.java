@@ -1,41 +1,23 @@
 package com.meng.app.menu;
 
-import android.app.AlertDialog;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.app.*;
+import android.view.*;
+import android.widget.*;
 
-import com.meng.app.BaseFragment;
-import com.meng.app.MFragmentManager;
-import com.meng.app.MainActivity;
-import com.meng.app.tester.DBTester;
-import com.meng.toolset.FfmpegFragment;
-import com.meng.toolset.RtmpFragment;
-import com.meng.toolset.audio.TtsFragment;
-import com.meng.toolset.audio.VitsConnectFragment;
-import com.meng.toolset.boxarray.ShowAllMedicineFragment;
-import com.meng.toolset.electronic.UsbSerialFragment;
-import com.meng.toolset.electronic.calculate.BuckInductSelect;
-import com.meng.toolset.electronic.calculate.BuckInductorCurrent;
-import com.meng.toolset.electronic.calculate.BuckInputCapacitanceChoose;
-import com.meng.toolset.electronic.calculate.BuckOutputCapacitanceChoose;
-import com.meng.toolset.electronic.calculate.DcdcBoostCalculateFragment;
-import com.meng.toolset.electronic.calculate.FaradCapacitanceCalculate;
-import com.meng.toolset.electronic.calculate.SearchSemieeFragment;
-import com.meng.toolset.mediatool.R;
-import com.meng.toolset.picture.GrayImage;
-import com.meng.toolset.picture.PictureCrypt;
-import com.meng.toolset.picture.barcode.BarcodeAwesome;
-import com.meng.toolset.picture.barcode.BarcodeAwesomeArb;
-import com.meng.toolset.picture.barcode.BarcodeAwesomeArbGif;
-import com.meng.toolset.picture.barcode.BarcodeAwesomeGif;
-import com.meng.toolset.picture.barcode.BarcodeNormal;
-import com.meng.toolset.picture.barcode.BarcodeReaderGallery;
-import com.meng.toolset.picture.gif.GIFCreator;
-import com.meng.toolset.picture.pixiv.PixivDownloadMain;
-import com.meng.toolset.picture.saucenao.SauceNaoMain;
-import com.meng.toolset.wallpaper.WallpaperMain;
+import com.meng.app.*;
+import com.meng.app.tester.*;
+import com.meng.toolset.*;
+import com.meng.toolset.audio.*;
+import com.meng.toolset.boxarray.*;
+import com.meng.toolset.electronic.*;
+import com.meng.toolset.electronic.calculate.*;
+import com.meng.toolset.mediatool.*;
+import com.meng.toolset.picture.*;
+import com.meng.toolset.picture.barcode.*;
+import com.meng.toolset.picture.gif.*;
+import com.meng.toolset.picture.pixiv.*;
+import com.meng.toolset.picture.saucenao.*;
+import com.meng.toolset.wallpaper.*;
 
 public enum FunctionName {
 

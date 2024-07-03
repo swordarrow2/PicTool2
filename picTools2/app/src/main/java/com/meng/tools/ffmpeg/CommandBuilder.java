@@ -1,8 +1,8 @@
 package com.meng.tools.ffmpeg;
 
-import com.meng.app.MainActivity;
+import com.meng.app.*;
 
-import java.io.File;
+import java.io.*;
 
 public class CommandBuilder {
 

@@ -1,13 +1,10 @@
 package com.meng.tools.app;
 
-import android.os.Environment;
+import android.os.*;
 
-import com.meng.app.MainActivity;
+import com.meng.app.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
+import java.io.*;
 
 /**
  * Created by SJF on 2024/6/29.

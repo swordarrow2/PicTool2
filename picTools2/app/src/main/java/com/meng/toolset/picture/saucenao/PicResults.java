@@ -1,10 +1,9 @@
 package com.meng.toolset.picture.saucenao;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import org.jsoup.nodes.*;
+import org.jsoup.select.*;
+
+import java.util.*;
 
 public class PicResults {
 

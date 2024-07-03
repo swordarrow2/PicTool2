@@ -5,9 +5,9 @@ import android.view.*;
 import android.view.View.*;
 import android.widget.*;
 
-import com.meng.app.BaseFragment;
-import com.meng.toolset.mediatool.*;
+import com.meng.app.*;
 import com.meng.customview.*;
+import com.meng.toolset.mediatool.*;
 
 public abstract class BaseDcdcCalculate extends BaseFragment {
 

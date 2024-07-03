@@ -1,6 +1,6 @@
 package com.meng.toolset.picture.gif;
 
-import android.graphics.Bitmap;
+import android.graphics.*;
 
 public class GIFFrame {
     public Bitmap thumb;

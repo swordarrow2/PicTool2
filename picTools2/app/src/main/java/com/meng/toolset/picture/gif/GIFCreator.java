@@ -1,36 +1,23 @@
 package com.meng.toolset.picture.gif;
 
-import android.app.Activity;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Handler;
+import android.app.*;
+import android.content.*;
+import android.graphics.*;
+import android.net.*;
+import android.os.*;
 import android.support.v7.app.AlertDialog;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.EditText;
-import android.widget.ListView;
+import android.view.*;
+import android.widget.*;
+import android.widget.AdapterView.*;
 
-import com.meng.app.BaseFragment;
-import com.meng.app.FunctionSavePath;
-import com.meng.app.MainActivity;
-import com.meng.tools.AnimatedGifEncoder;
-import com.meng.tools.FileTool;
-import com.meng.tools.MaterialDesign.FloatingButton;
-import com.meng.tools.MaterialDesign.MDEditText;
-import com.meng.tools.app.ThreadPool;
-import com.meng.toolset.mediatool.R;
+import com.meng.app.*;
+import com.meng.tools.*;
+import com.meng.tools.MaterialDesign.*;
+import com.meng.tools.app.*;
+import com.meng.toolset.mediatool.*;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.ArrayList;
+import java.io.*;
+import java.util.*;
 
 public class GIFCreator extends BaseFragment {
 

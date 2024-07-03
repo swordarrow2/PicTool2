@@ -4,12 +4,11 @@ import android.os.*;
 import android.view.*;
 import android.widget.*;
 
-import com.meng.app.BaseFragment;
-import com.meng.app.MainActivity;
-import com.meng.tools.MaterialDesign.MDEditText;
+import com.meng.app.*;
+import com.meng.tools.MaterialDesign.*;
 import com.meng.toolset.mediatool.*;
 
-import java.util.Locale;
+import java.util.*;
 
 public class DcdcBoostCalculateFragment extends BaseFragment implements View.OnClickListener {
 

@@ -8,14 +8,10 @@ import android.view.*;
 import android.view.View.*;
 import android.widget.*;
 
-import com.meng.app.BaseFragment;
-import com.meng.app.Constant;
-import com.meng.app.MFragmentManager;
-import com.meng.app.MainActivity;
-import com.meng.app.Welcome;
-import com.meng.toolset.mediatool.*;
+import com.meng.app.*;
+import com.meng.customview.*;
 import com.meng.tools.MaterialDesign.*;
-import com.meng.customview.MengSeekBar;
+import com.meng.toolset.mediatool.*;
 
 import java.text.*;
 import java.util.*;

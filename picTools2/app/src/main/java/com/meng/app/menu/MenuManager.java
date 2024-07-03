@@ -1,12 +1,11 @@
 package com.meng.app.menu;
 
-import java.util.*;
-
 import android.view.*;
 
+import com.meng.tools.app.*;
 import com.meng.toolset.mediatool.*;
 
-import com.meng.tools.app.SharedPreferenceHelper;
+import java.util.*;
 
 public class MenuManager {
 

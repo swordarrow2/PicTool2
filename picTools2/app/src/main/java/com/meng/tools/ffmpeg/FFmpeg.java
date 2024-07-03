@@ -1,12 +1,11 @@
 package com.meng.tools.ffmpeg;
 
-import android.content.Context;
+import android.content.*;
 
-import com.meng.app.MainActivity;
-import com.meng.tools.FileTool;
+import com.meng.app.*;
+import com.meng.tools.*;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public class FFmpeg {
 

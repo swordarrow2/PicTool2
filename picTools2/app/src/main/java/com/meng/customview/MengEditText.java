@@ -1,8 +1,8 @@
 package com.meng.customview;
 
-import android.content.Context;
-import android.util.AttributeSet;
-import android.widget.EditText;
+import android.content.*;
+import android.util.*;
+import android.widget.*;
 
 public class MengEditText extends EditText {
 

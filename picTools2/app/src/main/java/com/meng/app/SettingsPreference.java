@@ -3,7 +3,7 @@ package com.meng.app;
 import android.os.*;
 import android.preference.*;
 
-import com.meng.toolset.mediatool.R;
+import com.meng.toolset.mediatool.*;
 
 public class SettingsPreference extends PreferenceFragment {
 

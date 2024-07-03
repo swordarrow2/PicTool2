@@ -1,12 +1,12 @@
 package com.meng.tools.app;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
+import android.content.*;
+import android.net.*;
 
-import com.meng.app.MainActivity;
+import com.meng.app.*;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.text.*;
+import java.util.*;
 
 /**
  * Created by SJF on 2024/6/29.

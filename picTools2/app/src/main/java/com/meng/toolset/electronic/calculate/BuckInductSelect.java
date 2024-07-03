@@ -3,10 +3,10 @@ package com.meng.toolset.electronic.calculate;
 import android.view.*;
 import android.view.View.*;
 
-import com.meng.app.MainActivity;
+import com.meng.app.*;
 import com.meng.customview.*;
 
-import java.util.Locale;
+import java.util.*;
 
 public class BuckInductSelect extends BaseDcdcCalculate implements OnClickListener {
 

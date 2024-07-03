@@ -1,10 +1,9 @@
 package com.meng.customview;
 
-import android.content.Context;
-import android.util.AttributeSet;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.ScrollView;
+import android.content.*;
+import android.util.*;
+import android.view.*;
+import android.widget.*;
 
 public class MengScrollView extends ScrollView {
 

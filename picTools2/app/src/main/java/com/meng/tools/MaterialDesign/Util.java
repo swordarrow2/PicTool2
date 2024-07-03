@@ -1,7 +1,7 @@
 package com.meng.tools.MaterialDesign;
 
-import android.content.Context;
-import android.os.Build;
+import android.content.*;
+import android.os.*;
 
 final class Util {
 

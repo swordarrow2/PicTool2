@@ -18,16 +18,13 @@ import android.view.SurfaceHolder.*;
 import android.widget.*;
 
 import com.google.zxing.*;
-import com.meng.app.BaseFragment;
-import com.meng.app.MFragmentManager;
-import com.meng.app.MainActivity;
+import com.meng.app.*;
 import com.meng.tools.zxing.camera.*;
 import com.meng.tools.zxing.decoding.*;
 import com.meng.tools.zxing.view.*;
+import com.meng.toolset.mediatool.R;
 
 import java.util.*;
-
-import com.meng.toolset.mediatool.R;
 
 public class BarcodeReaderCamera extends BaseFragment implements Callback {
 

@@ -1,44 +1,23 @@
 package com.meng.toolset.picture.barcode;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.net.Uri;
-import android.os.Bundle;
+import android.*;
+import android.app.*;
+import android.content.*;
+import android.graphics.*;
+import android.net.*;
+import android.os.*;
 import android.support.v7.app.AlertDialog;
-import android.util.DisplayMetrics;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
-import android.widget.SeekBar;
-import android.widget.TextView;
+import android.util.*;
+import android.view.*;
+import android.widget.*;
 
-import com.meng.app.BaseFragment;
-import com.meng.app.Constant;
-import com.meng.app.FunctionSavePath;
-import com.meng.app.MainActivity;
-import com.meng.customview.MengColorBar;
-import com.meng.customview.MengScrollView;
-import com.meng.customview.MengSeekBar;
-import com.meng.customview.MengSelectRectView;
-import com.meng.tools.AndroidContent;
-import com.meng.tools.FileTool;
-import com.meng.tools.MaterialDesign.MDEditText;
-import com.meng.tools.MathUtils;
-import com.meng.tools.QrUtils;
+import com.meng.app.*;
+import com.meng.customview.*;
+import com.meng.tools.*;
+import com.meng.tools.MaterialDesign.*;
 import com.meng.toolset.mediatool.R;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public class BarcodeAwesomeArb extends BaseFragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 

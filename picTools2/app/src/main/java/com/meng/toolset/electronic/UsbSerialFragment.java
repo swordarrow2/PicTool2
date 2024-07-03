@@ -7,12 +7,12 @@ import android.view.*;
 import android.widget.*;
 
 import com.hoho.android.usbserial.driver.*;
-import com.meng.app.BaseFragment;
-import com.meng.toolset.mediatool.*;
+import com.meng.app.*;
 import com.meng.tools.MaterialDesign.*;
+import com.meng.toolset.mediatool.*;
 
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
 public class UsbSerialFragment extends BaseFragment {
 

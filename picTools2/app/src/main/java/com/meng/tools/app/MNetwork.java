@@ -4,11 +4,11 @@ package com.meng.tools.app;
  * @author 司徒灵羽
  */
 
+import org.jsoup.*;
+
 import java.io.*;
 import java.net.*;
 import java.util.*;
-
-import org.jsoup.*;
 
 public class MNetwork {
 

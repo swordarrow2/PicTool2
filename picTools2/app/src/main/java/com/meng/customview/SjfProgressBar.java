@@ -1,13 +1,10 @@
 package com.meng.customview;
 
-import android.app.Activity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.app.*;
+import android.view.*;
+import android.widget.*;
 
-import com.meng.toolset.mediatool.R;
+import com.meng.toolset.mediatool.*;
 
 public class SjfProgressBar extends LinearLayout {
     public Activity context;

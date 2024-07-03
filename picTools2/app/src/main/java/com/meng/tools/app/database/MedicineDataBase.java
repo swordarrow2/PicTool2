@@ -1,18 +1,15 @@
 package com.meng.tools.app.database;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Environment;
+import android.content.*;
+import android.database.*;
+import android.database.sqlite.*;
+import android.graphics.*;
+import android.os.*;
 
-import com.meng.app.MainActivity;
+import com.meng.app.*;
 
-import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
+import java.io.*;
+import java.util.*;
 
 public class MedicineDataBase extends DataBaseHelper {
 

@@ -1,34 +1,22 @@
 package com.meng.toolset.picture;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RadioButton;
+import android.*;
+import android.app.*;
+import android.content.*;
+import android.content.pm.*;
+import android.graphics.*;
+import android.net.*;
+import android.os.*;
+import android.text.*;
+import android.view.*;
+import android.widget.*;
 
-import com.meng.app.BaseFragment;
-import com.meng.app.Constant;
-import com.meng.app.FunctionSavePath;
-import com.meng.app.MainActivity;
-import com.meng.tools.AndroidContent;
-import com.meng.tools.FileTool;
-import com.meng.tools.QrUtils;
-import com.meng.tools.app.ThreadPool;
+import com.meng.app.*;
+import com.meng.tools.*;
+import com.meng.tools.app.*;
 import com.meng.toolset.mediatool.R;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public class PictureCrypt extends BaseFragment implements View.OnClickListener {
     private final int REQUEST_PERMISSION_PHOTO = 1001;

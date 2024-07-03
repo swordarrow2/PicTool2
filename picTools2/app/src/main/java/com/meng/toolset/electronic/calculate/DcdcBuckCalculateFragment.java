@@ -1,16 +1,11 @@
 package com.meng.toolset.electronic.calculate;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TabHost;
-import android.widget.TextView;
+import android.os.*;
+import android.view.*;
+import android.widget.*;
 
-import com.meng.app.BaseFragment;
-import com.meng.toolset.mediatool.R;
+import com.meng.app.*;
+import com.meng.toolset.mediatool.*;
 
 public class DcdcBuckCalculateFragment extends BaseFragment {
 

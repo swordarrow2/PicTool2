@@ -1,37 +1,24 @@
 package com.meng.toolset.picture.saucenao;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.app.*;
+import android.content.*;
+import android.net.*;
+import android.os.*;
+import android.support.annotation.*;
+import android.view.*;
+import android.view.animation.*;
+import android.widget.*;
+import android.widget.AdapterView.*;
 
-import com.meng.app.BaseFragment;
-import com.meng.app.Constant;
-import com.meng.app.MFragmentManager;
-import com.meng.app.MainActivity;
-import com.meng.tools.AndroidContent;
-import com.meng.tools.MaterialDesign.FloatingButton;
-import com.meng.toolset.mediatool.R;
-import com.meng.toolset.picture.pixiv.PixivDownloadMain;
+import com.meng.app.*;
+import com.meng.tools.*;
+import com.meng.tools.MaterialDesign.*;
+import com.meng.toolset.mediatool.*;
+import com.meng.toolset.picture.pixiv.*;
 
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
+import org.jsoup.*;
 
-import java.io.FileInputStream;
+import java.io.*;
 
 public class SauceNaoMain extends BaseFragment {
     private FloatingButton mFabSelect;

@@ -1,18 +1,15 @@
 package com.meng.app.task;
 
 import android.os.*;
+import android.widget.*;
 
-import com.meng.app.MainActivity;
-import com.meng.tools.app.ExceptionCatcher;
-import com.meng.tools.app.SharedPreferenceHelper;
+import com.meng.app.*;
+import com.meng.tools.app.*;
 
 import java.io.*;
-import java.nio.charset.*;
-
 import java.lang.Process;
-import java.util.Locale;
-
-import android.widget.*;
+import java.nio.charset.*;
+import java.util.*;
 
 public class FFmpegBackTask extends BackgroundTask {
 

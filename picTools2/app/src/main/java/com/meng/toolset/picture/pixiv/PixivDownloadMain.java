@@ -5,6 +5,7 @@ import android.graphics.*;
 import android.os.*;
 import android.support.v7.app.*;
 import android.view.*;
+import android.view.View.*;
 import android.widget.*;
 import android.widget.AdapterView.*;
 
@@ -18,15 +19,13 @@ import com.meng.tools.app.*;
 import com.meng.tools.app.database.*;
 import com.meng.toolset.mediatool.*;
 
+import org.jsoup.*;
+
 import java.io.*;
 import java.net.*;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
-
-import org.jsoup.*;
-
-import android.view.View.OnClickListener;
 
 public class PixivDownloadMain extends BaseFragment {
 

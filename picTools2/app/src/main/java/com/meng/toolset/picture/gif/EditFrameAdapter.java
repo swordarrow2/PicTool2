@@ -3,7 +3,9 @@ package com.meng.toolset.picture.gif;
 import android.app.*;
 import android.view.*;
 import android.widget.*;
+
 import com.meng.toolset.mediatool.*;
+
 import java.io.*;
 import java.util.*;
 

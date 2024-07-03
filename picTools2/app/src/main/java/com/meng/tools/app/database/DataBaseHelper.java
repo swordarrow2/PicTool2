@@ -1,13 +1,10 @@
 package com.meng.tools.app.database;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+import android.content.*;
+import android.database.*;
+import android.database.sqlite.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Created by SJF on 2024/6/30.

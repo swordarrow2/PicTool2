@@ -4,11 +4,10 @@ import android.app.*;
 import android.view.*;
 import android.widget.*;
 
+import com.meng.tools.app.*;
 import com.meng.toolset.mediatool.*;
 
 import java.util.*;
-
-import com.meng.tools.app.ThreadPool;
 
 public class BackgroundTaskAdapter extends BaseAdapter {
 

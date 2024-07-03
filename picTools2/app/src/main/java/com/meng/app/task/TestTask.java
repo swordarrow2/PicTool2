@@ -1,6 +1,6 @@
 package com.meng.app.task;
 
-import com.meng.app.MainActivity;
+import com.meng.app.*;
 
 public class TestTask extends BackgroundTask {
 

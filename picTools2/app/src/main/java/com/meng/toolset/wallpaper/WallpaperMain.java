@@ -7,11 +7,9 @@ import android.view.*;
 import android.view.View.*;
 import android.widget.*;
 
-import com.meng.app.BaseFragment;
-import com.meng.app.Constant;
-import com.meng.app.MainActivity;
-import com.meng.toolset.mediatool.*;
+import com.meng.app.*;
 import com.meng.tools.*;
+import com.meng.toolset.mediatool.*;
 
 public class WallpaperMain extends BaseFragment {
     

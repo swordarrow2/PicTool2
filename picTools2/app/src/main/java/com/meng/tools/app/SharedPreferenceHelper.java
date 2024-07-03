@@ -1,7 +1,6 @@
 package com.meng.tools.app;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.*;
 
 
 public class SharedPreferenceHelper {

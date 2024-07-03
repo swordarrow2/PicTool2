@@ -1,27 +1,19 @@
 package com.meng.tools;
 
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Environment;
+import android.content.*;
+import android.graphics.*;
+import android.net.*;
+import android.os.*;
 
-import com.meng.app.FunctionSavePath;
-import com.meng.tools.app.ExceptionCatcher;
-import com.meng.tools.hash.MD5;
+import com.meng.app.*;
+import com.meng.tools.app.*;
+import com.meng.tools.hash.*;
 
-import org.jsoup.helper.StringUtil;
+import org.jsoup.helper.*;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.HashSet;
+import java.io.*;
+import java.nio.charset.*;
+import java.util.*;
 
 public class FileTool {
     private static Context context;

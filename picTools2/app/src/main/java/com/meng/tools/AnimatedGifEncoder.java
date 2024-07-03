@@ -2,6 +2,7 @@ package com.meng.tools;
 
 import android.graphics.*;
 import android.graphics.Bitmap.*;
+
 import java.io.*;
 
 public class AnimatedGifEncoder {
