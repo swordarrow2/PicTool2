@@ -12,7 +12,6 @@ import java.util.*;
 
 public class DcdcBoostCalculateFragment extends BaseFragment implements View.OnClickListener {
 
-
     /*
     *@author 清梦
 	*@date 2024-06-26 02:31:23
@@ -26,6 +25,11 @@ public class DcdcBoostCalculateFragment extends BaseFragment implements View.OnC
             tab2vi, tab2vo, tab2vd, tab2io, tab2fr, tab2l,
             tab3vi, tab3vo, tab3vd, tab3dv, tab3fr, tab3l,
             tab4vi, tab4vo, tab4vd, tab4io, tab4fr, tab4l, tab4dv;
+
+    @Override
+    public String getTitle() {
+        return "DCDC Boost元件选型";
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

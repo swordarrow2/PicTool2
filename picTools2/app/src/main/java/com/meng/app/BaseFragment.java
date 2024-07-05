@@ -16,6 +16,10 @@ public class BaseFragment extends Fragment {
         return "";
     }
 
+    public String getTitle() {
+        return MainActivity.DEFAULT_TITLE;
+    }
+
     public void selectImage() {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);

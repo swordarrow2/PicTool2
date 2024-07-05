@@ -15,11 +15,14 @@
         <TabWidget
             android:id="@android:id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true" />
 
         <LinearLayout
+            android:id="@+id/dcdc_boost_calculate_result_linearlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@android:id/tabs"
             android:orientation="horizontal">
 
             <TextView
@@ -29,13 +32,13 @@
 
         </LinearLayout>
 
-
         <!-- FrameLayout布局，id值不可变-->
         <FrameLayout
-
             android:id="@android:id/tabcontent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_above="@+id/dcdc_calculateButton_go"
+            android:layout_below="@+id/dcdc_boost_calculate_result_linearlayout">
 
             <!-- 第一个tab的布局 -->
             <LinearLayout
@@ -133,7 +136,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     ran:default_value="0"
-                    ran:hint="电感感值" />
+                    ran:hint="电感感值(uH)" />
 
             </LinearLayout>
 
@@ -172,7 +175,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     ran:default_value="0"
-                    ran:hint="允许纹波" />
+                    ran:hint="允许纹波(mV)" />
 
                 <com.meng.tools.MaterialDesign.MDEditText
                     android:id="@+id/boost_input_capcitor_freq"
@@ -186,7 +189,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     ran:default_value="0"
-                    ran:hint="电感感值" />
+                    ran:hint="电感感值(uH)" />
 
             </LinearLayout>
 
@@ -239,24 +242,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     ran:default_value="0"
-                    ran:hint="电感感值" />
+                    ran:hint="电感感值(uH)" />
 
                 <com.meng.tools.MaterialDesign.MDEditText
                     android:id="@+id/boost_output_capcitor_deltaV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     ran:default_value="0"
-                    ran:hint="允许纹波" />
+                    ran:hint="允许纹波(mV)" />
 
             </LinearLayout>
-
-
         </FrameLayout>
 
         <Button
             android:id="@+id/dcdc_calculateButton_go"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:text="@string/start_calculate" />
 
     </RelativeLayout>

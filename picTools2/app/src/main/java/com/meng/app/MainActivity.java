@@ -6,6 +6,7 @@ import android.content.*;
 import android.content.pm.*;
 import android.content.res.*;
 import android.os.*;
+import android.support.annotation.*;
 import android.support.design.widget.*;
 import android.support.v4.view.*;
 import android.support.v4.widget.*;
@@ -18,17 +19,18 @@ import com.meng.app.menu.*;
 import com.meng.app.task.*;
 import com.meng.tools.*;
 import com.meng.tools.app.*;
-import com.meng.tools.app.database.*;
+import com.meng.app.database.*;
 import com.meng.toolset.mediatool.R;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static String DEFAULT_TITLE = "MDT";
     public static MainActivity instance;
     public static boolean isDebugMode = false;
     private DrawerLayout mDrawerLayout;
     private LinearLayout mainLinearLayout;
-
+    private Toolbar toolbar;
     public boolean onWifi = false;
 
     public ListView rightList;
@@ -50,6 +52,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
+    public void setTitle(CharSequence title) {
+        toolbar.setTitle(title);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ExceptionCatcher.getInstance().init(this);
@@ -65,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void init() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mainLinearLayout = (LinearLayout) findViewById(R.id.main_linear_layout);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -110,7 +117,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         new TestTask()
                 .setTitle("goto genshin")
                 .setStatus("自动下载原神中").start();
-        FunctionName.values()[item.getItemId()].doAction();
+        FunctionName functionName = FunctionName.values()[item.getItemId()];
+        setTitle(functionName.getName());
+        functionName.doAction();
         return true;
     }
 
@@ -173,14 +182,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return true;
         }
         return MFragmentManager.getInstance().getCurrent().onKeyDown(keyCode, event) || super.onKeyDown(keyCode, event);
-
-    }
-
-    public void doVibrate(long time) {
-        Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-        if (vibrator != null) {
-            vibrator.vibrate(time);
-        }
     }
 
     public void exit() {
@@ -192,16 +193,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 321) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                    showToast("缺失权限会使应用工作不正常");
-                } else {
-                    init();
-                }
-            }
+        if (requestCode != 321) {
+            return;
+        }
+        if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+            showToast("缺失权限会使应用工作不正常");
+        } else {
+            init();
         }
     }
 

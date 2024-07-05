@@ -2,11 +2,14 @@ package com.meng.tools.app;
 
 import android.content.*;
 import android.net.*;
+import android.os.*;
 
 import com.meng.app.*;
 
 import java.text.*;
 import java.util.*;
+
+import static android.content.Context.VIBRATOR_SERVICE;
 
 /**
  * Created by SJF on 2024/6/29.
@@ -35,5 +38,12 @@ public class SystemStatus {
 
     public static String formatDate(int y, int m, int d) {
         return getDate(new Date(y, m, d).getTime());
+    }
+
+    public void doVibrate(Context context, long time) {
+        Vibrator vibrator = (Vibrator) context.getSystemService(VIBRATOR_SERVICE);
+        if (vibrator != null) {
+            vibrator.vibrate(time);
+        }
     }
 }

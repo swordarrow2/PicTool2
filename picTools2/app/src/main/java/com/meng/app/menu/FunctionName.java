@@ -26,7 +26,6 @@ public enum FunctionName {
      *@date 2024-06-26 09:48:59
      */
 
-
     FUNCTION_TEST_DATABASE("db test", FunctionGroup.GROUP_DEVELOPING, DBTester.class),
     FUNCTION_LIST_MEDICINE("查看药品", FunctionGroup.GROUP_DEVELOPING, ShowAllMedicineFragment.class),
 
@@ -76,11 +75,14 @@ public enum FunctionName {
     FUNCTION_PICTURE_ENCODE_GIF("合成GIF", FunctionGroup.GROUP_PICTURE, GIFCreator.class),
     FUNCTION_PICTURE_PIXIV_DOWNLOAD("PIXIV下载", FunctionGroup.GROUP_PICTURE, PixivDownloadMain.class),
     FUNCTION_PICTURE_SAUCENAO("SauceNAO搜图", FunctionGroup.GROUP_PICTURE, SauceNaoMain.class),
-    FUNCTION_VIDEO_FORMAT_CONVERT("视频格式转换", FunctionGroup.GROUP_VIDEO, FfmpegFragment.class),
+
+    FUNCTION_VIDEO_FORMAT_CONVERT("视频格式转换", FunctionGroup.GROUP_DEVELOPING, FfmpegFragment.class),
     FUNCTION_VIDEO_RTMP_PUSH("RTMP推流", FunctionGroup.GROUP_VIDEO, RtmpFragment.class),
     FUNCTION_VIDEO_WALLPAPER("视频动态壁纸", FunctionGroup.GROUP_VIDEO, WallpaperMain.class),
+
     FUNCTION_AUDIO_ANDROID_TTS("安卓语音合成", FunctionGroup.GROUP_AUDIO, TtsFragment.class),
     FUNCTION_AUDIO_VITS_TTS("VITS语音合成", FunctionGroup.GROUP_AUDIO, VitsConnectFragment.class),
+
     FUNCTION_ELECTRONIC_SEARCH_SEMIEE("搜索半导小芯", FunctionGroup.GROUP_DEVELOPING, SearchSemieeFragment.class),
     FUNCTION_ELECTRONIC_BOOST_PART_CHOOSE("boost元件选型", FunctionGroup.GROUP_ELECTRONIC, DcdcBoostCalculateFragment.class),
     FUNCTION_ELECTRONIC_BUCK_PART_CHOOSE("buck元件选型", FunctionGroup.GROUP_ELECTRONIC, new Runnable() {
@@ -111,7 +113,6 @@ public enum FunctionName {
                     }
                 }
             });
-
         }
     }),
     FUNCTION_ELECTRONIC_FARAD_TEST("法拉电容估算", FunctionGroup.GROUP_ELECTRONIC, FaradCapacitanceCalculate.class),
@@ -123,6 +124,13 @@ public enum FunctionName {
             MFragmentManager.getInstance().showSettingFragment();
         }
     }),
+    FUNCTION_SYSTEM_BACKGROUND_TASK("后台任务", FunctionGroup.GROUP_SYSTEM, new Runnable() {
+
+        @Override
+        public void run() {
+            MainActivity.instance.openRightDrawer();
+        }
+    }),
     FUNCTION_SYSTEM_EXIT("退出", FunctionGroup.GROUP_SYSTEM, new Runnable() {
 
         @Override
@@ -130,7 +138,6 @@ public enum FunctionName {
             MainActivity.instance.exit();
         }
     });
-
 
     public static final String TAG = "FunctionName";
 

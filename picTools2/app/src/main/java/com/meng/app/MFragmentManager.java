@@ -62,6 +62,7 @@ public class MFragmentManager {
         current = frag;
         hideFragment();
         transaction.show(frag);
+        MainActivity.instance.setTitle(frag.getTitle());
         transaction.commit();
         frag.onResume();
     }
