@@ -68,7 +68,7 @@ public class PixivDataBase extends DataBaseHelper {
 
     public void deleteFailed(String pixivId) {
         SQLiteDatabase db = getSQLiteOpenHelper().getWritableDatabase();
-        db.delete(TABLE_NAME, "_id=?", new String[]{pixivId});
+        db.delete(TABLE_NAME, "_op = ?", new String[]{pixivId});
     }
 
 }
