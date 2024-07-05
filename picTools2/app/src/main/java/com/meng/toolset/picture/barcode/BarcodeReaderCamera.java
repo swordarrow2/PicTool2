@@ -13,18 +13,22 @@ import android.content.pm.*;
 import android.graphics.*;
 import android.os.*;
 import android.text.*;
+import android.util.*;
 import android.view.*;
 import android.view.SurfaceHolder.*;
 import android.widget.*;
 
 import com.google.zxing.*;
 import com.meng.app.*;
+import com.meng.tools.*;
+import com.meng.tools.app.*;
 import com.meng.tools.zxing.camera.*;
 import com.meng.tools.zxing.decoding.*;
 import com.meng.tools.zxing.view.*;
 import com.meng.toolset.mediatool.R;
 
 import java.util.*;
+import java.util.concurrent.*;
 
 public class BarcodeReaderCamera extends BaseFragment implements Callback {
 
@@ -37,7 +41,23 @@ public class BarcodeReaderCamera extends BaseFragment implements Callback {
     private InactivityTimer inactivityTimer;
     private boolean flashLightOpen = false;
     private ImageButton flashIbtn;
-    private BarcodeReaderGallery galleryReader;
+    private BiConsumer<String, String> onResultAction = new BiConsumer<String, String>() {
+        @Override
+        public void action(String v1, String v2) {
+            MainActivity.instance.showToast(String.format("二维码类型%s,内容:%s,已复制到剪贴板", v1, v2));
+            AndroidContent.copyToClipboard(v2);
+            ThreadPool.executeAfterTime(new Runnable() {
+                @Override
+                public void run() {
+                    restartPreview();
+                }
+            }, 3, TimeUnit.SECONDS);
+        }
+    };
+
+    public void setOnResultAction(BiConsumer<String, String> onResultAction) {
+        this.onResultAction = onResultAction;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,91 +82,19 @@ public class BarcodeReaderCamera extends BaseFragment implements Callback {
                 toggleFlashLight();
             }
         });
-        galleryReader = MFragmentManager.getInstance().getFragment(BarcodeReaderGallery.class);
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        //LogTool.t("camera open");
-        View sv = this.getView();
-        if (sv == null) {
-            return;
-        }
-        SurfaceView surfaceView = (SurfaceView) sv.findViewById(R.id.preview_view);
-        SurfaceHolder surfaceHolder = surfaceView.getHolder();
-        if (hasSurface) {
-            initCamera(surfaceHolder);
-        } else {
-            surfaceHolder.addCallback(this);
-            surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-        }
-        decodeFormats = null;
-        characterSet = null;
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        //LogTool.t("camera close");
-        if (handler != null) {
-            handler.quitSynchronously();
-            handler = null;
-        }
-        if (flashIbtn != null) {
-            flashIbtn.setImageResource(R.drawable.ic_flash_off_white_24dp);
-        }
-        CameraManager cm = CameraManager.get();
-        if (cm != null) {
-            cm.closeDriver();
-        }
-    }
-
-    @Override
-    public void onDestroy() {
-        inactivityTimer.shutdown();
-        super.onDestroy();
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (grantResults.length > 0 && requestCode == REQUEST_PERMISSION_CAMERA) {
-            if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                // 未获得Camera权限
-                new AlertDialog.Builder(getActivity())
-                        .setTitle("提示")
-                        .setMessage("请在系统设置中为App开启摄像头权限后重试")
-                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_PERMISSION_CAMERA);
-                            }
-                        }).show();
-            }
-        }
     }
 
     public void handleDecode(Result result, Bitmap barcode) {
         inactivityTimer.onActivity();
-        if (galleryReader != null && result.getText().equals(galleryReader.getLastResult())) {
-            return;
-        }
         MainActivity.instance.doVibrate(200L);
         handleResult(result.getText(), result.getBarcodeFormat().toString());
     }
 
-    public void handleResult(final String resultString, String format) {
-        if (TextUtils.isEmpty(resultString)) {
+    public void handleResult(String result, String format) {
+        if (TextUtils.isEmpty(result)) {
             restartPreview();
         } else {
-            if (galleryReader != null) {
-                galleryReader.setResult(resultString, format);
-            } else {
-                throw new RuntimeException("Gallery reader is null");
-            }
-            restartPreview();
+            onResultAction.action(result, format);
         }
     }
 
@@ -218,12 +166,65 @@ public class BarcodeReaderCamera extends BaseFragment implements Callback {
     }
 
     @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        if (getUserVisibleHint()) {
-            onResume();
-        } else {
-            onPause();
+    public void onResume() {
+        super.onResume();
+        Log.i(getClass().toString(), "camera open");
+        //LogTool.t("camera open");
+        View sv = this.getView();
+        if (sv == null) {
+            return;
         }
-        super.setUserVisibleHint(isVisibleToUser);
+        SurfaceView surfaceView = (SurfaceView) sv.findViewById(R.id.preview_view);
+        SurfaceHolder surfaceHolder = surfaceView.getHolder();
+        if (hasSurface) {
+            initCamera(surfaceHolder);
+        } else {
+            surfaceHolder.addCallback(this);
+            surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+        }
+        decodeFormats = null;
+        characterSet = null;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.i(getClass().toString(), "camera close");
+        if (handler != null) {
+            handler.quitSynchronously();
+            handler = null;
+        }
+        if (flashIbtn != null) {
+            flashIbtn.setImageResource(R.drawable.ic_flash_off_white_24dp);
+        }
+        CameraManager cm = CameraManager.get();
+        if (cm != null) {
+            cm.closeDriver();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        inactivityTimer.shutdown();
+        super.onDestroy();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults.length > 0 && requestCode == REQUEST_PERMISSION_CAMERA) {
+            if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                // 未获得Camera权限
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("提示")
+                        .setMessage("请在系统设置中为App开启摄像头权限后重试")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_PERMISSION_CAMERA);
+                            }
+                        }).show();
+            }
+        }
     }
 }

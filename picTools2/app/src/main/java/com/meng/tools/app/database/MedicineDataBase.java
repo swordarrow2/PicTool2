@@ -17,8 +17,8 @@ public class MedicineDataBase extends DataBaseHelper {
      *@author 清梦
      *@date 2024-07-01 15:54:50
      */
-    public static final String TAG = "BoxDataBase";
-    private final String DATABASE_NAME = "box_record";
+    public static final String TAG = "MedicineDataBase";
+    private final String DATABASE_NAME = "medicine";
     private final int DATABASE_VERSION = 1;
     private final String TABLE_DATA_MAIN = "data_main";// id , name , describe , slot id , picture file
 

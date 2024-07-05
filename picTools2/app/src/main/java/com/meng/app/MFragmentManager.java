@@ -63,6 +63,7 @@ public class MFragmentManager {
         hideFragment();
         transaction.show(frag);
         transaction.commit();
+        frag.onResume();
     }
 
     public void showSettingFragment() {
@@ -76,6 +77,7 @@ public class MFragmentManager {
         FragmentTransaction ft = activity.getFragmentManager().beginTransaction();
         for (BaseFragment f : fragments.values()) {
             ft.hide(f);
+            f.onPause();
         }
         ft.hide(setting);
         ft.commit();

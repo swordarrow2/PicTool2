@@ -13,7 +13,8 @@
         <item>Awesome(任意位置)</item>
         <item>Awesome(动态)</item>
         <item>Awesome(自选位置，动态)</item>
-        <item>读取条码</item>    
+        <item>读取条码(相机)</item>
+        <item>读取条码(相册)</item>
     </string-array>
     
     <string-array name="dcdc_cal_type">

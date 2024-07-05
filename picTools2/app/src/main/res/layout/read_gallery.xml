@@ -3,12 +3,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <fragment
-        android:id="@+id/read_galleryfragment"
-        android:name="com.meng.toolset.picture.barcode.BarcodeReaderCamera"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
-
     <LinearLayout
         android:id="@+id/read_galleryLinearLayout"
         android:layout_width="match_parent"

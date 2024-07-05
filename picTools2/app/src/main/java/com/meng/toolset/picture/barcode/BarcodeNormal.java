@@ -108,7 +108,7 @@ public class BarcodeNormal extends BaseFragment {
                     try {
                         s = FileTool.saveToFile(FileTool.getAppFile(FunctionSavePath.barcode, FileTool.FileType.png), bmpQRcode);
                     } catch (IOException e) {
-                        
+
                     }
                     if (s == null) {
                         MainActivity.instance.showToast("保存出错");

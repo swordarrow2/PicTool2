@@ -30,6 +30,13 @@ public class BaseFragment extends Fragment {
         startActivityForResult(intent, Constant.SELECT_FILE_REQUEST_CODE);
     }
 
+    public void selectFile() {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("*/*");
+        startActivityForResult(intent, Constant.SELECT_FILE_REQUEST_CODE);
+    }
+
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         return false;
     }

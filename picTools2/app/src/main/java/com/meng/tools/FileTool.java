@@ -90,20 +90,14 @@ public class FileTool {
                     return null;
                 }
             }
-        } else {
-            if (!f.exists()) {
-                boolean mkdirs = false;
-                try {
-                    mkdirs = f.createNewFile();
-                } catch (IOException e) {
-
-                }
-                if (!mkdirs) {
-                    return null;
-                }
+        } else if (!f.exists()) {
+            try {
+                f.getParentFile().mkdirs();
+                f.createNewFile();
+            } catch (IOException e) {
+                return null;
             }
         }
-
         return f;
     }
 

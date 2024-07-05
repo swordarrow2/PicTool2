@@ -60,6 +60,9 @@ public enum FunctionName {
                             MFragmentManager.getInstance().showFragment(BarcodeAwesomeArbGif.class);
                             break;
                         case 5:
+                            MFragmentManager.getInstance().showFragment(BarcodeReaderCamera.class);
+                            break;
+                        case 6:
                             MFragmentManager.getInstance().showFragment(BarcodeReaderGallery.class);
                             break;
                     }

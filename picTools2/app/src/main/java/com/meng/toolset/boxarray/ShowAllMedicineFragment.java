@@ -12,22 +12,26 @@ import android.widget.*;
 import com.meng.app.*;
 import com.meng.tools.*;
 import com.meng.tools.MaterialDesign.*;
+import com.meng.tools.app.*;
 import com.meng.tools.app.database.*;
 import com.meng.toolset.mediatool.*;
 
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.*;
 
-public class ShowAllMedicineFragment extends BaseFragment {
+public class ShowAllMedicineFragment extends BaseFragment implements View.OnClickListener {
 
     private ListView lvMain;
-    private ShowAllAdapter adapter;
+    private MedicineAdapter adapter;
     private MedicineDataBase medicineDataBase;
-    private FloatingMenu menuStar;
+    private FloatingMenu floatMenu;
     private FloatingButton fabAddMedicine;
     private FloatingButton fabAddBinding;
     private FloatingButton fabImport;
     private String path;
+
+
     private Runnable callBack;
 
     @Override
@@ -38,30 +42,56 @@ public class ShowAllMedicineFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ViewGroup vg = new ViewGroup(getActivity()) {
+            @Override
+            protected void onLayout(boolean changed, int l, int t, int r, int b) {
+
+            }
+        };
+//        FragmentManager fragmentManager= getFragmentManager();
+//        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+//        fragmentTransaction.add
         lvMain = (ListView) view.findViewById(R.id.m_list);
-        menuStar = (FloatingMenu) view.findViewById(R.id.m_menu_star);
+        floatMenu = (FloatingMenu) view.findViewById(R.id.m_menu_star);
         fabAddMedicine = (FloatingButton) view.findViewById(R.id.m_fab_add_medicine);
         fabAddBinding = (FloatingButton) view.findViewById(R.id.m_fab_add_binding);
         fabImport = (FloatingButton) view.findViewById(R.id.m_fab_add_import);
         medicineDataBase = DataBaseHelper.getInstance(MedicineDataBase.class);
-        menuStar.setAnimated(true);
-        menuStar.hideMenuButton(false);
-        menuStar.setClosedOnTouchOutside(true);
-        menuStar.setIconAnimated(false);
-        menuStar.setAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.show_from_bottom));
-        lvMain.setAdapter(adapter = new ShowAllAdapter(getActivity()));
+        floatMenu.setAnimated(true);
+        floatMenu.hideMenuButton(false);
+        floatMenu.setClosedOnTouchOutside(true);
+        floatMenu.setIconAnimated(false);
+        floatMenu.setAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.show_from_bottom));
+        lvMain.setAdapter(adapter = new MedicineAdapter(getActivity()));
         lvMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent2 = new Intent(getActivity(), ModelEditActivity.class);
-//                intent2.putExtra("id", adapter.getItem(position).id);
-//                startActivity(intent2);
+                //todo item view
+                ImageView iv = new ImageView(getActivity());
+                byte[] picture = adapter.getItem(position).picture;
+                if (picture != null) {
+                    iv.setImageBitmap(BitmapFactory.decodeByteArray(picture, 0, picture.length));
+                    new AlertDialog.Builder(MainActivity.instance).setTitle("添加药品").setView(iv).show();
+                }
             }
         });
-        fabAddMedicine.setOnClickListener(new View.OnClickListener() {
+        fabAddBinding.setOnClickListener(this);
+        fabAddMedicine.setOnClickListener(this);
+        fabImport.setOnClickListener(this);
+        ThreadPool.executeAfterTime(new Runnable() {
             @Override
-            public void onClick(View v) {
+            public void run() {
+                floatMenu.showMenuButton(true);
+            }
+        }, 100, TimeUnit.MILLISECONDS);
+
+    }
+
+    @Override
+    public void onClick(final View v) {
+        switch (v.getId()) {
+            case R.id.m_fab_add_medicine:
                 View view = LayoutInflater.from(getActivity()).inflate(R.layout.add_medicine, null);
                 final AlertDialog ad = new AlertDialog.Builder(MainActivity.instance).setTitle("添加药品").setView(view).show();
                 final MDEditText name = (MDEditText) view.findViewById(R.id.add_medicine_EditText_medicine_name);
@@ -82,36 +112,57 @@ public class ShowAllMedicineFragment extends BaseFragment {
                         adapter.notifyDataSetChanged();
                     }
                 });
-                select.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        callBack = new Runnable() {
+                select.setOnClickListener(this);
+                floatMenu.close(true);
+                break;
+            case R.id.m_fab_add_binding:
+//                final MengBarcodeScanView view1 = new MengBarcodeScanView(getActivity());
+                final EditText et = new EditText(getContext());
+                final AlertDialog ad2 = new AlertDialog.Builder(MainActivity.instance).setTitle("输入序列号").setView(et)
+                        .setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                             @Override
-                            public void run() {
-                                select.setText(String.format("当前图片：%s", path));
+                            public void onClick(DialogInterface dialog, int which) {
+                                medicineDataBase.bindMachine(et.getText().toString());
+                                floatMenu.close(true);
                             }
-                        };
-                        selectImage();
+                        }).setNegativeButton(getResources().getString(R.string.cancel), null).show();
+//                view1.setOnResultAction(new BiConsumer<String, String>() {
+//                    @Override
+//                    public void action(String v1, String v2) {
+//                        AndroidContent.copyToClipboard(v2);
+//                        ad2.dismiss();
+//                        view1.onDesdroy();
+//                    }
+//                });
+                break;
+            case R.id.add_medicine_Button_select:
+                callBack = new Runnable() {
+                    @Override
+                    public void run() {
+                        ((Button) v).setText(String.format("当前图片：%s", path));
                     }
-                });
-                menuStar.close(true);
-            }
-        });
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                menuStar.showMenuButton(true);
-            }
-        }, 150);
+                };
+                selectImage();
+                break;
+            case R.id.m_fab_add_import:
+                callBack = new Runnable() {
+                    @Override
+                    public void run() {
+                        MainActivity.instance.showToast(path);
+                    }
+                };
+                selectFile();
+                break;
+        }
     }
 
-    public static class ShowAllAdapter extends BaseAdapter {
+    public static class MedicineAdapter extends BaseAdapter {
 
         private List<MedicineDataBase.Medicine> allMedicine;
         private WeakHashMap<Integer, Bitmap> cache = new WeakHashMap<>();
         private Activity activity;
 
-        private ShowAllAdapter(Activity activity) {
+        private MedicineAdapter(Activity activity) {
             this.activity = activity;
             this.allMedicine = DataBaseHelper.getInstance(MedicineDataBase.class).getAllMedicine();
         }
@@ -160,7 +211,7 @@ public class ShowAllMedicineFragment extends BaseFragment {
             holder.name.setText(medicine.name);
             holder.inSlot.setText(String.valueOf(medicine.slotId));
             holder.describe.setText(medicine.describe);
-            Bitmap bitmap = null;// = bmpCache.get(result.mThumbnail);
+            Bitmap bitmap = null;
             if (medicine.picture != null) {
                 bitmap = cache.get(medicine.id);
                 if (bitmap == null) {
@@ -195,7 +246,7 @@ public class ShowAllMedicineFragment extends BaseFragment {
                 }
             }
         } else if (resultCode == Activity.RESULT_CANCELED) {
-            MainActivity.instance.showToast("取消选择图片");
+            MainActivity.instance.showToast("取消选择文件");
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
