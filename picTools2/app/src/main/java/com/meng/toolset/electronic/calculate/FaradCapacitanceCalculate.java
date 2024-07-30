@@ -14,8 +14,13 @@ public class FaradCapacitanceCalculate extends BaseDcdcCalculate implements OnCl
     private MengEditText sv0;
     private MengEditText sv1;
 
+    @Override
+    public String getName() {
+        return "法拉电容容量估算";
+    }
+
     public void init() {
-        setTitle("法拉电容容量估算");
+        setTitle("");
         si = addEditText("充电恒流(A)");
         st = addEditText("充电时间(s)");
         sv0 = addEditText("初始电压(V)");

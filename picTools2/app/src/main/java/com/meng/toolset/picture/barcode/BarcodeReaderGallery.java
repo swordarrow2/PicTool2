@@ -11,6 +11,7 @@ import android.widget.*;
 import com.google.zxing.*;
 import com.meng.app.*;
 import com.meng.tools.*;
+import com.meng.tools.app.*;
 import com.meng.toolset.mediatool.*;
 
 public class BarcodeReaderGallery extends BaseFragment implements View.OnClickListener {
@@ -71,9 +72,8 @@ public class BarcodeReaderGallery extends BaseFragment implements View.OnClickLi
             if (!TextUtils.isEmpty(path)) {
                 Result result = QrUtils.decodeImage(path);
                 if (result != null) {
-                    String resultString = result.getText();
-                    MainActivity.instance.doVibrate(200L);
-                    handleResult(resultString, result.getBarcodeFormat().toString());
+                    SystemTools.doVibrate(getActivity(), 200);
+                    handleResult(result.getText(), result.getBarcodeFormat().toString());
                 } else {
                     MainActivity.instance.showToast("此图片无法识别");
                 }

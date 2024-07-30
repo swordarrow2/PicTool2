@@ -86,7 +86,7 @@ public class BarcodeReaderCamera extends BaseFragment implements Callback {
 
     public void handleDecode(Result result, Bitmap barcode) {
         inactivityTimer.onActivity();
-        MainActivity.instance.doVibrate(200L);
+        SystemTools.doVibrate(getActivity(), 200);
         handleResult(result.getText(), result.getBarcodeFormat().toString());
     }
 

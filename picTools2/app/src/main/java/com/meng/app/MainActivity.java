@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             init();
         }
-        onWifi = SystemStatus.isUsingWifi();
+        onWifi = SystemTools.isUsingWifi();
         isDebugMode = SharedPreferenceHelper.isDebugMode();
     }
 
