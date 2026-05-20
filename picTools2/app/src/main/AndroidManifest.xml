@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.meng.toolset.mediatool">
+    package="com.meng.pictool">
 
     <!-- 拍摄照片和视频 -->
     <uses-permission android:name="android.permission.CAMERA" />
@@ -52,61 +52,168 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/green">
+        android:theme="@style/Theme.PicTool2">
 
         <meta-data
             android:name="android.max_aspect"
             android:value="2.1" />
 
         <activity
-            android:name="com.meng.app.MainActivity"
+            android:name=".MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:theme="@style/green"
+            android:theme="@style/Theme.PicTool2"
             android:windowSoftInputMode="adjustUnspecified|stateHidden">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-            <intent-filter>
-                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
-                android:resource="@xml/device_filter" />
         </activity>
 
+        <activity-alias
+            android:name=".MainActivityAlias"
+            android:targetActivity=".MainActivity"
+            android:enabled="true"
+            android:exported="true" >
+                <intent-filter>
+                    <action android:name="android.intent.action.MAIN" />
+                    <category android:name="android.intent.category.LAUNCHER" />
+                </intent-filter>
+        </activity-alias>
+
         <activity
-            android:name="com.meng.toolset.picture.pixiv.LoginPixivActivity"
+            android:name=".picture.pixiv.LoginPixivActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask" />
 
-        <activity android:name="com.meng.toolset.picture.barcode.CropActivity" />
+        <activity android:name=".picture.barcode.CropActivity" />
 
         <activity
-            android:name="com.meng.toolset.picture.gif.SelectFileActivity"
+            android:name=".picture.gif.SelectFileActivity"
             android:launchMode="singleTask"
-            android:theme="@style/green" />
+            android:theme="@style/blue" />
 
-        <service
-            android:name="com.meng.toolset.wallpaper.VideoWallpaper"
-            android:permission="android.permission.BIND_WALLPAPER">
+        <activity
+            android:name=".SettingsActivity"
+            android:theme="@style/blue" />
 
+        <activity
+            android:name=".FragmentWrapperActivity"
+            android:exported="true" 
+            android:theme="@style/blue" />
+
+        <activity-alias
+            android:name=".picture.GrayImageActivity"
+            android:targetActivity=".FragmentWrapperActivity"
+            android:label="@string/plugin_gray_image"
+            android:enabled="true"
+            android:exported="true">
             <intent-filter>
-
-                <action android:name="android.service.wallpaper.WallpaperService" />
-
+                <action android:name="com.meng.intent.action.PLUGIN.PICTURE" />
+                <category android:name="com.meng.intent.category.PLUGIN" />
             </intent-filter>
-
             <meta-data
-                android:name="android.service.wallpaper"
-                android:resource="@xml/videowallpaper" />
+                android:name="fragment_class"
+                android:value=".picture.GrayImage" />
+        </activity-alias>
 
-        </service>
+        <activity-alias
+            android:name=".picture.barcode.BarcodeGeneratorActivity"
+            android:targetActivity=".FragmentWrapperActivity"
+            android:label="@string/plugin_barcode_generator"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.meng.intent.action.PLUGIN.PICTURE" />
+                <category android:name="com.meng.intent.category.PLUGIN" />
+            </intent-filter>
+            <meta-data
+                android:name="fragment_class"
+                android:value=".picture.barcode.BarcodeNormal" />
+        </activity-alias>
+
+        <activity-alias
+            android:name=".picture.barcode.BarcodeReaderActivity"
+            android:targetActivity=".FragmentWrapperActivity"
+            android:label="@string/plugin_barcode_reader"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.meng.intent.action.PLUGIN.PICTURE" />
+                <category android:name="com.meng.intent.category.PLUGIN" />
+            </intent-filter>
+            <meta-data
+                android:name="fragment_class"
+                android:value=".picture.barcode.BarcodeReaderCamera" />
+        </activity-alias>
+
+        <activity-alias
+            android:name=".picture.gif.GIFCreatorActivity"
+            android:targetActivity=".FragmentWrapperActivity"
+            android:label="@string/plugin_gif_creator"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.meng.intent.action.PLUGIN.PICTURE" />
+                <category android:name="com.meng.intent.category.PLUGIN" />
+            </intent-filter>
+            <meta-data
+                android:name="fragment_class"
+                android:value=".picture.gif.GIFCreator" />
+        </activity-alias>
+
+        <activity-alias
+            android:name=".picture.pixiv.PixivDownloadMainActivity"
+            android:targetActivity=".FragmentWrapperActivity"
+            android:label="@string/plugin_pixiv_download"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.meng.intent.action.PLUGIN.PICTURE" />
+                <category android:name="com.meng.intent.category.PLUGIN" />
+            </intent-filter>
+            <meta-data
+                android:name="fragment_class"
+                android:value=".picture.pixiv.PixivDownloadMain" />
+        </activity-alias>
+
+        <activity-alias
+            android:name=".picture.PictureCryptActivity"
+            android:targetActivity=".FragmentWrapperActivity"
+            android:label="@string/plugin_picture_crypt"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.meng.intent.action.PLUGIN.PICTURE" />
+                <category android:name="com.meng.intent.category.PLUGIN" />
+            </intent-filter>
+            <meta-data
+                android:name="fragment_class"
+                android:value=".picture.PictureCrypt" />
+        </activity-alias>
+
+        <activity-alias
+            android:name=".picture.saucenao.SauceNaoMainActivity"
+            android:targetActivity=".FragmentWrapperActivity"
+            android:label="@string/plugin_saucenao"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.meng.intent.action.PLUGIN.PICTURE" />
+                <category android:name="com.meng.intent.category.PLUGIN" />
+            </intent-filter>
+            <meta-data
+                android:name="fragment_class"
+                android:value=".picture.saucenao.SauceNaoMain" />
+        </activity-alias>
+
+        <activity
+            android:name=".PluginSettingsActivity"
+            android:exported="true"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:theme="@style/Theme.PicTool2">
+            <intent-filter>
+                <action android:name="com.meng.intent.action.PLUGIN_SETTINGS" />
+                <category android:name="com.meng.intent.category.PLUGIN_SETTINGS" />
+            </intent-filter>
+        </activity>
 
     </application>
 

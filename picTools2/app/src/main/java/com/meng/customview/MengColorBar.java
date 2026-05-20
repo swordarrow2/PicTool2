@@ -8,14 +8,14 @@ import android.util.*;
 import android.view.*;
 import android.widget.*;
 
-import com.meng.toolset.mediatool.*;
+import com.meng.pictool.*;
 
 public class MengColorBar extends LinearLayout {
 
-    private EditText etTrue;
-    private TextView tvTrue;
-    private EditText etFalse;
-    private TextView tvFalse;
+    private final EditText etTrue;
+    private final TextView tvTrue;
+    private final EditText etFalse;
+    private final TextView tvFalse;
 
     public MengColorBar(final Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
@@ -32,18 +32,15 @@ public class MengColorBar extends LinearLayout {
         OnClickListener clickListener = new OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.meng_colorbar_button_select_true_color:
-                        Dialog dialog = new MengColorPickerDialog(getContext(), etTrue);
-                        dialog.show();
-                        break;
-                    case R.id.meng_colorbar_button_select_false_color:
-                        Dialog dialog2 = new MengColorPickerDialog(getContext(), etFalse);
-                        dialog2.show();
-                        break;
-                    case R.id.meng_colorbar_imagebutton:
-                        new AlertDialog.Builder(context).setTitle("").setMessage("真值点就是普通二维码中的黑色部分,其余部分为假值点").setPositiveButton("我知道了", null).show();
-                        break;
+                int id = v.getId();
+                if (id == R.id.meng_colorbar_button_select_true_color) {
+                    Dialog dialog = new MengColorPickerDialog(getContext(), etTrue);
+                    dialog.show();
+                } else if (id == R.id.meng_colorbar_button_select_false_color) {
+                    Dialog dialog2 = new MengColorPickerDialog(getContext(), etFalse);
+                    dialog2.show();
+                } else if (id == R.id.meng_colorbar_imagebutton) {
+                    new AlertDialog.Builder(context).setTitle("").setMessage("真值点就是普通二维码中的黑色部分,其余部分为假值点").setPositiveButton("我知道了", null).show();
                 }
             }
         };
@@ -53,13 +50,13 @@ public class MengColorBar extends LinearLayout {
     }
 
     public int getTrueColor() {
-        return etTrue.getText().toString().trim().length() == 0 ?
+        return etTrue.getText().toString().trim().isEmpty() ?
                 Color.parseColor(etTrue.getHint().toString()) :
                 Color.parseColor(etTrue.getText().toString());
     }
 
     public int getFalseColor() {
-        return etFalse.getText().toString().trim().length() == 0 ?
+        return etFalse.getText().toString().trim().isEmpty() ?
                 Color.parseColor(etFalse.getHint().toString()) :
                 Color.parseColor(etFalse.getText().toString());
     }

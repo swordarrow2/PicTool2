@@ -60,4 +60,13 @@
     <string name="at_slot">所在位置:</string>
     <string name="cancel">取消</string>
 
+    <!-- 插件入口标签 -->
+    <string name="plugin_gray_image">灰度图</string>
+    <string name="plugin_barcode_generator">条码生成</string>
+    <string name="plugin_barcode_reader">条码读取</string>
+    <string name="plugin_gif_creator">合成GIF</string>
+    <string name="plugin_pixiv_download">PIXIV下载</string>
+    <string name="plugin_picture_crypt">图片加解密</string>
+    <string name="plugin_saucenao">SauceNAO搜图</string>
+
 </resources>

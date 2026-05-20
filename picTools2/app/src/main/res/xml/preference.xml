@@ -75,8 +75,8 @@
         <PreferenceScreen android:title="pixiv下载器设置">
             <Preference android:title="登录Pixiv">
                 <intent
-                    android:targetClass="com.meng.toolset.mediatool.picture.pixiv.LoginPixivActivity"
-                    android:targetPackage="com.meng.toolset.mediatool" />
+                    android:targetClass="com.meng.pictool.mediatool.picture.pixiv.LoginPixivActivity"
+                    android:targetPackage="com.meng.pictool.mediatool" />
             </Preference>
             <CheckBoxPreference
                 android:defaultValue="false"

@@ -20,8 +20,8 @@ import android.os.*;
 import android.util.*;
 import com.google.zxing.*;
 import com.google.zxing.common.*;
-import com.meng.toolset.mediatool.*;
-import com.meng.toolset.picture.barcode.*;
+import com.meng.pictool.R;
+import com.meng.pictool.picture.barcode.*;
 import com.meng.tools.zxing.camera.*;
 import java.util.concurrent.*;
 

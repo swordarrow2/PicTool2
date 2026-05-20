@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1976D2</color>
+    <color name="colorAccent">#FF9800</color>
+
     <color name="sjf">#7fca00</color>
     <color name="sjf_dark">#7fba00</color>
     <color name="light_grey">#EEEEEE</color>
@@ -8,7 +12,6 @@
     <color name="viewfinder_frame">#ff000000</color>
     <color name="viewfinder_mask">#60000000</color>
     <color name="qr_blue">#8fca00</color>
-
 
     <color name="color_c1">#FF009078</color>
     <color name="color_c2">#FFE34646</color>
@@ -20,9 +23,7 @@
     <color name="red">#ffff0000</color>
     <color name="purple">#AD7BE8</color>
     <color name="blue">#0084FE</color>
-	
-	<color name="colorAccent">#FF4081</color>
 
     <color name="black_overlay">#66000000</color>
-	
+
 </resources>

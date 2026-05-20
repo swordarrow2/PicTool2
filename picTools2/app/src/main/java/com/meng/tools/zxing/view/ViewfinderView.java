@@ -16,25 +16,19 @@
 
 package com.meng.tools.zxing.view;
 
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.text.TextUtils;
-import android.util.AttributeSet;
-import android.view.View;
+import android.content.*;
+import android.content.pm.*;
+import android.content.res.*;
+import android.graphics.*;
+import android.text.*;
+import android.util.*;
+import android.view.*;
 
-import com.google.zxing.ResultPoint;
-import com.meng.toolset.mediatool.R;
-import com.meng.tools.zxing.camera.CameraManager;
+import com.google.zxing.*;
+import com.meng.pictool.*;
+import com.meng.tools.zxing.camera.*;
 
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.*;
 
 
 /**
@@ -77,7 +71,7 @@ public final class ViewfinderView extends View{
     public ViewfinderView(Context context,AttributeSet attrs){
         super(context,attrs);
 
-        TypedArray typedArray=context.obtainStyledAttributes(attrs,R.styleable.qr_ViewfinderView);
+        TypedArray typedArray=context.obtainStyledAttributes(attrs, R.styleable.qr_ViewfinderView);
         angleColor=typedArray.getColor(R.styleable.qr_ViewfinderView_qr_angleColor,Color.WHITE);
         hint=typedArray.getString(R.styleable.qr_ViewfinderView_qr_hint);
         hintColor=typedArray.getColor(R.styleable.qr_ViewfinderView_qr_textHintColor,Color.GRAY);

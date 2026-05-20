@@ -1,0 +1,9 @@
+package com.meng.pictool.picture.gif;
+
+import android.graphics.*;
+
+public class GIFFrame {
+    public Bitmap thumb;
+    public String filePath = "";
+    public int delay = 0;
+}

@@ -13,7 +13,7 @@ public class SharedPreferenceHelper {
     }
 
     public static String getTheme() {
-        return sp.getString("theme", "芳");
+        return sp.getString("theme", "蓝");
     }
 
     public static void setTheme(String v) {

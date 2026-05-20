@@ -7,12 +7,12 @@ import android.os.*;
 import android.view.*;
 import android.widget.*;
 
-import com.meng.toolset.mediatool.*;
+import com.meng.pictool.*;
 
 
 public class MengColorPickerDialog extends Dialog {
 
-    private EditText editText;
+    private final EditText editText;
     private MengColorPicker mengColorPicker;
 
     public MengColorPickerDialog(Context context, EditText editText) {
@@ -39,14 +39,15 @@ public class MengColorPickerDialog extends Dialog {
         btnCancal.setOnClickListener(onClickListener);
     }
 
-    private View.OnClickListener onClickListener = new View.OnClickListener() {
+    private final View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.meng_color_picker_ok:
-                    editText.setText(mengColorPicker.getStrColor());//no break
-                case R.id.meng_color_picker_cancal:
-                    hide();
+            int id = v.getId();
+            if (id == R.id.meng_color_picker_ok) {
+                editText.setText(mengColorPicker.getStrColor());
+                hide();
+            } else if (id == R.id.meng_color_picker_cancal) {
+                hide();
             }
         }
     };
